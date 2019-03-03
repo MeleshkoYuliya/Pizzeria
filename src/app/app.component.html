@@ -1,0 +1,50 @@
+<app-header></app-header>
+
+<div class="pizzas">
+  <div class="pizzas__item pizza" *ngFor="let pizza of pizzas.default.pizzas">
+    <img [src]="pizza.image" class="pizza__image" />
+    <h4 class="pizza__title">{{ pizza.name }}</h4>
+    <div class="pizza__ingredients ingredients">
+      <span class="ingredients__item" *ngFor="let item of pizza.ingredients">
+        {{ item.ingredient }}
+      </span>
+    </div>
+    <div class="radio-group">
+      <input
+        class="radio"
+        type="radio"
+        id="{{ pizza.name }} + 'thin'"
+        [name]="pizza.name"
+        checked
+      />
+      <label class="label" for="{{ pizza.name }} + 'thin'">
+        Thin
+      </label>
+      <input
+        class="radio"
+        type="radio"
+        id="{{ pizza.name }} + 'trad'"
+        [name]="pizza.name"
+      />
+      <label class="label" for="{{ pizza.name }} + 'trad'">
+        Traditional
+      </label>
+    </div>
+
+    <div class="radio-group">
+      <div *ngFor="let item of pizza.sizes" style="width: 100%">
+        <input
+          class="radio"
+          type="radio"
+          id="{{ item }} + {{ pizza.name }}"
+          name="{{ pizza.name }} + 'sizes'"
+        />
+        <label class="label" for="{{ item }} + {{ pizza.name }}">
+          {{ item }}
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
