@@ -6,7 +6,7 @@ class Pizza {
   image: string;
   name: string;
   ingredients: Array<Ingredient>;
-  sizes: Array<string>;
+  sizes: Array<number>;
 }
 
 class Ingredient {

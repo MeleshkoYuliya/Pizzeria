@@ -30,20 +30,44 @@
         Traditional
       </label>
     </div>
-
-    <div class="radio-group">
-      <div *ngFor="let item of pizza.sizes" style="width: 100%">
-        <input
-          class="radio"
-          type="radio"
-          id="{{ item }} + {{ pizza.name }}"
-          name="{{ pizza.name }} + 'sizes'"
-        />
-        <label class="label" for="{{ item }} + {{ pizza.name }}">
-          {{ item }}
-        </label>
+    <div class="pizza-view">
+      <form class="radio-group">
+        <div
+          style="width: 100%"
+          *ngFor="let item of pizza.sizes; let i = index"
+        >
+          <input
+            class="radio"
+            type="radio"
+            id="{{ item }} {{ pizza.name }}"
+            [value]="item"
+            name="size"
+            [(ngModel)]="pizza.size"
+          />
+          <label class="label" for="{{ item }} {{ pizza.name }}">
+            {{ item }}cm
+          </label>
+        </div>
+      </form>
+      <div class="cheese-group" *ngIf="pizza.size >= 30">
+        <div style="width: 100%">
+          <input
+            class="radio"
+            type="radio"
+            id="{{ pizza.name }} cheese"
+            name="{{ pizza.name }} cheese"
+          />
+          <label class="cheese" for="{{ pizza.name }} cheese">
+            <img
+              src="../assets/images/cheese.svg"
+              alt="cheese"
+              class="add-cheese__img"
+            />
+          </label>
+        </div>
       </div>
     </div>
+    <button class="add-btn">Add to cart</button>
   </div>
 </div>
 

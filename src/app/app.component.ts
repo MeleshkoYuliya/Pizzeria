@@ -10,10 +10,10 @@ import * as SampleJson from "../assets/pizzas.json";
 export class AppComponent implements OnInit {
   pizzas: Pizzas;
   title = "Pizzeria";
+
   constructor() {}
 
   ngOnInit() {
     this.pizzas = SampleJson;
-    console.log(this.pizzas);
   }
 }
