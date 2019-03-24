@@ -1,74 +1,10 @@
 <app-header></app-header>
 
 <div class="pizzas">
-  <div class="pizzas__item pizza" *ngFor="let pizza of pizzas.default.pizzas">
-    <img [src]="pizza.image" class="pizza__image" />
-    <h4 class="pizza__title">{{ pizza.name }}</h4>
-    <div class="pizza__ingredients ingredients">
-      <span class="ingredients__item" *ngFor="let item of pizza.ingredients">
-        {{ item.ingredient }}
-      </span>
-    </div>
-    <div class="radio-group">
-      <input
-        class="radio"
-        type="radio"
-        id="{{ pizza.name }} + 'thin'"
-        [name]="pizza.name"
-        checked
-      />
-      <label class="label" for="{{ pizza.name }} + 'thin'">
-        Thin
-      </label>
-      <input
-        class="radio"
-        type="radio"
-        id="{{ pizza.name }} + 'trad'"
-        [name]="pizza.name"
-      />
-      <label class="label" for="{{ pizza.name }} + 'trad'">
-        Traditional
-      </label>
-    </div>
-    <div class="pizza-view">
-      <form class="radio-group">
-        <div
-          style="width: 100%"
-          *ngFor="let item of pizza.sizes; let i = index"
-        >
-          <input
-            class="radio"
-            type="radio"
-            id="{{ item }} {{ pizza.name }}"
-            [value]="item"
-            name="size"
-            [(ngModel)]="pizza.size"
-          />
-          <label class="label" for="{{ item }} {{ pizza.name }}">
-            {{ item }}cm
-          </label>
-        </div>
-      </form>
-      <div class="cheese-group" *ngIf="pizza.size >= 30">
-        <div style="width: 100%">
-          <input
-            class="radio"
-            type="radio"
-            id="{{ pizza.name }} cheese"
-            name="{{ pizza.name }} cheese"
-          />
-          <label class="cheese" for="{{ pizza.name }} cheese">
-            <img
-              src="../assets/images/cheese.svg"
-              alt="cheese"
-              class="add-cheese__img"
-            />
-          </label>
-        </div>
-      </div>
-    </div>
-    <button class="add-btn">Add to cart</button>
-  </div>
+  <app-pizza-item
+    *ngFor="let pizza of pizzas.default.pizzas"
+    [pizza]="pizza"
+  ></app-pizza-item>
 </div>
 
 <router-outlet></router-outlet>

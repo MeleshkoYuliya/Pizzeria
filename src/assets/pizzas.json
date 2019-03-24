@@ -27,7 +27,24 @@
           "ingredient": "garlic butter"
         }
       ],
-      "sizes": [23, 30, 35, 40]
+      "info": [
+        {
+          "size": 23,
+          "price": 7.3
+        },
+        {
+          "size": 30,
+          "price": 8.8
+        },
+        {
+          "size": 35,
+          "price": 13.3
+        },
+        {
+          "size": 40,
+          "price": 21
+        }
+      ]
     },
     {
       "image": "assets/images/appetito.jpg",
@@ -56,7 +73,20 @@
           "ingredient": "garlic butter"
         }
       ],
-      "sizes": [30, 35, 40]
+      "info": [
+        {
+          "size": 30,
+          "price": 8.6
+        },
+        {
+          "size": 35,
+          "price": 11.7
+        },
+        {
+          "size": 40,
+          "price": 23.2
+        }
+      ]
     },
     {
       "image": "assets/images/byanka.jpg",
@@ -78,7 +108,16 @@
           "ingredient": "walnut"
         }
       ],
-      "sizes": [23, 30]
+      "info": [
+        {
+          "size": 23,
+          "price": 8.6
+        },
+        {
+          "size": 30,
+          "price": 10.9
+        }
+      ]
     },
     {
       "image": "assets/images/Hawaiian.jpg",
@@ -97,7 +136,16 @@
           "ingredient": "tomato sauce"
         }
       ],
-      "sizes": [23, 40]
+      "info": [
+        {
+          "size": 23,
+          "price": 5.5
+        },
+        {
+          "size": 40,
+          "price": 18.9
+        }
+      ]
     },
     {
       "image": "assets/images/hunting.jpg",
@@ -134,7 +182,24 @@
           "ingredient": "garlic oil"
         }
       ],
-      "sizes": [23, 30, 35, 40]
+      "info": [
+        {
+          "size": 23,
+          "price": 7.8
+        },
+        {
+          "size": 30,
+          "price": 11
+        },
+        {
+          "size": 35,
+          "price": 15.4
+        },
+        {
+          "size": 40,
+          "price": 29
+        }
+      ]
     },
     {
       "image": "assets/images/peperoni.jpg",
@@ -159,7 +224,20 @@
           "ingredient": " pepperoni pepper"
         }
       ],
-      "sizes": [23, 30, 35]
+      "info": [
+        {
+          "size": 23,
+          "price": 6.8
+        },
+        {
+          "size": 30,
+          "price": 12.8
+        },
+        {
+          "size": 35,
+          "price": 23.4
+        }
+      ]
     },
     {
       "image": "assets/images/roman.jpg",
@@ -184,7 +262,20 @@
           "ingredient": "garlic butter"
         }
       ],
-      "sizes": [23, 30, 35]
+      "info": [
+        {
+          "size": 23,
+          "price": 6.4
+        },
+        {
+          "size": 30,
+          "price": 11.9
+        },
+        {
+          "size": 35,
+          "price": 22.6
+        }
+      ]
     },
     {
       "image": "assets/images/romeo.jpg",
@@ -206,7 +297,24 @@
           "ingredient": "ranch sauce"
         }
       ],
-      "sizes": [23, 30, 35, 40]
+      "info": [
+        {
+          "size": 23,
+          "price": 6.9
+        },
+        {
+          "size": 30,
+          "price": 8.9
+        },
+        {
+          "size": 35,
+          "price": 12.6
+        },
+        {
+          "size": 40,
+          "price": 22.9
+        }
+      ]
     },
     {
       "image": "assets/images/Student.jpg",
@@ -225,7 +333,24 @@
           "ingredient": " sausages"
         }
       ],
-      "sizes": [23, 30, 35, 40]
+      "info": [
+        {
+          "size": 23,
+          "price": 5.3
+        },
+        {
+          "size": 30,
+          "price": 7.2
+        },
+        {
+          "size": 35,
+          "price": 9.9
+        },
+        {
+          "size": 40,
+          "price": 16.3
+        }
+      ]
     },
     {
       "image": "assets/images/venice.jpg",
@@ -247,7 +372,20 @@
           "ingredient": "lemon"
         }
       ],
-      "sizes": [23, 30, 35]
+      "info": [
+        {
+          "size": 23,
+          "price": 7.3
+        },
+        {
+          "size": 30,
+          "price": 8.2
+        },
+        {
+          "size": 35,
+          "price": 22.9
+        }
+      ]
     }
   ]
 }

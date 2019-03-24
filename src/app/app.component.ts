@@ -12,7 +12,6 @@ export class AppComponent implements OnInit {
   title = "Pizzeria";
 
   constructor() {}
-
   ngOnInit() {
     this.pizzas = SampleJson;
   }

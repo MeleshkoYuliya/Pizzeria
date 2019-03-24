@@ -2,7 +2,7 @@ export class Pizzas {
   pizzas: Array<Pizza>;
 }
 
-class Pizza {
+export class Pizza {
   image: string;
   name: string;
   ingredients: Array<Ingredient>;
