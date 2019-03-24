@@ -3,7 +3,7 @@
   <div class="pizza__info">
     <h4 class="pizza__title">{{ pizza.name }}</h4>
     <div *ngFor="let item of sizes">
-      <div class="pizza__persons" *ngIf="pizza.size === item" [ngSwitch]="item">
+      <div class="pizza__persons" *ngIf="size === item" [ngSwitch]="item">
         <img
           src="../assets/images/person.svg"
           alt="cheese"
