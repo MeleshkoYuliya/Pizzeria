@@ -8,7 +8,8 @@
   background-color: white;
   border-radius: 5px;
   overflow: hidden;
-  box-shadow: 0 0 20px rgb(156, 97, 30);
+  box-shadow: 4px 3px 9px rgba(0, 0, 0, 0.07),
+    6px 9px 18px rgba(0, 0, 0, 0.06);
 
   &__image {
     width: 300px;
@@ -17,6 +18,7 @@
     right: 40px;
     top: -40px;
   }
+
   &__title {
     margin: -5px 0 5px 0;
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
@@ -24,6 +26,7 @@
     font-size: 22px;
     width: 60%;
   }
+
   &__info {
     display: flex;
     flex-direction: row;
@@ -32,6 +35,7 @@
     max-width: 220px;
     position: relative;
   }
+
   &__persons {
     font-size: 16px;
     font-weight: bolder;
@@ -42,15 +46,18 @@
     vertical-align: bottom;
   }
 }
+
 .persons__img {
   height: 13px;
   margin-right: 2px;
 }
+
 .pizza__ingredients,
 .ingredients {
   :after {
     content: ",";
   }
+
   :last-child:after {
     content: "";
   }
@@ -77,7 +84,7 @@
   padding-left: 0px;
 }
 
-input[type="radio"]:checked + label {
+input[type="radio"]:checked+label {
   color: rgb(31, 29, 29);
   font-weight: bold;
   background-color: #dad8d8;
@@ -86,7 +93,8 @@ input[type="radio"]:checked + label {
   border: none;
   border-radius: 25px;
 }
-input[type="checkbox"]:checked + label {
+
+input[type="checkbox"]:checked+label {
   color: rgb(31, 29, 29);
   font-weight: bold;
   background-color: #dad8d8;
@@ -95,6 +103,7 @@ input[type="checkbox"]:checked + label {
   border: none;
   border-radius: 25px;
 }
+
 .radio-group {
   display: flex;
   justify-content: space-evenly;
@@ -111,6 +120,7 @@ input[type="checkbox"]:checked + label {
   height: 25px;
   margin: 0 8px 0 2px;
 }
+
 .cheese {
   color: #666161;
   display: inline-block;
@@ -120,6 +130,7 @@ input[type="checkbox"]:checked + label {
   cursor: pointer;
   text-align: center;
 }
+
 .cheese-group {
   display: block;
   border: solid 2px #dad8d8;
@@ -142,6 +153,7 @@ input[type="checkbox"]:checked + label {
   margin-top: 10px;
   max-width: 220px;
   position: relative;
+
   &__btn {
     text-transform: uppercase;
     color: white;
@@ -155,6 +167,7 @@ input[type="checkbox"]:checked + label {
     cursor: pointer;
     display: block;
   }
+
   &__bill {
     font-size: 14px;
     font-weight: bolder;
