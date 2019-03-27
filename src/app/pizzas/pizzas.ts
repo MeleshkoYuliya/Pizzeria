@@ -3,12 +3,17 @@ export class Pizzas {
 }
 
 export class Pizza {
+  id?: number;
   image: string;
   name: string;
   ingredients: Array<Ingredient>;
-  sizes: Array<number>;
+  info: Array<Info>;
 }
 
 class Ingredient {
   ingredient: string;
+}
+class Info {
+  price: number;
+  size: number;
 }

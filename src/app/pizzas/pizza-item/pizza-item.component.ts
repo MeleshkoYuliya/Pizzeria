@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Pizza } from '../pizzas';
 
 @Component({
@@ -7,7 +7,7 @@ import { Pizza } from '../pizzas';
   styleUrls: ['./pizza-item.component.scss']
 })
 export class PizzaItemComponent implements OnInit {
-  @Input() pizza: any;
+  @Input() pizza: Pizza;
 
   selectedDough: string;
   selectedSize = 0;
