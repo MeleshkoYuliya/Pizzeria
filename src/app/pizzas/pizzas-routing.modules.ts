@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PizzaDetailComponent } from './pizza-detail/pizza-detail-component';
+
+import { PizzaDetailComponent } from './pizza-detail/pizza-detail.component';
+import { PizzasComponent } from './pizzas.component';
 
 const pizzasRoutes: Routes = [
-  // { path: 'pizza/:id', redirectTo: '/pizza/:id' },
-  // { path: 'pizza/:id', component: PizzaDetailComponent }
+  { path: 'pizzas', component: PizzasComponent, data: { animation: 'pizzas' } },
+  { path: 'pizza/:id', component: PizzaDetailComponent, data: { animation: 'pizza' } }
 ];
 
 @NgModule({

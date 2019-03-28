@@ -1,3 +1,5 @@
- <div class="pizzas">
-   <app-pizza-item *ngFor="let pizza of pizzas.default.pizzas" [pizza]="pizza"></app-pizza-item>
- </div>
+   <div class="pizzas">
+     <app-pizza-item *ngFor="let pizza of pizzas$ | async" [class.selected]="pizza.id === selectedId" [pizza]="pizza"
+       [id]="pizza.id">
+     </app-pizza-item>
+   </div>

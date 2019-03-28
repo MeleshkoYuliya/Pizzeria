@@ -1,0 +1,29 @@
+<div>
+  <div *ngFor="let item of sizes">
+    <div class="pizza__persons" *ngIf="selectedSize === item" [ngSwitch]="item">
+      <img src="../assets/images/person.svg" class="persons__img" />
+      <span *ngSwitchCase="23">
+        1 - 2
+      </span>
+      <span *ngSwitchCase="30">
+        2 - 3
+      </span>
+      <span *ngSwitchCase="35">
+        3 - 4
+      </span>
+      <span *ngSwitchCase="40">
+        4 - 5
+      </span>
+      <span *ngSwitchDefault> </span>
+    </div>
+  </div>
+  <img [src]="pizza.image" />
+  {{pizza.name}}
+  <div class="pizza__ingredients ingredients">
+    <span class="ingredients__item" *ngFor="let item of pizza.ingredients">
+      {{ item.ingredient }} |
+    </span>
+  </div>
+
+  <app-pizza-dashboard [name]="pizza.name" [info]="pizza.info" (changed)="changed($event)"></app-pizza-dashboard>
+</div>

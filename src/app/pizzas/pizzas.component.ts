@@ -1,6 +1,10 @@
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
-import * as SampleJson from '../../assets/pizzas.json';
-import { Pizzas } from '../pizzas/pizzas';
+import { ActivatedRoute } from '@angular/router';
+
+import { PizzasService } from './pizzas.service';
+import { Pizza } from './pizzas';
 
 @Component({
   selector: 'app-pizzas',
@@ -8,10 +12,19 @@ import { Pizzas } from '../pizzas/pizzas';
   styleUrls: ['./pizzas.component.scss']
 })
 export class PizzasComponent implements OnInit {
-  pizzas: Pizzas;
-
+  pizzas$: Observable<Pizza[]>;
+  selectedId: number;
+  constructor(
+    private service: PizzasService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit () {
-    this.pizzas = SampleJson;
+    this.pizzas$ = this.route.paramMap.pipe(
+      switchMap(params => {
+        this.selectedId = +params.get('id');
+        return this.service.getPizzas();
+      })
+    );
   }
 }

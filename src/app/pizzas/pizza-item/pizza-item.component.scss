@@ -2,7 +2,7 @@
 .pizza {
   position: relative;
   width: 240px;
-  height: 400px;
+  height: 420px;
   padding: 12px;
   margin: 20px 10px 15px 10px;
   background-color: white;
@@ -152,7 +152,8 @@ input[type="checkbox"]:checked+label {
   justify-content: space-between;
   margin-top: 10px;
   max-width: 220px;
-  position: relative;
+  position: absolute;
+  bottom: 15px;
 
   &__btn {
     text-transform: uppercase;
@@ -172,8 +173,8 @@ input[type="checkbox"]:checked+label {
     font-size: 14px;
     font-weight: bolder;
     color: #353131;
-    position: absolute;
     right: 0;
     margin-top: 10px;
+    margin-left: 30px
   }
 }

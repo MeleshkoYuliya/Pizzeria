@@ -4,9 +4,11 @@ import { FormsModule } from '@angular/forms';
 
 import { PizzasComponent } from './pizzas.component';
 import { PizzaItemComponent } from './pizza-item/pizza-item.component';
-// import { HeroDetailComponent } from './hero-detail/hero-detail.component';
+import { PizzaDetailComponent } from './pizza-detail/pizza-detail.component';
+import { PizzaDashboardComponent } from './pizza-dashboard/pizza-dashboard.component';
 
 import { PizzasRoutingModule } from './pizzas-routing.modules';
+
 
 @NgModule({
   imports: [
@@ -16,10 +18,12 @@ import { PizzasRoutingModule } from './pizzas-routing.modules';
   ],
   declarations: [
     PizzasComponent,
-    PizzaItemComponent
+    PizzaItemComponent,
+    PizzaDetailComponent,
+    PizzaDashboardComponent
   ],
   exports: [
-    PizzasComponent
+    PizzasComponent,
   ]
 })
 export class PizzasModule { }

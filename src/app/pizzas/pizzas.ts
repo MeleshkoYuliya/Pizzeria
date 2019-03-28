@@ -1,13 +1,11 @@
-export class Pizzas {
-  pizzas: Array<Pizza>;
-}
 
 export class Pizza {
-  id?: number;
+  id: string | number;
   image: string;
   name: string;
   ingredients: Array<Ingredient>;
   info: Array<Info>;
+  nutricion: Nutricion;
 }
 
 class Ingredient {
@@ -16,4 +14,10 @@ class Ingredient {
 class Info {
   price: number;
   size: number;
+}
+class Nutricion {
+  protein: number;
+  fats: number;
+  carbohydrates: number;
+  energy: string;
 }
