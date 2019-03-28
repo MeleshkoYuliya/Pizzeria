@@ -28,6 +28,7 @@
         {{ ingredient }}
       </span>
     </div>
-    <app-pizza-dashboard [name]="pizza.name" [info]="pizza.info" (changed)="changed($event)"></app-pizza-dashboard>
+    <app-pizza-dashboard [name]="pizza.name" [info]="pizza.info" (changed)="changed($event)" [priceClass]='priceClass'>
+    </app-pizza-dashboard>
 
   </div>

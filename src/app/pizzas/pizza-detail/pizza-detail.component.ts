@@ -9,12 +9,14 @@ import { PizzasService } from '../pizzas.service';
 @Component({
   selector: 'app-pizza-detail',
   templateUrl: './pizza-detail.component.html',
-  styleUrls: ['../pizza-item/pizza-item.component.scss']
+  styleUrls: ['./pizza-detail.component.scss']
 })
 export class PizzaDetailComponent implements OnInit {
   pizza$: Observable<Pizza>;
   selectedSize: number;
   sizes: Array<number> = [];
+  nutricion: any;
+  priceClass = 'price-card';
 
   pizza: any;
   constructor(
@@ -26,10 +28,12 @@ export class PizzaDetailComponent implements OnInit {
 
   ngOnInit (): void {
     this.getPizza();
+
     this.pizza.info.map((item, index) => {
       this.sizes.push(item.size);
     });
 
+    this.nutricion = this.pizza.nutricion;
   }
 
   getPizza (): void {

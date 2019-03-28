@@ -9,7 +9,8 @@ import { Pizza } from '../pizzas';
 })
 export class PizzaItemComponent implements OnInit {
   @Input() pizza: Pizza;
-  @Input() id: number;
+  priceClass = 'price';
+
   selectedSize: number;
   sizes: Array<number> = [];
   ingredients: Array<string> = [];

@@ -3,12 +3,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-pizza-dashboard',
   templateUrl: './pizza-dashboard.component.html',
-  styleUrls: ['../pizza-item/pizza-item.component.scss']
+  styleUrls: ['./pizza-dashboard.component.scss']
 })
 export class PizzaDashboardComponent implements OnInit {
   @Input() name: string;
   @Input() info: Array<any>;
-  // @Input() size: number;
+  @Input() priceClass;
+
   @Output() changed = new EventEmitter<number>();
 
   constructor() { }
@@ -17,6 +18,7 @@ export class PizzaDashboardComponent implements OnInit {
   selectedSize = 0;
   price = 0;
   isAddCheese = false;
+  myclass: string;
 
   sizes: Array<number> = [];
   ingredients: Array<string> = [];
@@ -37,7 +39,7 @@ export class PizzaDashboardComponent implements OnInit {
     this.isAddCheese = false;
   }
   getTotalPrice () {
-    this.info.map((item, index) => {
+    this.info.map((item) => {
       if (this.selectedSize === item.size) {
         this.price = item.price;
       }
@@ -50,7 +52,7 @@ export class PizzaDashboardComponent implements OnInit {
       ) {
         this.price = item.price + 2;
       }
-      if (this.selectedSize !== 23 && this.selectedSize === item.size && this.isAddCheese) {
+      if (this.selectedSize >= 30 && this.selectedSize === item.size && this.isAddCheese) {
         this.price = +(item.price * 0.15 + this.price).toFixed(2);
       }
     });
@@ -60,8 +62,9 @@ export class PizzaDashboardComponent implements OnInit {
 
 
   ngOnInit () {
-    this.info.map((item, index) => {
+    this.info.map((item) => {
       this.sizes.push(item.size);
     });
+    this.myclass = this.priceClass;
   }
 }

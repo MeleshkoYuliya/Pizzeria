@@ -1,0 +1,41 @@
+.pizza-detail {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 100px 0 0 0;
+
+  position: relative;
+
+  &__img {
+    width: 300px;
+    height: 300px
+  }
+
+  &__title {
+    margin: 0 0 15px 0
+  }
+
+  &__ingredients {
+    max-width: 300px;
+    line-height: 1.5;
+    font-size: 18px
+  }
+}
+
+.nutrition {
+  margin-bottom: 20px;
+
+  &__person {
+    display: inline-block
+  }
+
+  &__num {
+    display: inline-block;
+  }
+
+  &__title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 10px 0 10px 0
+  }
+}
