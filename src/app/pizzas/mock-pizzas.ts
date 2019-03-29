@@ -102,7 +102,7 @@ export const PIZZAS: Pizza[] = [
   {
     id: 3,
     image: 'assets/images/byanka.jpg',
-    name: 'Bianca.',
+    name: 'Bianca',
     ingredients: [{
       ingredient: 'olive oil'
     },
@@ -138,7 +138,7 @@ export const PIZZAS: Pizza[] = [
   {
     id: 4,
     image: 'assets/images/Hawaiian.jpg',
-    name: 'Hawaiian.',
+    name: 'Hawaiian',
     ingredients: [{
       ingredient: 'mozzarrel cheese'
     },
