@@ -8,6 +8,7 @@ import { PizzaDetailComponent } from './pizza-detail/pizza-detail.component';
 import { PizzaDashboardComponent } from './pizza-dashboard/pizza-dashboard.component';
 
 import { PizzasRoutingModule } from './pizzas-routing.modules';
+import { OrderCardComponent } from '../order/order-card/order-card.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { PizzasRoutingModule } from './pizzas-routing.modules';
     PizzasComponent,
     PizzaItemComponent,
     PizzaDetailComponent,
-    PizzaDashboardComponent
+    PizzaDashboardComponent,
+    OrderCardComponent
   ],
   exports: [
     PizzasComponent,
