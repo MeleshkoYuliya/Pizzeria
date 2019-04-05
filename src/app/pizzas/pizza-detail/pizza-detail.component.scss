@@ -1,9 +1,21 @@
+.pizza-view {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 .pizza-detail {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  margin: 100px 0 0 0;
-
+  background-color: white;
+  margin: 60px 0 0 0;
+  width: 70%;
+  padding: 20px 0 30px 0;
+  position: relative;
+  border-radius: 5px;
+  box-shadow: 4px 3px 9px rgba(0, 0, 0, 0.07),
+    6px 9px 18px rgba(0, 0, 0, 0.06);
   position: relative;
 
   &__img {
@@ -16,7 +28,7 @@
   }
 
   &__ingredients {
-    max-width: 300px;
+    max-width: 350px;
     line-height: 1.5;
     font-size: 18px
   }

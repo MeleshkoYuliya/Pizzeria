@@ -1,40 +1,44 @@
-<div class="pizza-detail">
-  <img [src]="pizza.image" class="pizza-detail__img" />
-  <div>
-    <h1 class="pizza-detail__title">{{pizza.name}}</h1>
-    <div class="pizza-detail__ingredients">
-      <span class="ingredients__item" *ngFor="let item of pizza.ingredients">
-        {{ item.ingredient }} |
-      </span>
-    </div>
-    <div class="pizza-detail__nutrition nutrition">
-      <div class="nutrition__title">Nutrition information per 100g</div>
-      <div class="nutrition__person">Persons -</div>
-      <div *ngFor="let item of sizes" class="nutrition__num">
-
-        <div *ngIf="selectedSize === item" [ngSwitch]="item">
-
-          <span *ngSwitchCase="23">
-            1 - 2
-          </span>
-          <span *ngSwitchCase="30">
-            2 - 3
-          </span>
-          <span *ngSwitchCase="35">
-            3 - 4
-          </span>
-          <span *ngSwitchCase="40">
-            4 - 5
-          </span>
-          <span *ngSwitchDefault> </span>
-        </div>
+<div class="pizza-view">
+  <div class="pizza-detail">
+    <img [src]="pizza.image" class="pizza-detail__img" />
+    <div>
+      <h1 class="pizza-detail__title">{{pizza.name}}</h1>
+      <div class="pizza-detail__ingredients">
+        <span class="ingredients__item" *ngFor="let item of pizza.ingredients">
+          {{ item.ingredient }} |
+        </span>
       </div>
-      <div>Protein - {{nutricion.protein}}</div>
-      <div>Fats - {{nutricion.fats}}</div>
-      <div>Carbohydrates - {{nutricion.carbohydrates}}</div>
-      <div>Energy - {{nutricion.energy}}</div>
+      <div class="pizza-detail__nutrition nutrition">
+        <div class="nutrition__title">Nutrition information per 100g</div>
+        <div class="nutrition__person">Persons -</div>
+        <div *ngFor="let item of sizes" class="nutrition__num">
+
+          <div *ngIf="selectedSize === item" [ngSwitch]="item">
+
+            <span *ngSwitchCase="23">
+              1 - 2
+            </span>
+            <span *ngSwitchCase="30">
+              2 - 3
+            </span>
+            <span *ngSwitchCase="35">
+              3 - 4
+            </span>
+            <span *ngSwitchCase="40">
+              4 - 5
+            </span>
+            <span *ngSwitchDefault> </span>
+          </div>
+        </div>
+        <div>Protein - {{nutricion.protein}}</div>
+        <div>Fats - {{nutricion.fats}}</div>
+        <div>Carbohydrates - {{nutricion.carbohydrates}}</div>
+        <div>Energy - {{nutricion.energy}}</div>
+      </div>
+      <app-pizza-dashboard [name]="pizza.name" [info]="pizza.info" (changed)="changed($event)"
+        [priceClass]='priceClass'>
+      </app-pizza-dashboard>
     </div>
-    <app-pizza-dashboard [name]="pizza.name" [info]="pizza.info" (changed)="changed($event)" [priceClass]='priceClass'>
-    </app-pizza-dashboard>
   </div>
+  <app-order-card></app-order-card>
 </div>
