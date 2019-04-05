@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ViewContainerRef, } from '@angular/core';
 import { Pizza } from '../pizzas';
+import { ModalService } from '../modal/modal.service';
+import { HelloComponent } from '../hello/hello.component';
 
 
 @Component({
@@ -15,6 +17,12 @@ export class PizzaItemComponent implements OnInit {
   sizes: Array<number> = [];
   ingredients: Array<string> = [];
 
+  constructor(private modalService: ModalService) {
+  }
+
+  async add () {
+    console.log(await this.modalService.open(HelloComponent));
+  }
   changed (size: any) {
     this.selectedSize = size;
   }

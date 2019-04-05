@@ -9,23 +9,28 @@ import { PizzaDashboardComponent } from './pizza-dashboard/pizza-dashboard.compo
 
 import { PizzasRoutingModule } from './pizzas-routing.modules';
 import { OrderCardComponent } from '../order/order-card/order-card.component';
+import { HelloComponent } from './hello/hello.component';
+import { ModalModule } from '../pizzas/modal/modal.module';
 
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    PizzasRoutingModule
+    PizzasRoutingModule,
+    ModalModule
   ],
   declarations: [
     PizzasComponent,
     PizzaItemComponent,
     PizzaDetailComponent,
     PizzaDashboardComponent,
-    OrderCardComponent
+    OrderCardComponent,
+    HelloComponent
   ],
   exports: [
     PizzasComponent,
-  ]
+  ],
+  entryComponents: [HelloComponent],
 })
 export class PizzasModule { }
