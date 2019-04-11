@@ -1,10 +1,14 @@
 <div class="dashboard">
-  <div>Remove Ingredients</div>
+  <div class="dashboard__title">Remove Ingredients</div>
   <div class="pizza__ingredients ingredients">
-    <div class="ingredients__item" *ngFor="let ingredient of ingredients">
-      {{ ingredient }}
+    <div class="ingredients__item item" *ngFor="let ingredient of ingredients">
+      {{ ingredient }} <button class="item__delete-btn"><img src="../assets/images/cross.svg" alt="cheese"
+          class="item__delete-img" /></button>
     </div>
   </div>
+  <button class="dashboard__add-btn add"> <img src="../assets/images/plus.svg" alt="cheese" class="add__img" />Add
+    ingredients</button>
+  <input class="dashboard__add-inp">
   <div class="dashboard__buttons button">
     <button class="button__cancel">Cancel</button>
     <button class="button__add">Add to cart</button>
