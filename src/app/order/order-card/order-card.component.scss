@@ -43,7 +43,6 @@
     font-weight: bolder;
     padding: 9px;
     cursor: pointer;
-    display: block;
     margin-top: 10px;
   }
 
@@ -57,7 +56,7 @@
 
 .action {
   &__clear {
-    color: rgb(5, 77, 5);
+    color: rgb(17, 110, 17);
     border: none;
     font-size: 18px;
     font-weight: bold;

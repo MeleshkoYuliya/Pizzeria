@@ -1,4 +1,8 @@
 <div class="pizzas__item pizza">
+  <div class="burger">
+    <button (click)="open()" class="burger__btn"><img src="../assets/images/burger.svg" alt="cheese"
+        class="burger__img" /></button>
+  </div>
   <a [routerLink]="['/pizza', pizza.id]">
     <img [src]="pizza.image" class="pizza__image" />
   </a>
@@ -29,11 +33,9 @@
     </span>
   </div>
   <app-pizza-dashboard [name]="pizza.name" [info]="pizza.info" (changed)="changed($event)" [priceClass]='priceClass'>
+
   </app-pizza-dashboard>
 
-  <div>
-    <button (click)="add()">Add</button>
-  </div>
-
-  <!-- <div modalHolder></div> -->
+  <app-change-ingredient *appModal="!isOpen" class="modal" [ingredients]="ingredients" (click)="close()">
+  </app-change-ingredient>
 </div>
