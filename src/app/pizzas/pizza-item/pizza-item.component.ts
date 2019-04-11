@@ -1,8 +1,5 @@
-import { Component, OnInit, Input, ViewChild, ViewContainerRef, } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Pizza } from '../pizzas';
-import { ModalService } from '../modal/modal.service';
-import { HelloComponent } from '../hello/hello.component';
-
 
 @Component({
   selector: 'app-pizza-item',
@@ -11,22 +8,26 @@ import { HelloComponent } from '../hello/hello.component';
 })
 export class PizzaItemComponent implements OnInit {
   @Input() pizza: Pizza;
+
+  isOpen = false;
   priceClass = 'price';
 
   selectedSize: number;
   sizes: Array<number> = [];
   ingredients: Array<string> = [];
 
-  constructor(private modalService: ModalService) {
+  constructor() {
   }
 
-  async add () {
-    console.log(await this.modalService.open(HelloComponent));
-  }
   changed (size: any) {
     this.selectedSize = size;
   }
-
+  open () {
+    this.isOpen = true;
+  }
+  close () {
+    this.isOpen = false;
+  }
   ngOnInit () {
     this.pizza.info.map(item => {
       this.sizes.push(item.size);

@@ -1,0 +1,40 @@
+.dashboard {
+  background-color: white;
+  width: 85%;
+  height: 80%;
+  margin: 15px auto;
+  border-radius: 5px;
+  position: relative
+}
+
+.button {
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  &__cancel {
+    border: none;
+    outline: none;
+    color: grey;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer
+  }
+
+  &__add {
+    text-transform: uppercase;
+    color: white;
+    background-color: rgb(230, 48, 48);
+    outline: none;
+    border: none;
+    border-radius: 25px;
+    font-size: 11px;
+    font-weight: bolder;
+    padding: 9px;
+    cursor: pointer;
+    display: block;
+    margin-left: 50px;
+  }
+}

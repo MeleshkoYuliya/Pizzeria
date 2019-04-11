@@ -9,8 +9,8 @@ import { PizzaDashboardComponent } from './pizza-dashboard/pizza-dashboard.compo
 
 import { PizzasRoutingModule } from './pizzas-routing.modules';
 import { OrderCardComponent } from '../order/order-card/order-card.component';
-import { HelloComponent } from './hello/hello.component';
-import { ModalModule } from '../pizzas/modal/modal.module';
+import { ModalDirective } from '../pizzas/pizza-item/modal.directive';
+import { ChangeIngredientComponent } from './change-ingredient/change-ingredient.component';
 
 
 @NgModule({
@@ -18,7 +18,6 @@ import { ModalModule } from '../pizzas/modal/modal.module';
     CommonModule,
     FormsModule,
     PizzasRoutingModule,
-    ModalModule
   ],
   declarations: [
     PizzasComponent,
@@ -26,11 +25,11 @@ import { ModalModule } from '../pizzas/modal/modal.module';
     PizzaDetailComponent,
     PizzaDashboardComponent,
     OrderCardComponent,
-    HelloComponent
+    ModalDirective,
+    ChangeIngredientComponent
   ],
   exports: [
     PizzasComponent,
-  ],
-  entryComponents: [HelloComponent],
+  ]
 })
 export class PizzasModule { }
