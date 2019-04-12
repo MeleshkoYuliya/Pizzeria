@@ -1,10 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Pizza } from '../pizzas';
+import { ModalService } from './modal.service';
 
 @Component({
   selector: 'app-pizza-item',
   templateUrl: './pizza-item.component.html',
-  styleUrls: ['./pizza-item.component.scss']
+  styleUrls: ['./pizza-item.component.scss'],
+  providers: [ModalService]
 })
 export class PizzaItemComponent implements OnInit {
   @Input() pizza: Pizza;
@@ -16,14 +18,14 @@ export class PizzaItemComponent implements OnInit {
   sizes: Array<number> = [];
   ingredients: Array<string> = [];
 
-  constructor() {
+  constructor(private modalService: ModalService) {
   }
 
   changed (size: any) {
     this.selectedSize = size;
   }
   open () {
-    this.isOpen = true;
+    this.isOpen = this.modalService.open(true);
   }
   close () {
     this.isOpen = false;
