@@ -1,23 +1,22 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from "rxjs";
+import { map } from "rxjs/operators";
 
-import { Pizza } from './pizzas';
-import { PIZZAS } from './mock-pizzas';
+import { Pizza } from "./pizzas";
+import { PIZZAS } from "./mock-pizzas";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root"
 })
 export class PizzasService {
+  constructor() {}
 
-  constructor() { }
-
-  getPizzas (): Observable<Pizza[]> {
+  getPizzas(): Observable<Pizza[]> {
     return of(PIZZAS);
   }
 
-  getPizza (id: number | string) {
+  getPizza(id: number | string) {
     return this.getPizzas().pipe(
       map((pizzas: Pizza[]) => pizzas.find(pizza => pizza.id === +id))
     );

@@ -6,10 +6,15 @@ import { Component, OnInit, Input } from "@angular/core";
   styleUrls: ["./change-ingredient.component.scss"]
 })
 export class ChangeIngredientComponent implements OnInit {
-  @Input() ingredients: Array<any>;
+  @Input() ingredients: Array<string>;
   @Input() close: Function;
+
+  _ingredients: Array<string>;
   constructor() {}
-  ngOnInit() {}
+  ngOnInit() {
+    this._ingredients = this.ingredients.slice();
+    console.log(this._ingredients);
+  }
 
   closeModal = () => {
     this.close();
