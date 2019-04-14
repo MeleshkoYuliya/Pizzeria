@@ -1,10 +1,16 @@
+import { Injectable, EventEmitter, Input, OnInit } from "@angular/core";
+
+@Injectable()
 export class ModalService {
-  logToConsole (value: string) {
-    console.log('status' + value);
+  @Input() isOpen;
+
+  open() {
+    this.isOpen = true;
+    return this.isOpen;
   }
 
-  open (isOpen) {
-    console.log(isOpen);
-    return isOpen;
+  close() {
+    this.isOpen = false;
+    return this.isOpen;
   }
 }

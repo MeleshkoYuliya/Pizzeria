@@ -1,7 +1,8 @@
 <div class="pizzas__item pizza">
   <div class="burger">
-    <button (click)="open()" class="burger__btn"><img src="../assets/images/burger.svg" alt="cheese"
-        class="burger__img" /></button>
+    <button (click)="open()" class="burger__btn">
+      <img src="../assets/images/burger.svg" alt="cheese" class="burger__img" />
+    </button>
   </div>
   <a [routerLink]="['/pizza', pizza.id]">
     <img [src]="pizza.image" class="pizza__image" />
@@ -9,8 +10,16 @@
   <div class="pizza__info">
     <h4 class="pizza__title">{{ pizza.name }}</h4>
     <div *ngFor="let item of sizes">
-      <div class="pizza__persons" *ngIf="selectedSize === item" [ngSwitch]="item">
-        <img src="../assets/images/person.svg" alt="cheese" class="persons__img" />
+      <div
+        class="pizza__persons"
+        *ngIf="selectedSize === item"
+        [ngSwitch]="item"
+      >
+        <img
+          src="../assets/images/person.svg"
+          alt="cheese"
+          class="persons__img"
+        />
         <span *ngSwitchCase="23">
           1 - 2
         </span>
@@ -32,10 +41,19 @@
       {{ ingredient }}
     </span>
   </div>
-  <app-pizza-dashboard [name]="pizza.name" [info]="pizza.info" (changed)="changed($event)" [priceClass]='priceClass'>
-
+  <app-pizza-dashboard
+    [name]="pizza.name"
+    [info]="pizza.info"
+    (changed)="changed($event)"
+    [priceClass]="priceClass"
+  >
   </app-pizza-dashboard>
 
-  <app-change-ingredient *appModal="!isOpen" class="modal" [ingredients]="ingredients">
+  <app-change-ingredient
+    *appModal="!isOpen"
+    class="modal"
+    [ingredients]="ingredients"
+    [close]="close"
+  >
   </app-change-ingredient>
 </div>
