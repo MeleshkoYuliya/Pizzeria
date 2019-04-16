@@ -9,9 +9,10 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 
 import { PizzasModule } from './pizzas/pizzas.module';
+import { CheckoutComponent } from './order/checkout/checkout.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+  declarations: [AppComponent, HeaderComponent, CheckoutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

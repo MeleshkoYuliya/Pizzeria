@@ -1,0 +1,46 @@
+.checkout-card {
+  width: 80%;
+  padding: 12px 12px 30px 12px;
+  margin: 10px auto;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 4px 3px 9px rgba(0, 0, 0, 0.07),
+    6px 9px 18px rgba(0, 0, 0, 0.06);
+}
+
+.input-label {
+  display: block;
+  color: grey;
+  margin-bottom: 6px;
+  font-weight: 900
+}
+
+.input-contact {
+  border: solid 1px rgb(224, 223, 220);
+  background-color: rgb(224, 223, 220);
+  border-radius: 5px;
+  height: 28px;
+  outline: none;
+  font-size: 18px;
+  padding: 4px;
+  width: 400px;
+}
+
+.contacts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between
+}
+
+.comments {
+  resize: none;
+  width: 80%;
+  border: solid 1px rgb(224, 223, 220);
+  background-color: rgb(224, 223, 220);
+  border-radius: 5px;
+  height: 64px;
+  outline: none;
+  font-size: 18px;
+  padding: 4px;
+}
