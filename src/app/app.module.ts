@@ -1,6 +1,7 @@
+import { NgModule } from '@angular/core';
+import { NgxsModule } from '@ngxs/store';
 import { BrowserModule } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -19,7 +20,8 @@ import { CheckoutComponent } from './order/checkout/checkout.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    PizzasModule
+    PizzasModule,
+    NgxsModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]
