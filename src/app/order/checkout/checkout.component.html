@@ -29,13 +29,27 @@
 </div>
 <div class="checkout-card">
   <h2>Payment</h2>
-  <div>
-    <input type="radio" id="cash" name="payment" value="cash">
-    <label for="cash">Cash</label>
-
-    <input type="radio" id="card" name="payment" value="card">
-    <label for="card">Card</label>
+  <div class="payment-types type">
+    <div class="type__item">
+      <input type="radio" class="payment" id="cash" name="radio" value="cash" /><label for="cash"
+        class="lb"></label><span class="lb-title">Cash</span>
+    </div>
+    <div class="type__item">
+      <input type="radio" class="payment" id="card" name="radio" value="card" /><label for="card"
+        class="lb"></label><span class="lb-title">Card</span>
+    </div>
   </div>
   <label for="comments" class="input-label">Add order comments</label>
   <textarea name="comments" id="comments" class="comments"></textarea>
+  <div class="message">
+    <div>I agree to receive </div>
+    <div>
+      <input type="checkbox" id="check" name="check" class="info-inp" />
+      <label for="check">SMS</label>
+    </div>
+    <div>
+      <input type="checkbox" id="check1" name="check1" class="info-inp" />
+      <label for="check1">Emails</label>
+    </div>
+  </div>
 </div>

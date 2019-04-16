@@ -44,3 +44,125 @@
   font-size: 18px;
   padding: 4px;
 }
+
+.payment {
+  display: none;
+}
+
+.lb {
+  position: relative;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  background: #ddd;
+  background: linear-gradient(#ccc, #fff);
+  box-shadow:
+    inset 0 2px 1px rgba(0, 0, 0, .15),
+    0 2px 5px rgba(200, 200, 200, .1);
+  cursor: pointer;
+}
+
+.lb:after {
+  content: "";
+  position: absolute;
+  left: 40%;
+  top: 40%;
+  width: 20%;
+  height: 20%;
+  border-radius: 100%;
+  background: #969696;
+  background: radial-gradient(#ccc, #969696);
+  box-shadow:
+    inset 0 2px 4px 1px rgba(0, 0, 0, .3),
+    0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 1px 0 white;
+}
+
+.lb:before {
+  content: "";
+  position: absolute;
+  top: 8%;
+  right: 8%;
+  bottom: 8%;
+  left: 8%;
+  border-radius: 100%;
+  background: #eaeaea;
+  box-shadow:
+    0 3px 5px rgba(0, 0, 0, .25),
+    inset 0 1px 0 rgba(255, 255, 255, .3),
+    inset 0 -5px 5px rgba(100, 100, 100, .1),
+    inset 0 5px 5px rgba(255, 255, 255, .3);
+}
+
+.payment:checked+.lb:before {
+  background: #e5e5e5;
+  background: linear-gradient(#dedede, #fdfdfd);
+}
+
+.payment:checked+.lb:after {
+  background: #25d025;
+  background: radial-gradient(#3abd3a, #0f880f);
+  box-shadow:
+    inset 0 3px 5px 1px rgba(0, 0, 0, .1),
+    0 1px 0 rgba(255, 255, 255, .4),
+    0 0 10px 2px rgba(0, 210, 0, .5);
+}
+
+.payment-types {
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  justify-content: space-between;
+  margin-bottom: 20px
+}
+
+.type__item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  width: 70px;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 900
+}
+
+
+
+.info-inp {
+  display: none;
+}
+
+.info-inp+label:before {
+  content: "\2713";
+  color: transparent;
+  display: inline-block;
+  border: 1px solid grey;
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 16px;
+  margin: -5px 5px 0 0;
+  height: 15px;
+  width: 15px;
+  text-align: center;
+  vertical-align: middle;
+  transition: color ease .3s;
+  cursor: pointer
+}
+
+.info-inp:checked+label:before {
+  color: white;
+  background-color: #0f880f;
+  border-radius: 3px;
+  border: 1px solid #0f880f;
+  cursor: pointer
+}
+
+.message {
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  justify-content: space-between;
+  margin-top: 20px
+}
