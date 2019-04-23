@@ -7,7 +7,8 @@ import { PizzasComponent } from './pizzas.component';
 
 const pizzasRoutes: Routes = [
   { path: 'pizzas', component: PizzasComponent, data: { animation: 'pizzas' } },
-  { path: 'pizza/:id', component: PizzaDetailComponent, data: { animation: 'pizza' } }
+  { path: 'pizzas/:id', component: PizzaDetailComponent, data: { animation: 'pizza' } },
+  { path: '**', redirectTo: '/not-found' }
 ];
 
 @NgModule({

@@ -11,9 +11,10 @@ import { HeaderComponent } from './header/header.component';
 
 import { PizzasModule } from './pizzas/pizzas.module';
 import { CheckoutComponent } from './order/checkout/checkout.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, CheckoutComponent],
+  declarations: [AppComponent, HeaderComponent, CheckoutComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
