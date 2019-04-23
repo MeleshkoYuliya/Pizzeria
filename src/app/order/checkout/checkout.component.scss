@@ -183,4 +183,21 @@
   padding: 9px;
   cursor: pointer;
   margin-top: 20px;
+
+  &:disabled {
+    background-color: rgb(167, 117, 117);
+    cursor: not-allowed
+  }
+}
+
+input.ng-invalid.ng-touched {
+  border: solid 1px rgb(245, 131, 131);
+  background-color: rgb(243, 183, 183);
+}
+
+.error-message {
+  display: block;
+  color: rgb(241, 83, 83);
+  font-size: 14px;
+  margin: 5px 0 0px 2px
 }

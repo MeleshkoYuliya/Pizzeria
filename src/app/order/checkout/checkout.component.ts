@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-checkout',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit {
-
+  @ViewChild('f') signupForm: NgForm;
+  payment = ['Cash', 'Card'];
+  orderData = {};
+  submitted = false;
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit () {
   }
+  onSubmit () {
+    this.submitted = true;
+    this.orderData = { ...this.signupForm.value };
+    console.log(this.orderData);
 
+  }
 }

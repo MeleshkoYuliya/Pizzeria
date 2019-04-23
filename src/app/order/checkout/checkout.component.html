@@ -1,56 +1,63 @@
-<div class="checkout-card">
-  <h2>Cart</h2>
-</div>
-<div class="checkout-card">
-  <h2>Contact information</h2>
-  <div class="contacts">
-    <div><label for="name" class="input-label">Name</label> <input type="text" id="name" class="input-contact"
-        autocomplete="off"></div>
-    <div><label for="phone" class="input-label">Telephone</label> <input type="text" id="phone" class="input-contact"
-        autocomplete="off">
-    </div>
-    <div><label for="e-mail" class="input-label">E-mail</label> <input type="text" id="e-mail" class="input-contact"
-        autocomplete="off">
+<form (ngSubmit)="onSubmit()" #f="ngForm">
+  <div class="checkout-card">
+    <h2>Cart</h2>
+  </div>
+  <div class="checkout-card" ngModelGroup="contactInfo">
+    <h2>Contact information</h2>
+    <div class="contacts">
+      <div><label for="name" class="input-label">Name</label> <input type="text" id="name" class="input-contact"
+          autocomplete="off" ngModel name="name"></div>
+      <div><label for="phone" class="input-label">Telephone</label> <input type="text" id="phone" class="input-contact"
+          autocomplete="off" ngModel name="phone" required>
+      </div>
+      <div>
+        <label for="e-mail" class="input-label">E-mail</label>
+        <input type="email" id="e-mail" class="input-contact" autocomplete="off" ngModel name="email" email required
+          #email="ngModel">
+        <span class="error-message" *ngIf="!email.valid && email.touched">Please enter a valid email!</span>
+      </div>
     </div>
   </div>
-</div>
-<div class="checkout-card">
-  <h2>Delivery</h2>
-  <div class="contacts">
-    <div><label for="address" class="input-label">Address</label> <input type="text" id="address" class="input-contact"
-        autocomplete="off"></div>
-    <div><label for="flat" class="input-label">Flat/Office</label> <input type="text" id="flat" class="input-contact"
-        autocomplete="off">
-    </div>
-    <div><label for="floor" class="input-label">Floor</label> <input type="text" id="floor" class="input-contact"
-        autocomplete="off">
-    </div>
-  </div>
-</div>
-<div class="checkout-card">
-  <h2>Payment</h2>
-  <div class="payment-types type">
-    <div class="type__item">
-      <input type="radio" class="payment" id="cash" name="radio" value="cash" /><label for="cash"
-        class="lb"></label><span class="lb-title">Cash</span>
-    </div>
-    <div class="type__item">
-      <input type="radio" class="payment" id="card" name="radio" value="card" /><label for="card"
-        class="lb"></label><span class="lb-title">Card</span>
+  <div class="checkout-card">
+    <h2>Delivery</h2>
+    <div class="contacts">
+      <div><label for="address" class="input-label">Address</label> <input type="text" id="address"
+          class="input-contact" autocomplete="off"></div>
+      <div><label for="flat" class="input-label">Flat/Office</label> <input type="text" id="flat" class="input-contact"
+          autocomplete="off">
+      </div>
+      <div><label for="floor" class="input-label">Floor</label> <input type="text" id="floor" class="input-contact"
+          autocomplete="off">
+      </div>
     </div>
   </div>
-  <label for="comments" class="input-label">Add order comments</label>
-  <textarea name="comments" id="comments" class="comments"></textarea>
-  <div class="message">
-    <div>I agree to receive </div>
-    <div>
-      <input type="checkbox" id="check" name="check" class="info-inp" />
-      <label for="check">SMS</label>
+  <div class="checkout-card">
+    <h2>Payment</h2>
+    <div class="payment-types type">
+      <div class="type__item" *ngFor="let pay of payment">
+        <input type="radio" class="payment" [id]="pay" name="payment" [value]="pay" ngModel required /><label
+          [for]="pay" class="lb"></label><span class="lb-title">{{pay}}</span>
+      </div>
     </div>
-    <div>
-      <input type="checkbox" id="check1" name="check1" class="info-inp" />
-      <label for="check1">Emails</label>
+    <label for="comments" class="input-label">Add order comments</label>
+    <textarea name="comments" id="comments" class="comments" ngModel></textarea>
+    <div class="message">
+      <div>I agree to receive </div>
+      <div>
+        <input type="checkbox" id="check" name="check" class="info-inp" />
+        <label for="check">SMS</label>
+      </div>
+      <div>
+        <input type="checkbox" id="check1" name="check1" class="info-inp" />
+        <label for="check1">Emails</label>
+      </div>
     </div>
+    <button class="order__btn" type="submit" [disabled]="!f.valid">Order</button>
   </div>
-  <button class="order__btn">Order</button>
+</form>
+<div *ngIf="submitted">
+  <div>Name : {{orderData.contactInfo.name}}</div>
+  <div>Phone: {{orderData.contactInfo.phone}}</div>
+  <div>Email: {{orderData.contactInfo.email}}</div>
+  <div>Payment: {{orderData.payment}}</div>
 </div>
