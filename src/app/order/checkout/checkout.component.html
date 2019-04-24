@@ -1,33 +1,72 @@
-<form (ngSubmit)="onSubmit()" #f="ngForm">
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
   <div class="checkout-card">
     <h2>Cart</h2>
   </div>
-  <div class="checkout-card" ngModelGroup="contactInfo">
+  <div class="checkout-card">
     <h2>Contact information</h2>
     <div class="contacts">
-      <div><label for="name" class="input-label">Name</label> <input type="text" id="name" class="input-contact"
-          autocomplete="off" ngModel name="name"></div>
-      <div><label for="phone" class="input-label">Telephone</label> <input type="text" id="phone" class="input-contact"
-          autocomplete="off" ngModel name="phone" required>
+      <div><label for="name" class="input-label">Name</label>
+        <input type="text" id="name" class="input-contact" autocomplete="off" name="name" formControlName="name">
+        <span *ngIf="!checkoutForm.get('name').valid && checkoutForm.get('name').touched">
+          <span class="error-message" *ngIf="checkoutForm.get('name').errors['required']">Name
+            is required!</span>
+          <span class="error-message" *ngIf="checkoutForm.get('name').errors['minlength']">Name
+            should consist of more than 3 letters!</span>
+        </span>
+      </div>
+      <div><label for="phone" class="input-label">Phone Number</label> <input type="text" id="phone"
+          class="input-contact" autocomplete="off" formControlName="phone" name="phone" placeholder="+375-29-5555333">
+        <span *ngIf="!checkoutForm.get('phone').valid && checkoutForm.get('phone').touched">
+          <span class="error-message"
+            *ngIf="checkoutForm.get('phone').errors['custom'] && checkoutForm.get('phone').value">Please
+            enter a valid phone number!</span>
+          <span class="error-message" *ngIf="checkoutForm.get('phone').errors['required']">Phone
+            is required!</span>
+        </span>
       </div>
       <div>
         <label for="e-mail" class="input-label">E-mail</label>
-        <input type="email" id="e-mail" class="input-contact" autocomplete="off" ngModel name="email" email required
-          #email="ngModel">
-        <span class="error-message" *ngIf="!email.valid && email.touched">Please enter a valid email!</span>
+        <input type="email" id="e-mail" class="input-contact" autocomplete="off" formControlName="email" name="email">
+        <span *ngIf="!checkoutForm.get('email').valid && checkoutForm.get('email').touched">
+          <span class="error-message" *ngIf="checkoutForm.get('email').errors['email']">Please
+            enter a valid email!</span>
+          <span class="error-message" *ngIf="checkoutForm.get('email').errors['required']">Email
+            is required!</span>
+        </span>
       </div>
     </div>
   </div>
   <div class="checkout-card">
     <h2>Delivery</h2>
     <div class="contacts">
-      <div><label for="address" class="input-label">Address</label> <input type="text" id="address"
-          class="input-contact" autocomplete="off"></div>
-      <div><label for="flat" class="input-label">Flat/Office</label> <input type="text" id="flat" class="input-contact"
-          autocomplete="off">
+      <div><label for="address" class="input-label">Address</label>
+        <input type="text" id="address" class="input-contact" autocomplete="off" formControlName="address">
+        <span *ngIf="!checkoutForm.get('address').valid && checkoutForm.get('address').touched">
+          <span class="error-message" *ngIf="checkoutForm.get('address').errors['required']">Address
+            is required!</span>
+          <span class="error-message" *ngIf="checkoutForm.get('address').errors['minlength']">Please enter a valid
+            address!</span>
+        </span>
       </div>
-      <div><label for="floor" class="input-label">Floor</label> <input type="text" id="floor" class="input-contact"
-          autocomplete="off">
+      <div><label for="flat" class="input-label">Flat/Office</label>
+        <input type="text" id="flat" class="input-contact" autocomplete="off" formControlName="flat">
+        <span *ngIf="!checkoutForm.get('flat').valid && checkoutForm.get('flat').touched">
+          <span class="error-message"
+            *ngIf="checkoutForm.get('flat').errors['custom'] && checkoutForm.get('flat').value">Please
+            enter a valid flat/office!</span>
+          <span class="error-message" *ngIf="checkoutForm.get('flat').errors['required']">Flat/office
+            is required!</span>
+        </span>
+      </div>
+      <div><label for="floor" class="input-label">Floor</label>
+        <input type="text" id="floor" class="input-contact" autocomplete="off" formControlName="floor">
+        <span *ngIf="!checkoutForm.get('floor').valid && checkoutForm.get('floor').touched">
+          <span class="error-message"
+            *ngIf="checkoutForm.get('floor').errors['custom'] && checkoutForm.get('floor').value">Please
+            enter a valid floor!</span>
+          <span class="error-message" *ngIf="checkoutForm.get('floor').errors['required']">Floor
+            is required!</span>
+        </span>
       </div>
     </div>
   </div>
@@ -35,12 +74,12 @@
     <h2>Payment</h2>
     <div class="payment-types type">
       <div class="type__item" *ngFor="let pay of payment">
-        <input type="radio" class="payment" [id]="pay" name="payment" [value]="pay" ngModel required /><label
+        <input type="radio" class="payment" [id]="pay" name="payment" [value]="pay" formControlName="payment" /><label
           [for]="pay" class="lb"></label><span class="lb-title">{{pay}}</span>
       </div>
     </div>
     <label for="comments" class="input-label">Add order comments</label>
-    <textarea name="comments" id="comments" class="comments" ngModel></textarea>
+    <textarea name="comments" id="comments" class="comments"></textarea>
     <div class="message">
       <div>I agree to receive </div>
       <div>
@@ -52,12 +91,13 @@
         <label for="check1">Emails</label>
       </div>
     </div>
-    <button class="order__btn" type="submit" [disabled]="!f.valid">Order</button>
+    <button class="order__btn" type="submit">Order</button>
   </div>
 </form>
 <div *ngIf="submitted">
-  <div>Name : {{orderData.contactInfo.name}}</div>
-  <div>Phone: {{orderData.contactInfo.phone}}</div>
-  <div>Email: {{orderData.contactInfo.email}}</div>
-  <div>Payment: {{orderData.payment}}</div>
+  <div>Name : {{checkoutForm.value.name}}</div>
+  <div>Phone: {{checkoutForm.value.phone}}</div>
+  <div>Email: {{checkoutForm.value.email}}</div>
+  <div>Payment: {{checkoutForm.value.payment}}</div>
 </div>
+<!-- [disabled]="!checkoutForm.valid" -->

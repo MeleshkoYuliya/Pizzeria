@@ -22,6 +22,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     FormsModule,
     ReactiveFormsModule,
     PizzasModule,
+    ReactiveFormsModule,
     NgxsModule.forRoot([])
   ],
   providers: [],
