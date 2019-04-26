@@ -10,13 +10,20 @@ export class ChangeIngredientComponent implements OnInit {
   @Input() close: Function;
 
   _ingredients: Array<string>;
-  constructor() {}
-  ngOnInit() {
-    this._ingredients = this.ingredients.slice();
-    console.log(this._ingredients);
+  constructor() { }
+  ngOnInit () {
+    this._ingredients = this.ingredients.slice()
   }
 
   closeModal = () => {
     this.close();
   };
+
+  addIngredient = (ingredient) => {
+    this._ingredients.push(ingredient)
+  }
+
+  deleteIngredient = (index) => {
+    this._ingredients.splice(index, 1)
+  }
 }
