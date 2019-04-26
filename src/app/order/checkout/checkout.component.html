@@ -95,9 +95,3 @@
     <button class="order__btn" type="submit" [disabled]="!checkoutForm.valid">Order</button>
   </div>
 </form>
-<div *ngIf="submitted">
-  <div>Name : {{checkoutForm.value.name}}</div>
-  <div>Phone: {{checkoutForm.value.phone}}</div>
-  <div>Email: {{checkoutForm.value.email}}</div>
-  <div>Payment: {{checkoutForm.value.payment}}</div>
-</div>

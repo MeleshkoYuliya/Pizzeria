@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 })
 export class CheckoutComponent implements OnInit {
   payment = ['Cash', 'Card'];
-  submitted = false;
   checkoutForm: FormGroup;
 
   constructor(private router: Router) { }
@@ -34,7 +33,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   onSubmit () {
-    this.submitted = true;
     console.log(this.checkoutForm.value);
     this.checkoutForm.reset();
     this.router.navigate(['pizzas']);
