@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -11,7 +12,7 @@ export class CheckoutComponent implements OnInit {
   submitted = false;
   checkoutForm: FormGroup;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit () {
     this.checkoutForm = new FormGroup({
@@ -22,6 +23,9 @@ export class CheckoutComponent implements OnInit {
       'address': new FormControl(null, [Validators.required, Validators.minLength(6)]),
       'flat': new FormControl(null, [Validators.required, this.validatorNumber]),
       'floor': new FormControl(null, [Validators.required, this.validatorNumber]),
+      'comments': new FormControl(null),
+      'send-sms': new FormControl(null),
+      'send-email': new FormControl(null)
     });
 
     this.checkoutForm.valueChanges.subscribe((value) => {
@@ -31,9 +35,9 @@ export class CheckoutComponent implements OnInit {
 
   onSubmit () {
     this.submitted = true;
-    console.log(this.checkoutForm);
-
-    // this.checkoutForm.reset();
+    console.log(this.checkoutForm.value);
+    this.checkoutForm.reset();
+    this.router.navigate(['pizzas']);
   }
 
   validatorPhones (control: FormControl): { [s: string]: boolean } {

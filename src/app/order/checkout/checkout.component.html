@@ -79,19 +79,20 @@
       </div>
     </div>
     <label for="comments" class="input-label">Add order comments</label>
-    <textarea name="comments" id="comments" class="comments"></textarea>
+    <textarea name="comments" id="comments" class="comments" formControlName="comments"></textarea>
     <div class="message">
       <div>I agree to receive </div>
       <div>
-        <input type="checkbox" id="check" name="check" class="info-inp" />
+        <input type="checkbox" id="check" class="info-inp" value="sms" formControlName="send-sms" />
         <label for="check">SMS</label>
       </div>
       <div>
-        <input type="checkbox" id="check1" name="check1" class="info-inp" />
+        <input type="checkbox" id="check1" name="distribution" class="info-inp" value="email"
+          formControlName="send-email" />
         <label for="check1">Emails</label>
       </div>
     </div>
-    <button class="order__btn" type="submit">Order</button>
+    <button class="order__btn" type="submit" [disabled]="!checkoutForm.valid">Order</button>
   </div>
 </form>
 <div *ngIf="submitted">
@@ -100,4 +101,3 @@
   <div>Email: {{checkoutForm.value.email}}</div>
   <div>Payment: {{checkoutForm.value.payment}}</div>
 </div>
-<!-- [disabled]="!checkoutForm.valid" -->
