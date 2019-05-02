@@ -63,3 +63,35 @@
     background-color: white;
   }
 }
+
+.pizzas{
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  margin: 10px auto 20px auto;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: solid 1px rgb(172, 168, 168);
+  &__image{
+    width: 70px;
+    height: 70px;
+  }
+}
+
+.pizzas__info, .info{
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  &__name{
+    font-weight: bolder;
+    font-size: 18px;
+    margin-bottom: 5px;
+    letter-spacing: 1px
+  }
+  &__quality{
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+    text-transform: capitalize
+  }
+}

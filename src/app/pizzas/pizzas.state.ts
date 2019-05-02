@@ -3,7 +3,7 @@ import { Pizza } from './pizzas';
 
 import {PIZZAS} from './mock-pizzas'
 
-import { AddPizzaInOrder} from './pizzas.action'
+import { AddPizzaInOrder, AddSelectedSize} from './pizzas.action'
 
 export class PizzasStateModel {
   pizzas: Pizza[];

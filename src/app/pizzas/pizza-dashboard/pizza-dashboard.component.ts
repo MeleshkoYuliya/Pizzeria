@@ -19,8 +19,8 @@ export class PizzaDashboardComponent implements OnInit {
 
   constructor(private store: Store) { }
 
-  selectedDough: string;
-  selectedSize = 0;
+  selectedDough: string = 'traditional';
+  selectedSize = 23;
   price = 0;
   isAddCheese = false;
   myclass: string;
@@ -43,7 +43,7 @@ export class PizzaDashboardComponent implements OnInit {
     }
     this.isAddCheese = false;
   }
-  getTotalPrice () {
+  getTotalPrice () {   
     this.info.map((item) => {
       if (this.selectedSize === item.size) {
         this.price = item.price;
@@ -61,15 +61,17 @@ export class PizzaDashboardComponent implements OnInit {
         this.price = +(item.price * 0.15 + this.price).toFixed(2);
       }
     });
-
     return this.price;
   }
+
   addPizzaToOrder (pizza) {
-    this.store.dispatch(new AddPizzaInOrder(pizza));
+    const orderedPizza = { ...pizza, qualities: { selectedDough: this.selectedDough, selectedSize: this.selectedSize}}
+    console.log(orderedPizza);
+    
+    this.store.dispatch(new AddPizzaInOrder(orderedPizza));
   }
 
   ngOnInit () {
- 
     this.info.map((item) => {
       this.sizes.push(item.size);
     });
