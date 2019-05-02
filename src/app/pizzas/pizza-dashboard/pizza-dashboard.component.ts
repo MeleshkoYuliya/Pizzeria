@@ -1,4 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Pizza } from '../pizzas';
+import { AddPizzaInOrder } from '../pizzas.action'
+import { Store } from '@ngxs/store';
+
 
 @Component({
   selector: 'app-pizza-dashboard',
@@ -9,10 +13,11 @@ export class PizzaDashboardComponent implements OnInit {
   @Input() name: string;
   @Input() info: Array<any>;
   @Input() priceClass;
+  @Input() pizza: Pizza
 
   @Output() changed = new EventEmitter<number>();
 
-  constructor() { }
+  constructor(private store: Store) { }
 
   selectedDough: string;
   selectedSize = 0;
@@ -59,9 +64,12 @@ export class PizzaDashboardComponent implements OnInit {
 
     return this.price;
   }
-
+  addPizzaToOrder (pizza) {
+    this.store.dispatch(new AddPizzaInOrder(pizza));
+  }
 
   ngOnInit () {
+ 
     this.info.map((item) => {
       this.sizes.push(item.size);
     });

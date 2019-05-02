@@ -30,7 +30,7 @@ export class PizzaItemComponent implements OnInit {
     this.isOpen = false;
   };
 
-  ngOnInit() {
+  ngOnInit() {  
     this.pizza.info.map(item => {
       this.sizes.push(item.size);
     });

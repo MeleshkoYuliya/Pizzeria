@@ -33,7 +33,7 @@
       {{ ingredient }} |
     </span>
   </div>
-  <app-pizza-dashboard [name]="pizza.name" [info]="pizza.info" (changed)="changed($event)" [priceClass]="priceClass">
+  <app-pizza-dashboard [name]="pizza.name" [info]="pizza.info" (changed)="changed($event)" [priceClass]="priceClass" [pizza]="pizza">
   </app-pizza-dashboard>
 
   <app-change-ingredient *appModal="!isOpen" class="modal" [ingredients]="ingredients" [close]="close">
