@@ -5,7 +5,7 @@ export class AddPizzaInOrder {
   constructor(public payload: Pizza) { }
 }
 
-export class AddSelectedSize {
-  static readonly type = '[Size] Add';
-  constructor(public payload: number) { }
+export class ChangeOrderedPizzaAmount {
+  static readonly type = '[Pizza] Change';
+  constructor(public payload: {pizza; amount: number; price: number}) { }
 }

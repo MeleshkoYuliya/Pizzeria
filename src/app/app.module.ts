@@ -24,7 +24,6 @@ import { PizzasState } from './pizzas/pizzas.state';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
     PizzasModule,
     ReactiveFormsModule,
     NgxsModule.forRoot([PizzasState]),

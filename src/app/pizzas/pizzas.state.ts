@@ -1,9 +1,9 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { Pizza } from './pizzas';
-
 import {PIZZAS} from './mock-pizzas'
 
-import { AddPizzaInOrder, AddSelectedSize} from './pizzas.action'
+import { AddPizzaInOrder, ChangeOrderedPizzaAmount} from './pizzas.action'
+import { patch, updateItem } from '@ngxs/store/operators';
 
 export class PizzasStateModel {
   pizzas: Pizza[];
@@ -20,7 +20,7 @@ export class PizzasStateModel {
 export class PizzasState {
 
   @Selector()
-  static getUsers (state: PizzasStateModel) {
+  static getPizzas (state: PizzasStateModel) {
     return state.pizzas;
   }
 
@@ -30,5 +30,15 @@ export class PizzasState {
     patchState({
       orderedPizzas: [...state.orderedPizzas, payload]
     });
+  }
+
+  @Action(ChangeOrderedPizzaAmount)
+  change ({ getState, setState }: StateContext<PizzasStateModel>, { payload }: ChangeOrderedPizzaAmount) {
+    const state = getState();
+    setState(
+      patch({
+        orderedPizzas: updateItem<any>(pizza => pizza === payload.pizza, patch({ amount: payload.amount, price: payload.price}))
+      })
+    );
   }
 }

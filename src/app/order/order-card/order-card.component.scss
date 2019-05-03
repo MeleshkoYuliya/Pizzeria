@@ -67,6 +67,7 @@
 .pizzas{
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   width: 80%;
   margin: 10px auto 20px auto;
   justify-content: space-between;
@@ -94,4 +95,43 @@
      justify-content: space-between;
     text-transform: capitalize
   }
+}
+.info__options, .option{
+width: 95%;
+margin: 10px auto;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+&__count{
+  display: flex;
+  flex-direction: row;
+  width: 25%;
+  justify-content: space-between
+}
+&__decrease-btn{
+  border-radius: 50%;
+  width: 26px;
+  text-align: center;
+  vertical-align: middle;
+  border:none;
+  outline: none;
+  cursor: pointer;
+  background-color: rgb(177, 174, 174);
+  font-size: 18px;
+  font-weight: bolder;
+  color: rgb(97, 96, 96)
+}
+&__increase-btn {
+  border-radius: 50%;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  width: 26px;
+  outline: none;
+  border: none;
+  background-color: rgb(154, 219, 159);
+  font-size: 18px;
+  font-weight: bolder;
+  color: rgb(21, 90, 36)
+}
 }

@@ -103,6 +103,10 @@ input[type="checkbox"]:checked+label {
     cursor: pointer;
     display: block;
     margin-top: 10px;
+    &:disabled {
+      background-color: rgb(167, 117, 117);
+      cursor: not-allowed
+    }
   }
 
   &__bill {
@@ -134,7 +138,7 @@ input[type="checkbox"]:checked+label {
     padding: 9px;
     cursor: pointer;
     display: block;
-    margin-top: 10px;
+    margin-top: 10px
   }
 
   &__bill {
