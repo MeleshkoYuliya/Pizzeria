@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Store } from '@ngxs/store';
+import { map } from "rxjs/operators";
+import { Pizza } from "../pizzas/pizzas";
 
 import { ChangeOrderedPizzaAmount } from '../pizzas/pizzas.action'
 
@@ -23,4 +25,6 @@ export class OrderService {
     }
     this.store.dispatch(new ChangeOrderedPizzaAmount({ pizza, amount, price }));
   }
+
+
 }

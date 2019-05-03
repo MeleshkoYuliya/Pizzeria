@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OrderService } from '../order.service'
 import { Store } from '@ngxs/store';
 import { Observable } from "rxjs";
 import { Pizza } from "../../pizzas/pizzas";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: 'app-checkout',
@@ -15,7 +16,8 @@ export class CheckoutComponent implements OnInit {
   payment = ['Cash', 'Card'];
   checkoutForm: FormGroup;
   orderedPizzas$: Observable<Pizza[]>;
-  constructor(private store: Store, private service: OrderService, private router: Router) { }
+  totalPrice: Observable<number>
+  constructor(private store: Store, private service: OrderService, private router: Router) {}
 
   ngOnInit () {
     this.orderedPizzas$ = this.store.select(state => state.pizzas.orderedPizzas);
@@ -33,10 +35,17 @@ export class CheckoutComponent implements OnInit {
     });
 
     this.checkoutForm.valueChanges.subscribe((value) => {});
+
+    this.totalPrice = this.store.select(state => state.pizzas.orderedPizzas).pipe(
+      map((pizzas) => pizzas.reduce((previousValue, currentValue, index) => {
+        return +(previousValue + currentValue.price).toFixed(2)},0))
+    );
+   
+    return this.totalPrice
   }
 
   onSubmit () {
-    console.log(this.checkoutForm.value);
+    console.log(this.checkoutForm.value); 
     this.checkoutForm.reset();
     this.router.navigate(['pizzas']);
   }
@@ -62,5 +71,9 @@ export class CheckoutComponent implements OnInit {
 
   decreasePizzaAmount (pizza) {
     this.service.decreasePizzaAmount(pizza)
+  }
+
+  getTotalPrice () {
+
   }
 }
