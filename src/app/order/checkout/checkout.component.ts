@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { OrderService } from '../order.service'
+import { Store } from '@ngxs/store';
+import { Observable } from "rxjs";
+import { Pizza } from "../../pizzas/pizzas";
 
 @Component({
   selector: 'app-checkout',
@@ -10,10 +14,11 @@ import { Router } from '@angular/router';
 export class CheckoutComponent implements OnInit {
   payment = ['Cash', 'Card'];
   checkoutForm: FormGroup;
-
-  constructor(private router: Router) { }
+  orderedPizzas$: Observable<Pizza[]>;
+  constructor(private store: Store, private service: OrderService, private router: Router) { }
 
   ngOnInit () {
+    this.orderedPizzas$ = this.store.select(state => state.pizzas.orderedPizzas);
     this.checkoutForm = new FormGroup({
       'name': new FormControl(null, [Validators.minLength(3), Validators.required]),
       'phone': new FormControl(null, [Validators.required, this.validatorPhones]),
@@ -27,9 +32,7 @@ export class CheckoutComponent implements OnInit {
       'send-email': new FormControl(null)
     });
 
-    this.checkoutForm.valueChanges.subscribe((value) => {
-      console.log(value['name']);
-    });
+    this.checkoutForm.valueChanges.subscribe((value) => {});
   }
 
   onSubmit () {
@@ -51,5 +54,13 @@ export class CheckoutComponent implements OnInit {
       return { 'custom': true };
     }
     return null;
+  }
+
+  increasePizzaAmount (pizza) {
+    this.service.increasePizzaAmount(pizza)
+  }
+
+  decreasePizzaAmount (pizza) {
+    this.service.decreasePizzaAmount(pizza)
   }
 }
