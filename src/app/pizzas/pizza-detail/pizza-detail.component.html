@@ -36,7 +36,7 @@
         <div>Energy - {{nutricion.energy}}</div>
       </div>
       <app-pizza-dashboard [name]="pizza.name" [info]="pizza.info" (changed)="changed($event)"
-        [priceClass]='priceClass'>
+        [priceClass]='priceClass' [pizza]="pizza">
       </app-pizza-dashboard>
     </div>
   </div>

@@ -5,6 +5,11 @@ export class AddPizzaInOrder {
   constructor(public payload: Pizza) { }
 }
 
+export class ClearOrderCard {
+  static readonly type = '[OrderedPizzas] Clear';
+  constructor(public payload) { }
+}
+
 export class ChangeOrderedPizzaAmount {
   static readonly type = '[Pizza] Change';
   constructor(public payload: {pizza; amount: number; price: number}) { }

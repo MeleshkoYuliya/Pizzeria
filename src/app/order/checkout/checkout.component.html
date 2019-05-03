@@ -1,7 +1,7 @@
 <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
   <div class="checkout-card">
     <h2>Cart</h2>
-    <div *ngFor="let pizza of orderedPizzas$ | async" class="pizzas">
+    <div *ngFor="let pizza of orderedPizzas" class="pizzas">
          <img [src]="pizza.image" class="pizzas__image" />
          <div class="pizzas__info info">
            <div class="info__name">{{pizza.name}}</div>
@@ -19,7 +19,7 @@
            <div>{{pizza.price}} BYN</div>
          </div>
     </div>
-    <div>Total: {{totalPrice | async }}</div>
+    <div>Total: {{totalPrice}}</div>
   </div>
   <div class="checkout-card">
     <h2>Contact information</h2>
@@ -111,6 +111,6 @@
         <label for="check1">Emails</label>
       </div>
     </div>
-    <button class="order__btn" type="submit" [disabled]="!checkoutForm.valid">Order</button>
+  <button class="order__btn" type="submit" [disabled]="!checkoutForm.valid">Order</button>
   </div>
 </form>

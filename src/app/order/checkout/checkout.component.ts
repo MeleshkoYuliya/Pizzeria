@@ -15,12 +15,12 @@ import { map } from "rxjs/operators";
 export class CheckoutComponent implements OnInit {
   payment = ['Cash', 'Card'];
   checkoutForm: FormGroup;
-  orderedPizzas$: Observable<Pizza[]>;
-  totalPrice: Observable<number>
+  orderedPizzas;
+  totalPrice: number
   constructor(private store: Store, private service: OrderService, private router: Router) {}
 
   ngOnInit () {
-    this.orderedPizzas$ = this.store.select(state => state.pizzas.orderedPizzas);
+    this.store.select(state => state.pizzas.orderedPizzas).subscribe(pizzas => this.orderedPizzas=pizzas);
     this.checkoutForm = new FormGroup({
       'name': new FormControl(null, [Validators.minLength(3), Validators.required]),
       'phone': new FormControl(null, [Validators.required, this.validatorPhones]),
@@ -36,18 +36,13 @@ export class CheckoutComponent implements OnInit {
 
     this.checkoutForm.valueChanges.subscribe((value) => {});
 
-    this.totalPrice = this.store.select(state => state.pizzas.orderedPizzas).pipe(
-      map((pizzas) => pizzas.reduce((previousValue, currentValue, index) => {
-        return +(previousValue + currentValue.price).toFixed(2)},0))
-    );
-   
-    return this.totalPrice
+    this.orderedPizzas.reduce((previousValue, currentValue, index) => {
+      return this.totalPrice = +(previousValue + currentValue.price).toFixed(2)},0)
   }
 
   onSubmit () {
-    console.log(this.checkoutForm.value); 
-    this.checkoutForm.reset();
-    this.router.navigate(['pizzas']);
+   const order={...this.checkoutForm.value, ...this.orderedPizzas, totalPrice: this.totalPrice}
+   console.log(order);
   }
 
   validatorPhones (control: FormControl): { [s: string]: boolean } {
@@ -73,7 +68,4 @@ export class CheckoutComponent implements OnInit {
     this.service.decreasePizzaAmount(pizza)
   }
 
-  getTotalPrice () {
-
-  }
 }
