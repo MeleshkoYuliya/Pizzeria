@@ -1,10 +1,6 @@
 import { Injectable } from "@angular/core";
-
-import { Observable } from "rxjs";
 import { Store } from '@ngxs/store';
-import { map } from "rxjs/operators";
 
-import { Pizza } from "../pizzas/pizzas";
 import { ChangeOrderedPizzaAmount } from '../pizzas/pizzas.action'
 
 @Injectable({
