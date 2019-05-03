@@ -1,6 +1,24 @@
 <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
   <div class="checkout-card">
     <h2>Cart</h2>
+    <div *ngFor="let pizza of orderedPizzas$ | async" class="pizzas">
+         <img [src]="pizza.image" class="pizzas__image" />
+         <div class="pizzas__info info">
+           <div class="info__name">{{pizza.name}}</div>
+           <div class="info__quality">
+             <div>{{pizza.qualities.selectedDough}}</div>
+             <div>{{pizza.qualities.selectedSize}}</div>
+           </div>
+         </div>
+         <div class="info__options option">
+           <div class="option__count">
+             <button (click)="decreasePizzaAmount(pizza)" class="option__decrease-btn">-</button>
+             <div class="option__amount">{{pizza.amount}}</div>
+             <button (click)="increasePizzaAmount(pizza)" class="option__increase-btn">+</button>
+           </div>
+           <div>{{pizza.price}} BYN</div>
+         </div>
+    </div>
   </div>
   <div class="checkout-card">
     <h2>Contact information</h2>

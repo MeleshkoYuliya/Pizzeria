@@ -201,3 +201,91 @@ input.ng-invalid.ng-touched {
   font-size: 14px;
   margin: 5px 0 0px 2px
 }
+
+.pizzas {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 10px auto 20px auto;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: solid 1px rgb(172, 168, 168);
+
+  &__image {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+.pizzas__info,
+.info {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+
+  &__name {
+    font-weight: bolder;
+    font-size: 18px;
+    margin: 5px 0 10px 0;
+    letter-spacing: 1px
+  }
+
+  &__quality {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-transform: capitalize
+  }
+}
+
+.info__options,
+.option {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 220px;
+  &__count {
+    display: flex;
+    flex-direction: row;
+    width: 100px;
+    margin-right: 20px;
+    justify-content: space-between
+  }
+
+  &__decrease-btn {
+    border-radius: 50%;
+    display: block;
+    width: 26px;
+    height: 26px;
+    text-align: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: rgb(177, 174, 174);
+    font-size: 18px;
+    font-weight: bolder;
+    color: rgb(97, 96, 96);
+  }
+
+  &__increase-btn {
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    width: 26px;
+    height: 26px;
+    outline: none;
+    border: none;
+    background-color: rgb(154, 219, 159);
+    font-size: 18px;
+    font-weight: bolder;
+    color: rgb(21, 90, 36)
+  }
+
+  &__amount {
+    font-size: 18px;
+    font-weight: bolder
+  }
+}
