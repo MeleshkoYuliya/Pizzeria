@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable } from "rxjs";
+import { ClearOrderCard } from '../../pizzas/pizzas.action'
 
 import { Pizza } from "../../pizzas/pizzas";
 import { OrderService}  from '../order.service'
@@ -24,5 +25,9 @@ export class OrderCardComponent implements OnInit{
 
   decreasePizzaAmount (pizza) {
     this.service.decreasePizzaAmount(pizza)
+  }
+
+  clearOrder(){
+    this.store.dispatch(new ClearOrderCard());
   }
 }

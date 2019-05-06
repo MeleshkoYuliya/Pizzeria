@@ -43,12 +43,12 @@ export class PizzasState {
   }
 
   @Action(ClearOrderCard)
-  clear ({ getState, setState }: StateContext<PizzasStateModel>, { payload }: ClearOrderCard) {
+  clear ({ getState, setState, patchState }: StateContext<PizzasStateModel>, { }: ClearOrderCard) {
     const state = getState();
-    setState(
-      patch({
-        orderedPizzas: removeItem<any>(orderedPizzas => orderedPizzas === [])
-      })
-    )
+    setState({
+      ...state,
+      orderedPizzas:[]
+    }
+ )
   }
 }

@@ -3,7 +3,7 @@
   <div class="order-card__image order"><img src="../assets/images/trash.svg" class="order__image" /></div>
   <div class="order__actions action">
     <div class="action__cart">Cart()</div>
-    <button class="action__clear">Clear</button>
+    <button class="action__clear" (click)="clearOrder()">Clear</button>
   </div>
   <div *ngFor="let pizza of orderedPizzas$ | async" class="pizzas">
    <img [src]="pizza.image" class="pizzas__image" />
