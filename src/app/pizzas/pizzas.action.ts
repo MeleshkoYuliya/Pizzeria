@@ -7,7 +7,6 @@ export class AddPizzaInOrder {
 
 export class ClearOrderCard {
   static readonly type = '[OrderedPizzas] Clear';
-  // constructor(public payload) { }
 }
 
 export class ChangeOrderedPizzaAmount {
