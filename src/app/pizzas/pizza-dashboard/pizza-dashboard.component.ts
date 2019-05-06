@@ -1,7 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { Pizza } from '../pizzas';
-import { AddPizzaInOrder } from '../pizzas.action'
-import { Store } from '@ngxs/store';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
@@ -17,8 +15,7 @@ export class PizzaDashboardComponent implements OnInit {
   @Input() info: Array<any>;
   @Input() priceClass;
   @Input() pizza: Pizza
-
-  @Output() changed = new EventEmitter<number>();
+  @Input() addPizzaToOrderCallback: Function;
 
   selectedDough: string;
   selectedSize: number;
@@ -27,10 +24,12 @@ export class PizzaDashboardComponent implements OnInit {
   myclass: string;
   sizes: Array<number> = [];
   ingredients: Array<string> = [];
+  selectedPizza
 
-  constructor(private store: Store) { }
+  constructor() { }
 
   ngOnInit () {
+
     this.dashboardForm = new FormGroup({
       'dough': new FormControl(null, Validators.required),
       'size': new FormControl(null, Validators.required),
@@ -67,13 +66,19 @@ export class PizzaDashboardComponent implements OnInit {
         this.price = +(item.price * 0.15 + this.price).toFixed(2);
       }
     });
+
+    this.selectedPizza = {
+      ...this.pizza, qualities: { selectedDough: this.selectedDough, selectedSize: this.selectedSize }
+      , price: this.price, amount: 1
+    }
+
     return this.price;
   }
 
-  addPizzaToOrder (pizza) {
-    const orderedPizza = { ...pizza, qualities: { selectedDough: this.selectedDough, selectedSize: this.selectedSize}
-    ,price: this.price, amount: 1}   
-    this.store.dispatch(new AddPizzaInOrder(orderedPizza));
+  addPizzaToOrder =() =>{
+    const orderedPizza = { ...this.selectedPizza}
+    this.addPizzaToOrderCallback(orderedPizza)
+    this.selectedPizza=null
     this.dashboardForm.reset()
   }
 

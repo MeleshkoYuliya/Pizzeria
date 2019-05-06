@@ -75,6 +75,10 @@
     cursor: pointer;
     display: block;
     margin-left: 50px;
+      &:disabled {
+        background-color: rgb(167, 117, 117);
+        cursor: not-allowed
+      }
   }
 }
 

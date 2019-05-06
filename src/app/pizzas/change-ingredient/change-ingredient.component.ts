@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
+import { Pizza, Ingredient } from '../pizzas';
+import { AddPizzaInOrder } from '../pizzas.action'
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: "app-change-ingredient",
@@ -6,13 +9,15 @@ import { Component, OnInit, Input } from "@angular/core";
   styleUrls: ["./change-ingredient.component.scss"]
 })
 export class ChangeIngredientComponent implements OnInit {
-  @Input() ingredients: Array<string>;
+  @Input() pizza: Pizza;
   @Input() close: Function;
+  @Input() orderedPizza
 
-  _ingredients: Array<string>;
-  constructor() { }
+  _ingredients: Ingredient[];
+  constructor(private store: Store) { }
+
   ngOnInit () {
-    this._ingredients = this.ingredients.slice()
+    this._ingredients=this.pizza.ingredients
   }
 
   closeModal = () => {
@@ -25,5 +30,9 @@ export class ChangeIngredientComponent implements OnInit {
 
   deleteIngredient = (index) => {
     this._ingredients.splice(index, 1)
+  }
+
+  addPizzaToOrder =() =>{
+    this.store.dispatch(new AddPizzaInOrder(this.orderedPizza));
   }
 }

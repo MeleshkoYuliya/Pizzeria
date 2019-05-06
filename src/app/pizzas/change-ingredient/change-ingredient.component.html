@@ -2,7 +2,7 @@
   <div class="dashboard__title">Remove Ingredients</div>
   <div class="pizza__ingredients ingredients">
     <div class="ingredients__item item" *ngFor="let ingredient of _ingredients; let i=index">
-      {{ ingredient }}
+      {{ ingredient.ingredient }}
       <button class="item__delete-btn" (click)="deleteIngredient(i)">
         <img src="../assets/images/cross.svg" alt="cheese" class="item__delete-img" />
       </button>
@@ -15,6 +15,6 @@
   <input class="dashboard__add-inp" [(ngModel)]="ingredient" name="ingredient" />
   <div class="dashboard__buttons button">
     <button class="button__cancel" (click)="closeModal()">Cancel</button>
-    <button class="button__add">Add to cart</button>
+    <button class="button__add" (click)="addPizzaToOrder()" [disabled]="!orderedPizza ">Add to cart</button>
   </div>
 </div>

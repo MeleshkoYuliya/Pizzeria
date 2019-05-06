@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
 import { Pizza } from '../pizzas';
+import { Store } from '@ngxs/store';
+import { AddPizzaInOrder } from '../pizzas.action'
 
 import { PizzasService } from '../pizzas.service';
 
@@ -23,7 +25,8 @@ export class PizzaDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private service: PizzasService,
-    private location: Location
+    private location: Location,
+    private store: Store
   ) {
     const id = +this.route.snapshot.paramMap.get('id');
     if (!id) {
@@ -47,7 +50,7 @@ export class PizzaDetailComponent implements OnInit {
     this.service.getPizza(id).subscribe(pizza => (this.pizza = pizza));
   }
 
-  changed (size: any) {
-    this.selectedSize = size;
+  addPizzaToOrderCallback = (orderedPizza) => {
+    this.store.dispatch(new AddPizzaInOrder(orderedPizza));
   }
 }

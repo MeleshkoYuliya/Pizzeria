@@ -32,7 +32,7 @@
     </div>
   </div>
   <div [class]="myclass">
-    <button class="price__btn" (click)="addPizzaToOrder(pizza)" [disabled]="!dashboardForm.valid">Add to cart</button>
+    <button class="price__btn" (click)="addPizzaToOrder()" [disabled]="!dashboardForm.valid">Add to cart</button>
     <div class="price__bill" *ngIf="dashboardForm.valid">
       <span> {{ getTotalPrice() }} BYN</span>
     </div>
