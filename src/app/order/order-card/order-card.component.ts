@@ -12,11 +12,17 @@ import { OrderService}  from '../order.service'
   styleUrls: ['./order-card.component.scss']
 })
 export class OrderCardComponent implements OnInit{ 
-  orderedPizzas$: Observable<Pizza[]>;
+  orderedPizzas$;
+  quantity: number =0
   constructor(private store: Store, private service: OrderService,){}
 
   ngOnInit(){
-    return this.orderedPizzas$=this.store.select(state => state.pizzas.orderedPizzas);
+    this.store.select(state => state.pizzas.orderedPizzas).subscribe(pizzas=>{
+      pizzas.reduce((previousValue, currentValue, index) => {
+        return this.quantity = +(previousValue + currentValue.amount)
+      }, 0)
+      return this.orderedPizzas$ = pizzas
+     });
   }
 
   increasePizzaAmount (pizza) {
