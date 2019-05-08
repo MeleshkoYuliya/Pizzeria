@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OrderService } from '../order.service'
@@ -44,8 +44,6 @@ export class CheckoutComponent implements OnInit {
       'send-email': new FormControl(null)
     });
 
-    this.checkoutForm.valueChanges.subscribe((value) => {});
-
     this.orderedPizzas.reduce((previousValue, currentValue, index) => {
       return this.totalPrice = +(previousValue + currentValue.price).toFixed(2)},0)
   }
@@ -56,14 +54,15 @@ export class CheckoutComponent implements OnInit {
 
     const pizza = this.orderedPizzas.map(item=>{
       const excludedIngredient = item.removedIngredients ? item.removedIngredients.map(ingredient=> ingredient.ingredient) : ''
-      const ingredients = item.ingredients.map(ingredient => ingredient.ingredient)
+      const addedIngredients = item.addedIngredients.map(ingredient => ingredient.ingredient)
+
       return `
       Pizza name: ${item.name},
       dough: ${item.qualities.selectedDough},
       size: ${item.qualities.selectedSize},
       amount: ${item.amount},
       excluded ingredients: ${excludedIngredient || 'none'},
-      pizza ingredients: ${ingredients},
+      added ingredients: ${addedIngredients || 'none'}
       `
     })
     console.log(`Checkout: 

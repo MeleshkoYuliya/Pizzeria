@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { ClearOrderCard, DeletePizzaFromOrder } from '../../pizzas/pizzas.action'
 
@@ -14,7 +14,7 @@ export class OrderCardComponent implements OnInit{
   orderedPizzas$;
   quantity: number =0
   totalPrice: number=0
-  excludedIngredients: Ingredient[]
+  excludedIngredients: Ingredient[]=[]
 
   constructor(private store: Store, private service: OrderService,){}
 

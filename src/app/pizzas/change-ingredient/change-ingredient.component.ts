@@ -13,7 +13,9 @@ export class ChangeIngredientComponent implements OnInit {
   @Input() pizza: Pizza;
   @Input() close: Function;
   @Input() orderedPizza
+
   removedIngredients : Ingredient [] = []
+  addedIngredients: Ingredient[] = []
   _ingredients: Ingredient[];
   
   constructor(private store: Store) { }
@@ -37,6 +39,7 @@ export class ChangeIngredientComponent implements OnInit {
       return
     }
     this._ingredients.push({ ingredient: ingredient})
+    this.addedIngredients.push({ingredient:ingredient})    
   }
 
   deleteIngredient = (index) => {
@@ -51,7 +54,11 @@ export class ChangeIngredientComponent implements OnInit {
   }
 
   addPizzaToOrder = () =>{
-    const orderedPizza = { ...this.orderedPizza, removedIngredients:[...this.removedIngredients], ingredients: this._ingredients}
+    const price = this.addedIngredients.length > 0 ? (this.addedIngredients.length * 2 + this.orderedPizza.price) : this.orderedPizza.price
+    
+    const orderedPizza = { ...this.orderedPizza, removedIngredients:[...this.removedIngredients], 
+      ingredients: this._ingredients, addedIngredients: this.addedIngredients, price: price}
+
     this.store.dispatch(new AddPizzaInOrder(orderedPizza));
   }
 }
