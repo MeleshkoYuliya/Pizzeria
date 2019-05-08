@@ -16,7 +16,7 @@ import {  Ingredient } from "../../pizzas/pizzas";
 export class CheckoutComponent implements OnInit {
   payment = ['Cash', 'Card'];
   checkoutForm: FormGroup;
-  orderedPizzas;
+  orderedPizzas=[];
   totalPrice: number=0
   excludedIngredients: Ingredient[]
 
@@ -51,8 +51,38 @@ export class CheckoutComponent implements OnInit {
   }
 
   onSubmit () {
-   const order={...this.checkoutForm.value, ...this.orderedPizzas, totalPrice: this.totalPrice}
-   console.log(order);
+    const receiveEmail = this.checkoutForm.value['send-email'] ? 'yes' : 'no'
+    const receiveSms = this.checkoutForm.value['send-sms'] ? 'yes' : 'no'
+
+    const pizza = this.orderedPizzas.map(item=>{
+      const excludedIngredient = item.removedIngredients ? item.removedIngredients.map(ingredient=> ingredient.ingredient) : ''
+      const ingredients = item.ingredients.map(ingredient => ingredient.ingredient)
+      return `
+      Pizza name: ${item.name},
+      dough: ${item.qualities.selectedDough},
+      size: ${item.qualities.selectedSize},
+      amount: ${item.amount},
+      excluded ingredients: ${excludedIngredient || 'none'},
+      pizza ingredients: ${ingredients},
+      `
+    })
+    console.log(`Checkout: 
+    Contact information:
+      Name: ${this.checkoutForm.value['name']},
+      E-mail: ${this.checkoutForm.value['email']},
+      Phone Number: ${this.checkoutForm.value['phone']}
+    Delivery:
+      Address: ${this.checkoutForm.value['address']},
+      Floor: ${this.checkoutForm.value['floor']},
+      Flat/office: ${this.checkoutForm.value['flat']}
+    Payment: ${this.checkoutForm.value['payment']},
+    Comments: ${this.checkoutForm.value['comments']},
+    Agree to receive:
+      Emails: ${receiveEmail},
+      SMS: ${receiveSms},
+  Cart: ${pizza},
+    Total price: ${this.totalPrice}
+    `);
   }
 
   validatorPhones (control: FormControl): { [s: string]: boolean } {
