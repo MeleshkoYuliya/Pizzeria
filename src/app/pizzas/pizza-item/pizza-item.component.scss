@@ -27,28 +27,9 @@
   }
 
   &__info {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     margin: 165px 0px 0px 0px;
-    max-width: 220px;
-    position: relative;
   }
 
-  &__persons {
-    font-size: 16px;
-    font-weight: bolder;
-    color: grey;
-    position: absolute;
-    right: 0;
-    height: 100%;
-    vertical-align: bottom;
-  }
-}
-
-.persons__img {
-  height: 13px;
-  margin-right: 2px;
 }
 
 .modal {

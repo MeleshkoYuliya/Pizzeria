@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { OrderService } from '../order.service'
+import { Store } from '@ngxs/store';
+import { DeletePizzaFromOrder } from '../../pizzas/pizzas.action'
+
+import {  Ingredient } from "../../pizzas/pizzas";
+
 
 @Component({
   selector: 'app-checkout',
@@ -10,10 +16,21 @@ import { Router } from '@angular/router';
 export class CheckoutComponent implements OnInit {
   payment = ['Cash', 'Card'];
   checkoutForm: FormGroup;
+  orderedPizzas=[];
+  totalPrice: number=0
+  excludedIngredients: Ingredient[]
 
-  constructor(private router: Router) { }
+  constructor(private store: Store, private service: OrderService, private router: Router) {}
 
   ngOnInit () {
+    this.store.select(state => state.pizzas.orderedPizzas).subscribe(pizzas => {
+      this.orderedPizzas=pizzas
+      this.orderedPizzas.map(pizza => {
+        this.excludedIngredients = pizza.removedIngredients
+      })
+    }
+      );
+
     this.checkoutForm = new FormGroup({
       'name': new FormControl(null, [Validators.minLength(3), Validators.required]),
       'phone': new FormControl(null, [Validators.required, this.validatorPhones]),
@@ -27,15 +44,44 @@ export class CheckoutComponent implements OnInit {
       'send-email': new FormControl(null)
     });
 
-    this.checkoutForm.valueChanges.subscribe((value) => {
-      console.log(value['name']);
-    });
+    this.orderedPizzas.reduce((previousValue, currentValue, index) => {
+      return this.totalPrice = +(previousValue + currentValue.price).toFixed(2)},0)
   }
 
   onSubmit () {
-    console.log(this.checkoutForm.value);
-    this.checkoutForm.reset();
-    this.router.navigate(['pizzas']);
+    const receiveEmail = this.checkoutForm.value['send-email'] ? 'yes' : 'no'
+    const receiveSms = this.checkoutForm.value['send-sms'] ? 'yes' : 'no'
+
+    const pizza = this.orderedPizzas.map(item=>{
+      const excludedIngredient = item.removedIngredients ? item.removedIngredients.map(ingredient=> ingredient.ingredient) : ''
+      const addedIngredients = item.addedIngredients.map(ingredient => ingredient.ingredient)
+
+      return `
+      Pizza name: ${item.name},
+      dough: ${item.qualities.selectedDough},
+      size: ${item.qualities.selectedSize},
+      amount: ${item.amount},
+      excluded ingredients: ${excludedIngredient || 'none'},
+      added ingredients: ${addedIngredients || 'none'}
+      `
+    })
+    console.log(`Checkout: 
+    Contact information:
+      Name: ${this.checkoutForm.value['name']},
+      E-mail: ${this.checkoutForm.value['email']},
+      Phone Number: ${this.checkoutForm.value['phone']}
+    Delivery:
+      Address: ${this.checkoutForm.value['address']},
+      Floor: ${this.checkoutForm.value['floor']},
+      Flat/office: ${this.checkoutForm.value['flat']}
+    Payment: ${this.checkoutForm.value['payment']},
+    Comments: ${this.checkoutForm.value['comments']},
+    Agree to receive:
+      Emails: ${receiveEmail},
+      SMS: ${receiveSms},
+  Cart: ${pizza},
+    Total price: ${this.totalPrice}
+    `);
   }
 
   validatorPhones (control: FormControl): { [s: string]: boolean } {
@@ -52,4 +98,20 @@ export class CheckoutComponent implements OnInit {
     }
     return null;
   }
+
+  increasePizzaAmount (pizza) {
+    this.service.increasePizzaAmount(pizza)
+  }
+
+  decreasePizzaAmount (pizza) {
+    this.service.decreasePizzaAmount(pizza)
+  }
+
+  deletePizzaFromOrder (pizza) {
+    this.store.dispatch(new DeletePizzaFromOrder(pizza));
+    if (this.orderedPizzas.length === 0) {
+      this.totalPrice = 0
+    }
+  }
+
 }

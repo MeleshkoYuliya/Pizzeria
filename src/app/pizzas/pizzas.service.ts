@@ -1,19 +1,19 @@
 import { Injectable } from "@angular/core";
 
-import { Observable, of } from "rxjs";
+import { Observable } from "rxjs";
+import { Store } from '@ngxs/store';
 import { map } from "rxjs/operators";
 
 import { Pizza } from "./pizzas";
-import { PIZZAS } from "./mock-pizzas";
 
 @Injectable({
   providedIn: "root"
 })
 export class PizzasService {
-  constructor() {}
+  constructor(private store: Store) {}
 
-  getPizzas(): Observable<Pizza[]> {
-    return of(PIZZAS);
+  getPizzas(): Observable<Pizza[]> {   
+    return this.store.select(state => state.pizzas.pizzas);
   }
 
   getPizza(id: number | string) {

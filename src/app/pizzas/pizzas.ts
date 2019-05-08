@@ -8,7 +8,7 @@ export class Pizza {
   nutricion: Nutricion;
 }
 
-class Ingredient {
+export class Ingredient {
   ingredient: string;
 }
 class Info {

@@ -1,44 +1,52 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
+import { Pizza } from '../pizzas';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-pizza-dashboard',
   templateUrl: './pizza-dashboard.component.html',
-  styleUrls: ['./pizza-dashboard.component.scss']
+  styleUrls: ['./pizza-dashboard.component.scss'],
 })
 export class PizzaDashboardComponent implements OnInit {
+  dashboardForm: FormGroup;
+
   @Input() name: string;
   @Input() info: Array<any>;
   @Input() priceClass;
-
-  @Output() changed = new EventEmitter<number>();
-
-  constructor() { }
+  @Input() pizza: Pizza
+  @Input() addPizzaToOrderCallback: Function;
 
   selectedDough: string;
-  selectedSize = 0;
+  selectedSize: number;
   price = 0;
   isAddCheese = false;
   myclass: string;
-
   sizes: Array<number> = [];
   ingredients: Array<string> = [];
+  selectedPizza
 
-  handleChangeDough (evt) {
-    this.selectedDough = evt.value;
-  }
-  handleChangeSize (size) {
-    this.selectedSize = size;
-    this.changed.emit(size);
+  ngOnInit () {
 
+    this.dashboardForm = new FormGroup({
+      'dough': new FormControl(null, Validators.required),
+      'size': new FormControl(null, Validators.required),
+      'cheese': new FormControl(null)
+    });
+
+    this.dashboardForm.valueChanges.subscribe((value) => {
+      this.selectedDough = value['dough']
+      this.isAddCheese = value['cheese']
+      this.selectedSize = value['size']
+    });
+
+    this.info.map((item) => {
+      this.sizes.push(item.size);
+    });
+    this.myclass = this.priceClass;
   }
-  handleChangeCheese (isChecked) {
-    if (isChecked) {
-      this.isAddCheese = true;
-      return;
-    }
-    this.isAddCheese = false;
-  }
-  getTotalPrice () {
+
+  getTotalPrice () {       
     this.info.map((item) => {
       if (this.selectedSize === item.size) {
         this.price = item.price;
@@ -57,14 +65,19 @@ export class PizzaDashboardComponent implements OnInit {
       }
     });
 
+    this.selectedPizza = {
+      ...this.pizza, qualities: { selectedDough: this.selectedDough, selectedSize: this.selectedSize }
+      , price: this.price, amount: 1
+    }
+
     return this.price;
   }
 
-
-  ngOnInit () {
-    this.info.map((item) => {
-      this.sizes.push(item.size);
-    });
-    this.myclass = this.priceClass;
+  addPizzaToOrder =() =>{
+    const orderedPizza = { ...this.selectedPizza}
+    this.addPizzaToOrderCallback(orderedPizza)
+    this.selectedPizza=null
+    this.dashboardForm.reset()
   }
+
 }

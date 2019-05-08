@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { PizzasComponent } from './pizzas.component';
 import { PizzaItemComponent } from './pizza-item/pizza-item.component';
@@ -17,6 +17,7 @@ import { ChangeIngredientComponent } from './change-ingredient/change-ingredient
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     PizzasRoutingModule,
   ],
   declarations: [

@@ -1,18 +1,33 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, ChangeDetectionStrategy } from "@angular/core";
+import { Pizza, Ingredient } from '../pizzas';
+import { AddPizzaInOrder } from '../pizzas.action'
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: "app-change-ingredient",
   templateUrl: "./change-ingredient.component.html",
-  styleUrls: ["./change-ingredient.component.scss"]
+  styleUrls: ["./change-ingredient.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChangeIngredientComponent implements OnInit {
-  @Input() ingredients: Array<string>;
+  @Input() pizza: Pizza;
   @Input() close: Function;
+  @Input() orderedPizza
 
-  _ingredients: Array<string>;
-  constructor() { }
+  removedIngredients : Ingredient [] = []
+  addedIngredients: Ingredient[] = []
+  _ingredients: Ingredient[];
+  
+  constructor(private store: Store) { }
+
   ngOnInit () {
-    this._ingredients = this.ingredients.slice()
+    this._ingredients = this.pizza.ingredients
+
+    if (this.removedIngredients){
+      const newing = this._ingredients.concat(this.removedIngredients)
+      this._ingredients = newing
+      this.removedIngredients = []
+    }
   }
 
   closeModal = () => {
@@ -20,10 +35,30 @@ export class ChangeIngredientComponent implements OnInit {
   };
 
   addIngredient = (ingredient) => {
-    this._ingredients.push(ingredient)
+    if (!ingredient){
+      return
+    }
+    this._ingredients.push({ ingredient: ingredient})
+    this.addedIngredients.push({ingredient:ingredient})    
   }
 
   deleteIngredient = (index) => {
+    const removedIngredient= this._ingredients.find((ingredient, i)=> i===index)
+    this.removedIngredients.push(removedIngredient) 
     this._ingredients.splice(index, 1)
+  }
+
+  addBackIngredient = (ingredient, index) => {
+    this._ingredients.push(ingredient)
+    this.removedIngredients.splice(index, 1)
+  }
+
+  addPizzaToOrder = () =>{
+    const price = this.addedIngredients.length > 0 ? (this.addedIngredients.length * 2 + this.orderedPizza.price) : this.orderedPizza.price
+    
+    const orderedPizza = { ...this.orderedPizza, removedIngredients:[...this.removedIngredients], 
+      ingredients: this._ingredients, addedIngredients: this.addedIngredients, price: price}
+
+    this.store.dispatch(new AddPizzaInOrder(orderedPizza));
   }
 }

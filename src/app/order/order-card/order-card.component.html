@@ -1,8 +1,33 @@
+
 <div class="order-card">
   <div class="order-card__image order"><img src="../assets/images/trash.svg" class="order__image" /></div>
   <div class="order__actions action">
-    <div class="action__cart">Cart()</div>
-    <button class="action__clear">Clear</button>
+    <div class="action__cart">Cart({{quantity}})</div>
+    <button class="action__clear" (click)="clearOrder()">Clear</button>
   </div>
+  <div *ngFor="let pizza of orderedPizzas$" class="pizzas">
+   <img [src]="pizza.image" class="pizzas__image" />
+   <div class="pizzas__info info">
+    <div class="info__name">{{pizza.name}}</div>
+    <button (click)="deletePizzaFromOrder(pizza)" class="info__delete-btn"><img src="../assets/images/cross.svg"
+        alt="cheese" class="info__delete-img" /></button>
+    <div class="info__quality">
+      <div>{{pizza.qualities.selectedDough}}</div> 
+      <div>{{pizza.qualities.selectedSize}}</div>
+    </div>
+    <div *ngFor="let removedIng of excludedIngredients" class="info__excluded-ing">
+      -{{removedIng.ingredient}}, 
+    </div>
+    </div>
+    <div class="info__options option">
+      <div class="option__count">
+        <button (click)="decreasePizzaAmount(pizza)" class="option__decrease-btn">-</button>
+        <div class="option__amount">{{pizza.amount}}</div>
+        <button (click)="increasePizzaAmount(pizza)" class="option__increase-btn">+</button>
+      </div>
+       <div>{{pizza.price}} BYN</div>
+    </div>
+  </div>
+  <div>Total: {{totalPrice}}</div>
   <a routerLink="/checkout"><button class="order__btn">Order now</button></a>
 </div>

@@ -1,30 +1,48 @@
+     <div *ngFor="let item of sizes" class="persons">
+       <div class="persons__image" *ngIf="selectedSize === item" [ngSwitch]="item">
+         <img src="../assets/images/person.svg" alt="cheese" class="persons__img" />
+         <span *ngSwitchCase="23">
+           1 - 2
+         </span>
+         <span *ngSwitchCase="30">
+           2 - 3
+         </span>
+         <span *ngSwitchCase="35">
+           3 - 4
+         </span>
+         <span *ngSwitchCase="40">
+           4 - 5
+         </span>
+         <span *ngSwitchDefault> </span>
+       </div>
+     </div>
+  <form [formGroup]="dashboardForm">
   <div class="radio-group">
-    <input class="radio" type="radio" id="{{ name }} + 'thin'" [name]="name" value="thin" #thin
-      (change)="handleChangeDough(thin)" />
+    <input class="radio" type="radio" id="{{ name }} + 'thin'"
+   value="thin" formControlName="dough"
+      />
     <label class="label" for="{{ name }} + 'thin'">
       Thin
     </label>
-    <input class="radio" type="radio" id="{{ name }} + 'trad'" [name]="name" value="traditional" #traditional
-      (change)="handleChangeDough(traditional)" />
+    <input class="radio" type="radio" id="{{ name }} + 'trad'"
+    value="traditional" formControlName="dough"/>
     <label class="label" for="{{ name }} + 'trad'">
       Traditional
     </label>
   </div>
-  <div class="pizza-view">
-    <form class="radio-group">
-      <div style="width: 100%" *ngFor="let item of sizes">
-        <input class="radio" type="radio" id="{{ item }} {{ name }}" [value]="item" name="size" [(ngModel)]="size"
-          (change)="handleChangeSize(size)" />
+   <div class="pizza-view">
+    <div class="radio-group">
+      <div style="width: 100%" *ngFor="let item of sizes; index as i">
+        <input class="radio" type="radio" id="{{ item }} {{ name }}" [value]="item" formControlName="size"/>
         <label class="label" for="{{ item }} {{ name }}">
           {{ item }}cm
         </label>
       </div>
-    </form>
+    </div>
 
-    <div class="cheese-group" *ngIf="size >= 30">
+    <div class="cheese-group" *ngIf="selectedSize >= 30">
       <div style="width: 100%">
-        <input class="radio" type="checkbox" id="{{ name }} cheese" name="{{name }} cheese" [checked]="cheese"
-          [(ngModel)]="isChecked" (change)="handleChangeCheese(isChecked)" />
+        <input class="radio" type="checkbox" id="{{ name }} cheese" value="cheese" formControlName="cheese" />
         <label class="cheese" for="{{ name }} cheese">
           <img src="../assets/images/cheese.svg" alt="cheese" class="add-cheese__img" />
         </label>
@@ -32,8 +50,9 @@
     </div>
   </div>
   <div [class]="myclass">
-    <button class="price__btn">Add to cart</button>
-    <div class="price__bill" *ngIf="size">
+    <button class="price__btn" (click)="addPizzaToOrder()" [disabled]="!dashboardForm.valid">Add to cart</button>
+    <div class="price__bill" *ngIf="dashboardForm.valid">
       <span> {{ getTotalPrice() }} BYN</span>
     </div>
-  </div>
+   </div> 
+</form>
