@@ -18,7 +18,13 @@ export class ChangeIngredientComponent implements OnInit {
   constructor(private store: Store) { }
 
   ngOnInit () {
-    this._ingredients=this.pizza.ingredients
+    this._ingredients = this.pizza.ingredients
+
+    if (this.removedIngredients){
+      const newing = this._ingredients.concat(this.removedIngredients)
+      this._ingredients = newing
+      this.removedIngredients = []
+    }
   }
 
   closeModal = () => {
@@ -37,12 +43,14 @@ export class ChangeIngredientComponent implements OnInit {
     this.removedIngredients.push(removedIngredient) 
     this._ingredients.splice(index, 1)
   }
+
   addBackIngredient = (ingredient, index) => {
     this._ingredients.push(ingredient)
     this.removedIngredients.splice(index, 1)
   }
+
   addPizzaToOrder = () =>{
-    const orderedPizza = { ...this.orderedPizza, removedIngredients:[...this.removedIngredients]}
+    const orderedPizza = { ...this.orderedPizza, removedIngredients:[...this.removedIngredients], ingredients: this._ingredients}
     this.store.dispatch(new AddPizzaInOrder(orderedPizza));
   }
 }

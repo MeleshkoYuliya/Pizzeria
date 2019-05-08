@@ -3,6 +3,7 @@ import { Store } from '@ngxs/store';
 import { ClearOrderCard, DeletePizzaFromOrder } from '../../pizzas/pizzas.action'
 
 import { OrderService}  from '../order.service'
+import { Ingredient } from 'src/app/pizzas/pizzas';
 
 @Component({
   selector: 'app-order-card',
@@ -13,6 +14,8 @@ export class OrderCardComponent implements OnInit{
   orderedPizzas$;
   quantity: number =0
   totalPrice: number=0
+  excludedIngredients: Ingredient[]
+
   constructor(private store: Store, private service: OrderService,){}
 
   ngOnInit(){
@@ -24,8 +27,11 @@ export class OrderCardComponent implements OnInit{
       this.orderedPizzas$.reduce((previousValue, currentValue, index) => {
         return this.totalPrice = +(previousValue + currentValue.price).toFixed(2)
       }, 0)
-     });
 
+      this.orderedPizzas$.map(pizza => {
+        this.excludedIngredients = pizza.removedIngredients
+      })
+     });     
   }
 
   increasePizzaAmount (pizza) {

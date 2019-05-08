@@ -15,6 +15,9 @@
       <div>{{pizza.qualities.selectedDough}}</div> 
       <div>{{pizza.qualities.selectedSize}}</div>
     </div>
+    <div *ngFor="let removedIng of excludedIngredients" class="info__excluded-ing">
+      -{{removedIng.ingredient}}, 
+    </div>
     </div>
     <div class="info__options option">
       <div class="option__count">
