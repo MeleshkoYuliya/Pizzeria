@@ -3,9 +3,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OrderService } from '../order.service'
 import { Store } from '@ngxs/store';
-import { Observable } from "rxjs";
-import { Pizza } from "../../pizzas/pizzas";
-import { map } from "rxjs/operators";
+import { DeletePizzaFromOrder } from '../../pizzas/pizzas.action'
+
+import {  Ingredient } from "../../pizzas/pizzas";
+
 
 @Component({
   selector: 'app-checkout',
@@ -16,11 +17,20 @@ export class CheckoutComponent implements OnInit {
   payment = ['Cash', 'Card'];
   checkoutForm: FormGroup;
   orderedPizzas;
-  totalPrice: number
+  totalPrice: number=0
+  excludedIngredients: Ingredient[]
+
   constructor(private store: Store, private service: OrderService, private router: Router) {}
 
   ngOnInit () {
-    this.store.select(state => state.pizzas.orderedPizzas).subscribe(pizzas => this.orderedPizzas=pizzas);
+    this.store.select(state => state.pizzas.orderedPizzas).subscribe(pizzas => {
+      this.orderedPizzas=pizzas
+      this.orderedPizzas.map(pizza => {
+        this.excludedIngredients = pizza.removedIngredients
+      })
+    }
+      );
+
     this.checkoutForm = new FormGroup({
       'name': new FormControl(null, [Validators.minLength(3), Validators.required]),
       'phone': new FormControl(null, [Validators.required, this.validatorPhones]),
@@ -66,6 +76,13 @@ export class CheckoutComponent implements OnInit {
 
   decreasePizzaAmount (pizza) {
     this.service.decreasePizzaAmount(pizza)
+  }
+
+  deletePizzaFromOrder (pizza) {
+    this.store.dispatch(new DeletePizzaFromOrder(pizza));
+    if (this.orderedPizzas.length === 0) {
+      this.totalPrice = 0
+    }
   }
 
 }

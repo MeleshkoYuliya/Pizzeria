@@ -9,6 +9,9 @@
              <div>{{pizza.qualities.selectedDough}}</div>
              <div>{{pizza.qualities.selectedSize}}</div>
            </div>
+               <div *ngFor="let removedIng of excludedIngredients" class="info__excluded-ing">
+                 -{{removedIng.ingredient}},
+               </div>
          </div>
          <div class="info__options option">
            <div class="option__count">
@@ -17,6 +20,8 @@
              <button (click)="increasePizzaAmount(pizza)" class="option__increase-btn">+</button>
            </div>
            <div>{{pizza.price}} BYN</div>
+           <button (click)="deletePizzaFromOrder(pizza)" class="info__delete-btn"><img src="../assets/images/cross.svg"
+               alt="cheese" class="info__delete-img" /></button>
          </div>
     </div>
     <div>Total: {{totalPrice}}</div>
