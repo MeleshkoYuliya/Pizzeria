@@ -9,24 +9,6 @@
   </a>
   <div class="pizza__info">
     <h4 class="pizza__title">{{ pizza.name }}</h4>
-    <div *ngFor="let item of sizes">
-      <div class="pizza__persons" *ngIf="selectedSize === item" [ngSwitch]="item">
-        <img src="../assets/images/person.svg" alt="cheese" class="persons__img" />
-        <span *ngSwitchCase="23">
-          1 - 2
-        </span>
-        <span *ngSwitchCase="30">
-          2 - 3
-        </span>
-        <span *ngSwitchCase="35">
-          3 - 4
-        </span>
-        <span *ngSwitchCase="40">
-          4 - 5
-        </span>
-        <span *ngSwitchDefault> </span>
-      </div>
-    </div>
   </div>
   <div class="pizza__ingredients ingredients">
     <span class="ingredients__item" *ngFor="let ingredient of ingredients">
