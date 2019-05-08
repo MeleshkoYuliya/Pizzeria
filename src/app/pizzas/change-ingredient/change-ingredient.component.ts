@@ -12,6 +12,7 @@ export class ChangeIngredientComponent implements OnInit {
   @Input() pizza: Pizza;
   @Input() close: Function;
   @Input() orderedPizza
+  removedIngredients : Ingredient [] = []
 
   _ingredients: Ingredient[];
   constructor(private store: Store) { }
@@ -25,14 +26,23 @@ export class ChangeIngredientComponent implements OnInit {
   };
 
   addIngredient = (ingredient) => {
-    this._ingredients.push(ingredient)
+    if (!ingredient){
+      return
+    }
+    this._ingredients.push({ ingredient: ingredient})
   }
 
   deleteIngredient = (index) => {
+    const removedIngredient= this._ingredients.find((ingredient, i)=> i===index)
+    this.removedIngredients.push(removedIngredient) 
     this._ingredients.splice(index, 1)
   }
-
-  addPizzaToOrder =() =>{
-    this.store.dispatch(new AddPizzaInOrder(this.orderedPizza));
+  addBackIngredient = (ingredient, index) => {
+    this._ingredients.push(ingredient)
+    this.removedIngredients.splice(index, 1)
+  }
+  addPizzaToOrder = () =>{
+    const orderedPizza = { ...this.orderedPizza, removedIngredients:[...this.removedIngredients]}
+    this.store.dispatch(new AddPizzaInOrder(orderedPizza));
   }
 }

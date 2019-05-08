@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { Observable } from "rxjs";
-import { ClearOrderCard } from '../../pizzas/pizzas.action'
+import { ClearOrderCard, DeletePizzaFromOrder } from '../../pizzas/pizzas.action'
 
-import { Pizza } from "../../pizzas/pizzas";
 import { OrderService}  from '../order.service'
 
 @Component({
@@ -14,6 +12,7 @@ import { OrderService}  from '../order.service'
 export class OrderCardComponent implements OnInit{ 
   orderedPizzas$;
   quantity: number =0
+  totalPrice: number=0
   constructor(private store: Store, private service: OrderService,){}
 
   ngOnInit(){
@@ -21,8 +20,12 @@ export class OrderCardComponent implements OnInit{
       pizzas.reduce((previousValue, currentValue, index) => {
         return this.quantity = +(previousValue + currentValue.amount)
       }, 0)
-      return this.orderedPizzas$ = pizzas
+      this.orderedPizzas$ = pizzas
+      this.orderedPizzas$.reduce((previousValue, currentValue, index) => {
+        return this.totalPrice = +(previousValue + currentValue.price).toFixed(2)
+      }, 0)
      });
+
   }
 
   increasePizzaAmount (pizza) {
@@ -35,5 +38,13 @@ export class OrderCardComponent implements OnInit{
 
   clearOrder(){
     this.store.dispatch(new ClearOrderCard());
+    this.totalPrice=0
+  }
+
+  deletePizzaFromOrder (pizza) {
+    this.store.dispatch(new DeletePizzaFromOrder(pizza));
+    if (this.orderedPizzas$.length === 0){
+      this.totalPrice=0
+    }
   }
 }

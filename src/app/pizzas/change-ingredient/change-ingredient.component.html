@@ -7,6 +7,12 @@
         <img src="../assets/images/cross.svg" alt="cheese" class="item__delete-img" />
       </button>
     </div>
+        <div class="ingredients__item item--removed" *ngFor="let ingredient of removedIngredients; let i=index">
+          {{ ingredient.ingredient }}
+          <button class="item__refresh-btn" (click)="addBackIngredient(ingredient, i)">
+            <img src="../assets/images/refresh.svg" alt="cheese" class="item__refresh-img" />
+          </button>
+        </div>
   </div>
   <button class="dashboard__add-btn add" (click)="addIngredient(ingredient)">
     <img src="../assets/images/plus.svg" alt="cheese" class="add__img" />Add

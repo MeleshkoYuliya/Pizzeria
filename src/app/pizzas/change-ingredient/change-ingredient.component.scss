@@ -108,4 +108,19 @@
   &__delete-img {
     width: 10px;
   }
+
+  &__refresh-btn{
+    outline: none;
+    border: none;
+    cursor: pointer;
+    float: right;
+    background-color: white;
+  }
+  &__refresh-img {
+    width: 13px;
+  }
+  &--removed{
+    color: grey;
+    text-decoration: line-through
+  }
 }

@@ -9,6 +9,8 @@
    <img [src]="pizza.image" class="pizzas__image" />
    <div class="pizzas__info info">
     <div class="info__name">{{pizza.name}}</div>
+    <button (click)="deletePizzaFromOrder(pizza)" class="info__delete-btn"><img src="../assets/images/cross.svg"
+        alt="cheese" class="info__delete-img" /></button>
     <div class="info__quality">
       <div>{{pizza.qualities.selectedDough}}</div> 
       <div>{{pizza.qualities.selectedSize}}</div>
@@ -22,7 +24,7 @@
       </div>
        <div>{{pizza.price}} BYN</div>
     </div>
-      
   </div>
+  <div>Total: {{totalPrice}}</div>
   <a routerLink="/checkout"><button class="order__btn">Order now</button></a>
 </div>
