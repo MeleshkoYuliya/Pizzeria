@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, ChangeDetectionStrategy } from "@angular/core";
 import { Pizza, Ingredient } from '../pizzas';
 import { AddPizzaInOrder } from '../pizzas.action'
 import { Store } from '@ngxs/store';
@@ -6,15 +6,16 @@ import { Store } from '@ngxs/store';
 @Component({
   selector: "app-change-ingredient",
   templateUrl: "./change-ingredient.component.html",
-  styleUrls: ["./change-ingredient.component.scss"]
+  styleUrls: ["./change-ingredient.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChangeIngredientComponent implements OnInit {
   @Input() pizza: Pizza;
   @Input() close: Function;
   @Input() orderedPizza
   removedIngredients : Ingredient [] = []
-
   _ingredients: Ingredient[];
+  
   constructor(private store: Store) { }
 
   ngOnInit () {

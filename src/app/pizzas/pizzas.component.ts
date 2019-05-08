@@ -1,6 +1,5 @@
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { PizzasService } from './pizzas.service';
@@ -9,7 +8,8 @@ import { Pizza } from './pizzas';
 @Component({
   selector: 'app-pizzas',
   templateUrl: './pizzas.component.html',
-  styleUrls: ['./pizzas.component.scss']
+  styleUrls: ['./pizzas.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PizzasComponent implements OnInit {
   pizzas$: Observable<Pizza[]>;

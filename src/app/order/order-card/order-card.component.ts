@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { ClearOrderCard, DeletePizzaFromOrder } from '../../pizzas/pizzas.action'
 
@@ -8,7 +8,7 @@ import { Ingredient } from 'src/app/pizzas/pizzas';
 @Component({
   selector: 'app-order-card',
   templateUrl: './order-card.component.html',
-  styleUrls: ['./order-card.component.scss']
+  styleUrls: ['./order-card.component.scss'],
 })
 export class OrderCardComponent implements OnInit{ 
   orderedPizzas$;

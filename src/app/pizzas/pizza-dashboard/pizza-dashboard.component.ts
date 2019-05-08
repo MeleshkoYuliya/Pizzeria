@@ -6,7 +6,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-pizza-dashboard',
   templateUrl: './pizza-dashboard.component.html',
-  styleUrls: ['./pizza-dashboard.component.scss']
+  styleUrls: ['./pizza-dashboard.component.scss'],
 })
 export class PizzaDashboardComponent implements OnInit {
   dashboardForm: FormGroup;
@@ -25,8 +25,6 @@ export class PizzaDashboardComponent implements OnInit {
   sizes: Array<number> = [];
   ingredients: Array<string> = [];
   selectedPizza
-
-  constructor() { }
 
   ngOnInit () {
 

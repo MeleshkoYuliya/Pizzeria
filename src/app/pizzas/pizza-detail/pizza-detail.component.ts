@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Pizza } from '../pizzas';
 import { Store } from '@ngxs/store';
@@ -11,7 +11,8 @@ import { PizzasService } from '../pizzas.service';
 @Component({
   selector: 'app-pizza-detail',
   templateUrl: './pizza-detail.component.html',
-  styleUrls: ['./pizza-detail.component.scss']
+  styleUrls: ['./pizza-detail.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PizzaDetailComponent implements OnInit {
   pizza$: Observable<Pizza>;
@@ -19,8 +20,8 @@ export class PizzaDetailComponent implements OnInit {
   sizes: Array<number> = [];
   nutricion: any;
   priceClass = 'price-card';
-
   pizza: any;
+  
   constructor(
     private route: ActivatedRoute,
     private router: Router,

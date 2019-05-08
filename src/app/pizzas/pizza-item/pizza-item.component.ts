@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from "@angular/core";
+import { Component, OnInit, Input, ViewChild, ChangeDetectionStrategy } from "@angular/core";
 import { Pizza } from "../pizzas";
 import { AddPizzaInOrder } from '../pizzas.action'
 import { Store } from '@ngxs/store';
@@ -8,7 +8,8 @@ import { PizzaDashboardComponent} from '../pizza-dashboard/pizza-dashboard.compo
 @Component({
   selector: "app-pizza-item",
   templateUrl: "./pizza-item.component.html",
-  styleUrls: ["./pizza-item.component.scss"]
+  styleUrls: ["./pizza-item.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PizzaItemComponent implements OnInit {
   @Input() pizza: Pizza;
