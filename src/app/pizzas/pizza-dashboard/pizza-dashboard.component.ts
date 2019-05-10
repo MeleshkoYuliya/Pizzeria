@@ -1,5 +1,5 @@
-import { Component, OnInit, Input} from '@angular/core';
-import { Pizza } from '../pizzas';
+import { Component, OnInit, Input } from '@angular/core';
+import { Pizza } from '../pizza.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
@@ -46,7 +46,7 @@ export class PizzaDashboardComponent implements OnInit {
     this.myclass = this.priceClass;
   }
 
-  getTotalPrice () {       
+  getTotalPrice () {
     this.info.map((item) => {
       if (this.selectedSize === item.size) {
         this.price = item.price;
@@ -73,10 +73,10 @@ export class PizzaDashboardComponent implements OnInit {
     return this.price;
   }
 
-  addPizzaToOrder =() =>{
-    const orderedPizza = { ...this.selectedPizza}
+  addPizzaToOrder = () => {
+    const orderedPizza = { ...this.selectedPizza }
     this.addPizzaToOrderCallback(orderedPizza)
-    this.selectedPizza=null
+    this.selectedPizza = null
     this.dashboardForm.reset()
   }
 

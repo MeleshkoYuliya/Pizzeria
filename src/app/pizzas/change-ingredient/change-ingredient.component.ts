@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from "@angular/core";
-import { Pizza, Ingredient } from '../pizzas';
+import { Pizza, Ingredient } from '../pizza.model';
 import { AddPizzaInOrder } from '../pizzas.action'
 import { Store } from '@ngxs/store';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: "app-change-ingredient",
@@ -17,16 +17,16 @@ export class ChangeIngredientComponent implements OnInit {
   @Input() close: Function;
   @Input() orderedPizza;
 
-  removedIngredients : Ingredient [] = []
+  removedIngredients: Ingredient[] = []
   addedIngredients: Ingredient[] = []
   _ingredients: Ingredient[];
-  
+
   constructor(private store: Store) { }
 
   ngOnInit () {
     this._ingredients = this.pizza.ingredients
 
-    if (this.removedIngredients){
+    if (this.removedIngredients) {
       const newing = this._ingredients.concat(this.removedIngredients)
       this._ingredients = newing
       this.removedIngredients = []
@@ -42,18 +42,18 @@ export class ChangeIngredientComponent implements OnInit {
   };
 
   addIngredient = () => {
-    if (!this.addIngredientForm.value['ingredient']){
+    if (!this.addIngredientForm.value['ingredient']) {
       return
     }
-    this._ingredients.push({ ingredient: this.addIngredientForm.value['ingredient']})
-    this.addedIngredients.push({ ingredient: this.addIngredientForm.value['ingredient']})   
+    this._ingredients.push({ ingredient: this.addIngredientForm.value['ingredient'] })
+    this.addedIngredients.push({ ingredient: this.addIngredientForm.value['ingredient'] })
 
     this.addIngredientForm.reset()
   }
 
   deleteIngredient = (index) => {
-    const removedIngredient= this._ingredients.find((ingredient, i)=> i===index)
-    this.removedIngredients.push(removedIngredient) 
+    const removedIngredient = this._ingredients.find((ingredient, i) => i === index)
+    this.removedIngredients.push(removedIngredient)
     this._ingredients.splice(index, 1)
   }
 
@@ -62,14 +62,16 @@ export class ChangeIngredientComponent implements OnInit {
     this.removedIngredients.splice(index, 1)
   }
 
-  addPizzaToOrder = () =>{
+  addPizzaToOrder = () => {
     const price = this.addedIngredients.length > 0 ? (this.addedIngredients.length * 2 + this.orderedPizza.price) : this.orderedPizza.price
-    
-    const orderedPizza = { ...this.orderedPizza, removedIngredients:[...this.removedIngredients], 
-      ingredients: this._ingredients, addedIngredients: this.addedIngredients, price: price}
+
+    const orderedPizza = {
+      ...this.orderedPizza, removedIngredients: [...this.removedIngredients],
+      ingredients: this._ingredients, addedIngredients: this.addedIngredients, price: price
+    }
 
     this.store.dispatch(new AddPizzaInOrder(orderedPizza));
 
-    this.closeModal(true)
+    this.closeModal()
   }
 }

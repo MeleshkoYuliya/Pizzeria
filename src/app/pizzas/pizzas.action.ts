@@ -1,4 +1,4 @@
-import { Pizza, Ingredient } from './pizzas';
+import { Pizza } from './pizza.model';
 
 export class AddPizzaInOrder {
   static readonly type = '[Pizza] Add';
@@ -16,10 +16,5 @@ export class DeletePizzaFromOrder {
 
 export class ChangeOrderedPizzaAmount {
   static readonly type = '[Pizza] Change';
-  constructor(public payload: {pizza; amount: number; price: number}) { }
-}
-
-export class ChangePizzaIngredients {
-  static readonly type = '[Ingredients] Changing';
-  constructor(public payload: { pizza; ingredients: Ingredient[]}) { }
+  constructor(public payload: { pizza; amount: number; price: number }) { }
 }

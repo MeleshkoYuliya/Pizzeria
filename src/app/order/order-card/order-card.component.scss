@@ -64,7 +64,7 @@
   }
 }
 
-.pizzas{
+.pizzas {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -74,30 +74,35 @@
   justify-content: space-between;
   padding-bottom: 10px;
   border-bottom: solid 1px rgb(172, 168, 168);
-  &__image{
+
+  &__image {
     width: 70px;
     height: 70px;
   }
 }
 
-.pizzas__info, .info{
+.pizzas__info,
+.info {
   display: flex;
   flex-direction: column;
   width: 40%;
-  &__name{
+
+  &__name {
     font-weight: bolder;
     font-size: 20px;
     margin: 5px 0 10px 0;
     letter-spacing: 1px
   }
-  &__quality{
-     display: flex;
-     flex-direction: row;
-     justify-content: space-between;
+
+  &__quality {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     text-transform: capitalize;
     font-size: 18px
   }
-  &__delete-btn{
+
+  &__delete-btn {
     border: none;
     outline: none;
     position: absolute;
@@ -105,55 +110,63 @@
     top: 50px;
     cursor: pointer;
   }
-  &__delete-img{
+
+  &__delete-img {
     width: 14px
   }
-  &__excluded-ing{
+
+  &__excluded-ing {
     color: rgb(180, 7, 7);
     font-size: 16px;
     font-family: cursive
   }
 }
-.info__options, .option{
-width: 95%;
-margin: 20px auto;
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-&__count{
+
+.info__options,
+.option {
+  width: 95%;
+  margin: 20px auto;
   display: flex;
   flex-direction: row;
-  width: 30%;
-  justify-content: space-between
-}
-&__decrease-btn{
-  border-radius: 50%;
-  width: 26px;
-  text-align: center;
-  vertical-align: middle;
-  border:none;
-  outline: none;
-  cursor: pointer;
-  background-color: rgb(177, 174, 174);
-  font-size: 18px;
-  font-weight: bolder;
-  color: rgb(97, 96, 96)
-}
-&__increase-btn {
-  border-radius: 50%;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  width: 26px;
-  outline: none;
-  border: none;
-  background-color: rgb(154, 219, 159);
-  font-size: 18px;
-  font-weight: bolder;
-  color: rgb(21, 90, 36)
-}
-&__amount{
-  font-size: 18px;
-  font-weight: bolder
-}
+  justify-content: space-between;
+
+  &__count {
+    display: flex;
+    flex-direction: row;
+    width: 30%;
+    justify-content: space-between
+  }
+
+  &__decrease-btn {
+    border-radius: 50%;
+    width: 26px;
+    text-align: center;
+    vertical-align: middle;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: rgb(177, 174, 174);
+    font-size: 18px;
+    font-weight: bolder;
+    color: rgb(97, 96, 96)
+  }
+
+  &__increase-btn {
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    width: 26px;
+    outline: none;
+    border: none;
+    background-color: rgb(154, 219, 159);
+    font-size: 18px;
+    font-weight: bolder;
+    color: rgb(21, 90, 36)
+  }
+
+  &__amount {
+    font-size: 18px;
+    font-weight: bolder
+  }
 }

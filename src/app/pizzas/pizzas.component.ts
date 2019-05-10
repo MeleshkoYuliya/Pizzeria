@@ -3,7 +3,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { PizzasService } from './pizzas.service';
-import { Pizza } from './pizzas';
+import { Pizza } from './pizza.model';
 
 @Component({
   selector: 'app-pizzas',
@@ -20,6 +20,6 @@ export class PizzasComponent implements OnInit {
   ) { }
 
   ngOnInit () {
-    return this.pizzas$ =this.service.getPizzas();
+    return this.pizzas$ = this.service.getPizzas();
   }
 }

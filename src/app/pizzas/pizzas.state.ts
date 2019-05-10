@@ -1,8 +1,8 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { Pizza } from './pizzas';
-import {PIZZAS} from './mock-pizzas'
+import { Pizza } from './pizza.model';
+import { PIZZAS } from './mock-pizzas'
 
-import { AddPizzaInOrder, ChangeOrderedPizzaAmount, ClearOrderCard, DeletePizzaFromOrder} from './pizzas.action'
+import { AddPizzaInOrder, ChangeOrderedPizzaAmount, ClearOrderCard, DeletePizzaFromOrder } from './pizzas.action'
 import { patch, updateItem, removeItem } from '@ngxs/store/operators';
 
 export class PizzasStateModel {
@@ -37,7 +37,7 @@ export class PizzasState {
     const state = getState();
     setState(
       patch({
-        orderedPizzas: updateItem<any>(pizza => pizza === payload.pizza, patch({ amount: payload.amount, price: payload.price}))
+        orderedPizzas: updateItem<any>(pizza => pizza === payload.pizza, patch({ amount: payload.amount, price: payload.price }))
       })
     );
   }
@@ -47,13 +47,13 @@ export class PizzasState {
     const state = getState();
     setState({
       ...state,
-      orderedPizzas:[]
+      orderedPizzas: []
     }
- )
+    )
   }
 
   @Action(DeletePizzaFromOrder)
-  delete ({ getState, setState }: StateContext<PizzasStateModel>, {payload }: DeletePizzaFromOrder) {
+  delete ({ getState, setState }: StateContext<PizzasStateModel>, { payload }: DeletePizzaFromOrder) {
     const state = getState();
     setState(
       patch({

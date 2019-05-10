@@ -6,6 +6,8 @@ export class Pizza {
   ingredients: Array<Ingredient>;
   info: Array<Info>;
   nutricion: Nutricion;
+  price?: number;
+  removedIngredients?: Array<Ingredient>;
 }
 
 export class Ingredient {

@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, ViewChild, ChangeDetectionStrategy } from "@angular/core";
-import { Pizza } from "../pizzas";
+import { Pizza } from "../pizza.model";
 import { AddPizzaInOrder } from '../pizzas.action'
 import { Store } from '@ngxs/store';
-import { PizzaDashboardComponent} from '../pizza-dashboard/pizza-dashboard.component'
+import { PizzaDashboardComponent } from '../pizza-dashboard/pizza-dashboard.component'
 
 
 @Component({
@@ -28,14 +28,14 @@ export class PizzaItemComponent implements OnInit {
 
   open = () => {
     this.isOpen = true;
-    this.orderedPizza=this.pizzaDashboardComponent.selectedPizza   
+    this.orderedPizza = this.pizzaDashboardComponent.selectedPizza
   };
 
   close = () => {
     this.isOpen = false;
   };
 
-  ngOnInit() { 
+  ngOnInit () {
     this.pizza.info.map(item => {
       this.sizes.push(item.size);
     });
@@ -44,7 +44,7 @@ export class PizzaItemComponent implements OnInit {
     });
   }
 
-  addPizzaToOrderCallback =(orderedPizza)=>{  
+  addPizzaToOrderCallback = (orderedPizza) => {
     this.store.dispatch(new AddPizzaInOrder(orderedPizza));
   }
 }

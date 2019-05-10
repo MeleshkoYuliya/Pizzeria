@@ -103,6 +103,7 @@ input[type="checkbox"]:checked+label {
     cursor: pointer;
     display: block;
     margin-top: 10px;
+
     &:disabled {
       background-color: rgb(167, 117, 117);
       cursor: not-allowed
@@ -151,20 +152,22 @@ input[type="checkbox"]:checked+label {
   }
 }
 
-.persons{
+.persons {
   position: absolute;
   top: 175px;
   right: 15px;
-    &__image {
-      font-size: 16px;
-      font-weight: bolder;
-      color: grey;
-      height: 20px;
-      vertical-align: bottom;
-    }
-    &__img{
-      height: 18px;
-      display: inline-block;
-margin-right: 3px;
-    }
+
+  &__image {
+    font-size: 16px;
+    font-weight: bolder;
+    color: grey;
+    height: 20px;
+    vertical-align: bottom;
+  }
+
+  &__img {
+    height: 18px;
+    display: inline-block;
+    margin-right: 3px;
+  }
 }

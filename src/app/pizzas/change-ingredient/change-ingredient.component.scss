@@ -75,10 +75,11 @@
     cursor: pointer;
     display: block;
     margin-left: 50px;
-      &:disabled {
-        background-color: rgb(167, 117, 117);
-        cursor: not-allowed
-      }
+
+    &:disabled {
+      background-color: rgb(167, 117, 117);
+      cursor: not-allowed
+    }
   }
 }
 
@@ -109,17 +110,19 @@
     width: 10px;
   }
 
-  &__refresh-btn{
+  &__refresh-btn {
     outline: none;
     border: none;
     cursor: pointer;
     float: right;
     background-color: white;
   }
+
   &__refresh-img {
     width: 13px;
   }
-  &--removed{
+
+  &--removed {
     color: grey;
     text-decoration: line-through
   }

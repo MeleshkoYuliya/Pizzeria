@@ -5,7 +5,7 @@ import { OrderService } from '../order.service'
 import { Store } from '@ngxs/store';
 import { DeletePizzaFromOrder } from '../../pizzas/pizzas.action'
 
-import {  Ingredient } from "../../pizzas/pizzas";
+import { Ingredient } from "../../pizzas/pizza.model";
 
 
 @Component({
@@ -16,44 +16,45 @@ import {  Ingredient } from "../../pizzas/pizzas";
 export class CheckoutComponent implements OnInit {
   payment = ['Cash', 'Card'];
   checkoutForm: FormGroup;
-  orderedPizzas=[];
-  totalPrice: number=0
+  orderedPizzas = [];
+  totalPrice: number = 0
   excludedIngredients: Ingredient[]
 
-  constructor(private store: Store, private service: OrderService, private router: Router) {}
+  constructor(private store: Store, private service: OrderService, private router: Router) { }
 
   ngOnInit () {
     this.store.select(state => state.pizzas.orderedPizzas).subscribe(pizzas => {
-      this.orderedPizzas=pizzas
+      this.orderedPizzas = pizzas
       this.orderedPizzas.map(pizza => {
         this.excludedIngredients = pizza.removedIngredients
       })
     }
-      );
+    );
+
+    this.orderedPizzas.reduce((previousValue, currentValue, index) => {
+      return this.totalPrice = +(previousValue + currentValue.price).toFixed(2)
+    }, 0)
 
     this.checkoutForm = new FormGroup({
       'name': new FormControl(null, [Validators.minLength(3), Validators.required]),
-      'phone': new FormControl(null, [Validators.required, this.validatorPhones]),
+      'phone': new FormControl(null, [Validators.required, this.validatorPhoneNumber]),
       'email': new FormControl(null, [Validators.required, Validators.email]),
       'payment': new FormControl('Card'),
       'address': new FormControl(null, [Validators.required, Validators.minLength(6)]),
-      'flat': new FormControl(null, [Validators.required, this.validatorNumber]),
-      'floor': new FormControl(null, [Validators.required, this.validatorNumber]),
+      'flat': new FormControl(null, [Validators.required, this.validatorIsNumber]),
+      'floor': new FormControl(null, [Validators.required, this.validatorIsNumber]),
       'comments': new FormControl(null),
       'send-sms': new FormControl(null),
       'send-email': new FormControl(null)
     });
-
-    this.orderedPizzas.reduce((previousValue, currentValue, index) => {
-      return this.totalPrice = +(previousValue + currentValue.price).toFixed(2)},0)
   }
 
   onSubmit () {
     const receiveEmail = this.checkoutForm.value['send-email'] ? 'yes' : 'no'
     const receiveSms = this.checkoutForm.value['send-sms'] ? 'yes' : 'no'
 
-    const pizza = this.orderedPizzas.map(item=>{
-      const excludedIngredient = item.removedIngredients ? item.removedIngredients.map(ingredient=> ingredient.ingredient) : ''
+    const pizza = this.orderedPizzas.map(item => {
+      const excludedIngredient = item.removedIngredients ? item.removedIngredients.map(ingredient => ingredient.ingredient) : ''
       const addedIngredients = item.addedIngredients.map(ingredient => ingredient.ingredient)
 
       return `
@@ -84,14 +85,15 @@ export class CheckoutComponent implements OnInit {
     `);
   }
 
-  validatorPhones (control: FormControl): { [s: string]: boolean } {
+  validatorPhoneNumber (control: FormControl): { [s: string]: boolean } {
     const pattern: RegExp = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{2}[-\s\.]?[0-9]{7}$/im;
     if (!pattern.test(control.value)) {
       return { 'custom': true };
     }
     return null;
   }
-  validatorNumber (control: FormControl): { [s: string]: boolean } {
+
+  validatorIsNumber (control: FormControl): { [s: string]: boolean } {
     const pattern: RegExp = /^\d+$/;
     if (!pattern.test(control.value)) {
       return { 'custom': true };

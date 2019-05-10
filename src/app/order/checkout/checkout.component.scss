@@ -238,24 +238,25 @@ input.ng-invalid.ng-touched {
     justify-content: space-between;
     text-transform: capitalize
   }
+
   &__excluded-ing {
     color: rgb(180, 7, 7);
     font-size: 16px;
     font-family: cursive
   }
 
-    &__delete-btn {
-      border: none;
-      outline: none;
-      position: absolute;
-      right: -50px;
-      top: 50px;
-      cursor: pointer;
-    }
+  &__delete-btn {
+    border: none;
+    outline: none;
+    position: absolute;
+    right: -50px;
+    top: 50px;
+    cursor: pointer;
+  }
 
-    &__delete-img {
-      width: 14px
-    }
+  &__delete-img {
+    width: 14px
+  }
 }
 
 .info__options,
@@ -265,6 +266,7 @@ input.ng-invalid.ng-touched {
   justify-content: space-between;
   align-items: center;
   width: 220px;
+
   &__count {
     display: flex;
     flex-direction: row;

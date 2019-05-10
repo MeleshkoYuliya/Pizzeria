@@ -1,4 +1,4 @@
-import { Pizza } from './pizzas';
+import { Pizza } from './pizza.model';
 
 export const PIZZAS: Pizza[] = [
   {

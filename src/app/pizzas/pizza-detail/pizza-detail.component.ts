@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { Pizza } from '../pizzas';
+import { Pizza } from '../pizza.model';
 import { Store } from '@ngxs/store';
 import { AddPizzaInOrder } from '../pizzas.action'
 
@@ -21,7 +21,7 @@ export class PizzaDetailComponent implements OnInit {
   nutricion: any;
   priceClass = 'price-card';
   pizza: any;
-  
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
