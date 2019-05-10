@@ -5,7 +5,7 @@ import { OrderService } from '../order.service'
 import { Store } from '@ngxs/store';
 import { DeletePizzaFromOrder } from '../../pizzas/pizzas.action'
 
-import { Ingredient } from "../../pizzas/pizza.model";
+import { Ingredient, Pizza } from "../../pizzas/pizza.model";
 
 
 @Component({
@@ -16,9 +16,9 @@ import { Ingredient } from "../../pizzas/pizza.model";
 export class CheckoutComponent implements OnInit {
   payment = ['Cash', 'Card'];
   checkoutForm: FormGroup;
-  orderedPizzas = [];
+  orderedPizzas: Pizza[] = [];
   totalPrice: number = 0
-  excludedIngredients: Ingredient[]
+  excludedIngredients: Ingredient[] = []
 
   constructor(private store: Store, private service: OrderService, private router: Router) { }
 

@@ -13,19 +13,19 @@ export class PizzaDashboardComponent implements OnInit {
 
   @Input() name: string;
   @Input() info: Array<any>;
-  @Input() priceClass;
+  @Input() priceClass: string;
   @Input() pizza: Pizza
   @Input() addPizzaToOrderCallback: Function;
   @Input() isPizzaAddedToOrder: boolean
 
   selectedDough: string;
   selectedSize: number;
-  price = 0;
-  isAddCheese = false;
+  price: number = 0;
+  isAddCheese: boolean = false;
   myclass: string;
   sizes: Array<number> = [];
   ingredients: Array<string> = [];
-  selectedPizza
+  selectedPizza: Pizza
 
   ngOnInit () {
     this.dashboardForm = new FormGroup({

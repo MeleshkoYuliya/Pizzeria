@@ -19,8 +19,8 @@ export class PizzaDetailComponent implements OnInit {
   selectedSize: number;
   sizes: Array<number> = [];
   nutricion: any;
-  priceClass = 'price-card';
-  pizza: any;
+  priceClass: string = 'price-card';
+  pizza: Pizza;
 
   constructor(
     private route: ActivatedRoute,

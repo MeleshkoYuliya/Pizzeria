@@ -14,6 +14,7 @@ import { Pizza } from './pizza.model';
 export class PizzasComponent implements OnInit {
   pizzas$: Observable<Pizza[]>;
   selectedId: number;
+
   constructor(
     private service: PizzasService,
     private route: ActivatedRoute

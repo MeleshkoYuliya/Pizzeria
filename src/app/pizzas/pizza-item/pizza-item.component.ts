@@ -16,13 +16,13 @@ export class PizzaItemComponent implements OnInit {
   @ViewChild(PizzaDashboardComponent)
   private pizzaDashboardComponent: PizzaDashboardComponent;
 
-  isOpen = false;
-  priceClass = "price";
+  isOpen: boolean = false;
+  priceClass: string = "price";
 
   selectedSize: number;
   sizes: Array<number> = [];
   ingredients: Array<string> = [];
-  orderedPizza = null
+  orderedPizza: Pizza = null
 
   constructor(private store: Store) { }
 

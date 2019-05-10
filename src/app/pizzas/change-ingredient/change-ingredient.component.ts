@@ -15,7 +15,7 @@ export class ChangeIngredientComponent implements OnInit {
 
   @Input() pizza: Pizza;
   @Input() close: Function;
-  @Input() orderedPizza;
+  @Input() orderedPizza: Pizza;
 
   removedIngredients: Ingredient[] = []
   addedIngredients: Ingredient[] = []
