@@ -15,13 +15,13 @@
       </div>
       <div class="info__options option">
         <div class="option__count">
-          <button (click)="decreasePizzaAmount(pizza)" class="option__decrease-btn">-</button>
+          <button (click)="decreasePizzaAmount(pizza)" class="option__decrease-btn" type="button">-</button>
           <div class="option__amount">{{pizza.amount}}</div>
-          <button (click)="increasePizzaAmount(pizza)" class="option__increase-btn">+</button>
+          <button (click)="increasePizzaAmount(pizza)" class="option__increase-btn" type="button">+</button>
         </div>
         <div>{{pizza.price}} BYN</div>
         <button (click)="deletePizzaFromOrder(pizza)" class="info__delete-btn"><img src="../assets/images/cross.svg"
-            alt="cheese" class="info__delete-img" /></button>
+            alt="cheese" class="info__delete-img" type="button" /></button>
       </div>
     </div>
     <div>Total: {{totalPrice}}</div>

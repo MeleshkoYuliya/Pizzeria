@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OrderService } from '../order.service'
 import { Store } from '@ngxs/store';
-import { DeletePizzaFromOrder } from '../../pizzas/pizzas.action'
 
 import { Ingredient, Pizza } from "../../pizzas/pizza.model";
 
@@ -25,15 +24,16 @@ export class CheckoutComponent implements OnInit {
   ngOnInit () {
     this.store.select(state => state.pizzas.orderedPizzas).subscribe(pizzas => {
       this.orderedPizzas = pizzas
+
       this.orderedPizzas.map(pizza => {
         this.excludedIngredients = pizza.removedIngredients
       })
+
+      pizzas.reduce((previousValue, currentValue, index) => {
+        return this.totalPrice = +(previousValue + currentValue.price).toFixed(2)
+      }, 0)
     }
     );
-
-    this.orderedPizzas.reduce((previousValue, currentValue, index) => {
-      return this.totalPrice = +(previousValue + currentValue.price).toFixed(2)
-    }, 0)
 
     this.checkoutForm = new FormGroup({
       'name': new FormControl(null, [Validators.minLength(3), Validators.required]),
@@ -52,10 +52,9 @@ export class CheckoutComponent implements OnInit {
   onSubmit () {
     const receiveEmail = this.checkoutForm.value['send-email'] ? 'yes' : 'no'
     const receiveSms = this.checkoutForm.value['send-sms'] ? 'yes' : 'no'
-
     const pizza = this.orderedPizzas.map(item => {
       const excludedIngredient = item.removedIngredients ? item.removedIngredients.map(ingredient => ingredient.ingredient) : ''
-      const addedIngredients = item.addedIngredients.map(ingredient => ingredient.ingredient)
+      const addedIngredients = item.addedIngredients ? item.addedIngredients.map(ingredient => ingredient.ingredient) : ''
 
       return `
       Pizza name: ${item.name},
@@ -110,7 +109,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   deletePizzaFromOrder (pizza) {
-    this.store.dispatch(new DeletePizzaFromOrder(pizza));
+    this.service.deletePizzaFromOrder(pizza)
     if (this.orderedPizzas.length === 0) {
       this.totalPrice = 0
     }

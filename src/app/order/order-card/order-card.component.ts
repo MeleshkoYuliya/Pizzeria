@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { ClearOrderCard, DeletePizzaFromOrder } from '../../pizzas/pizzas.action'
+import { ClearOrderCard } from '../../pizzas/pizzas.action'
 
 import { OrderService } from '../order.service'
 import { Ingredient, Pizza } from 'src/app/pizzas/pizza.model';
@@ -48,7 +48,7 @@ export class OrderCardComponent implements OnInit {
   }
 
   deletePizzaFromOrder (pizza) {
-    this.store.dispatch(new DeletePizzaFromOrder(pizza));
+    this.service.deletePizzaFromOrder(pizza)
     if (this.orderedPizzas.length === 0) {
       this.totalPrice = 0
     }
