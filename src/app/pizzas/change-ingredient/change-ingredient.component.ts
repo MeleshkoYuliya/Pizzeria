@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ChangeDetectionStrategy } from "@angular/core
 import { Pizza, Ingredient } from '../pizzas';
 import { AddPizzaInOrder } from '../pizzas.action'
 import { Store } from '@ngxs/store';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: "app-change-ingredient",
@@ -10,9 +11,11 @@ import { Store } from '@ngxs/store';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChangeIngredientComponent implements OnInit {
+  addIngredientForm: FormGroup;
+
   @Input() pizza: Pizza;
   @Input() close: Function;
-  @Input() orderedPizza
+  @Input() orderedPizza;
 
   removedIngredients : Ingredient [] = []
   addedIngredients: Ingredient[] = []
@@ -28,18 +31,24 @@ export class ChangeIngredientComponent implements OnInit {
       this._ingredients = newing
       this.removedIngredients = []
     }
+
+    this.addIngredientForm = new FormGroup({
+      'ingredient': new FormControl(null),
+    });
   }
 
   closeModal = () => {
     this.close();
   };
 
-  addIngredient = (ingredient) => {
-    if (!ingredient){
+  addIngredient = () => {
+    if (!this.addIngredientForm.value['ingredient']){
       return
     }
-    this._ingredients.push({ ingredient: ingredient})
-    this.addedIngredients.push({ingredient:ingredient})    
+    this._ingredients.push({ ingredient: this.addIngredientForm.value['ingredient']})
+    this.addedIngredients.push({ ingredient: this.addIngredientForm.value['ingredient']})   
+
+    this.addIngredientForm.reset()
   }
 
   deleteIngredient = (index) => {
@@ -60,5 +69,7 @@ export class ChangeIngredientComponent implements OnInit {
       ingredients: this._ingredients, addedIngredients: this.addedIngredients, price: price}
 
     this.store.dispatch(new AddPizzaInOrder(orderedPizza));
+
+    this.closeModal(true)
   }
 }

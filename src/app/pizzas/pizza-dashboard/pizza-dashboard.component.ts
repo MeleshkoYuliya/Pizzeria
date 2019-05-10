@@ -16,6 +16,7 @@ export class PizzaDashboardComponent implements OnInit {
   @Input() priceClass;
   @Input() pizza: Pizza
   @Input() addPizzaToOrderCallback: Function;
+  @Input() isPizzaAddedToOrder: boolean
 
   selectedDough: string;
   selectedSize: number;
@@ -27,7 +28,6 @@ export class PizzaDashboardComponent implements OnInit {
   selectedPizza
 
   ngOnInit () {
-
     this.dashboardForm = new FormGroup({
       'dough': new FormControl(null, Validators.required),
       'size': new FormControl(null, Validators.required),
