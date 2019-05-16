@@ -1,13 +1,13 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-import { Observable } from "rxjs";
+import { Observable } from 'rxjs';
 import { Store } from '@ngxs/store';
-import { map } from "rxjs/operators";
+import { map } from 'rxjs/operators';
 
-import { Pizza } from "./pizza.model";
+import { Pizza } from './pizza.model';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class PizzasService {
   constructor(private store: Store) { }

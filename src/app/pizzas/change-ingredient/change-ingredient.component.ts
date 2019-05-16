@@ -1,13 +1,13 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from "@angular/core";
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Pizza, Ingredient } from '../pizza.model';
-import { AddPizzaInOrder } from '../pizzas.action'
+import { AddPizzaInOrder } from '../pizzas.action';
 import { Store } from '@ngxs/store';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
-  selector: "app-change-ingredient",
-  templateUrl: "./change-ingredient.component.html",
-  styleUrls: ["./change-ingredient.component.scss"],
+  selector: 'app-change-ingredient',
+  templateUrl: './change-ingredient.component.html',
+  styleUrls: ['./change-ingredient.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChangeIngredientComponent implements OnInit {
@@ -17,19 +17,19 @@ export class ChangeIngredientComponent implements OnInit {
   @Input() close: Function;
   @Input() orderedPizza: Pizza;
 
-  removedIngredients: Ingredient[] = []
-  addedIngredients: Ingredient[] = []
+  removedIngredients: Ingredient[] = [];
+  addedIngredients: Ingredient[] = [];
   _ingredients: Ingredient[];
 
   constructor(private store: Store) { }
 
   ngOnInit () {
-    this._ingredients = this.pizza.ingredients
+    this._ingredients = this.pizza.ingredients;
 
     if (this.removedIngredients) {
-      const newing = this._ingredients.concat(this.removedIngredients)
-      this._ingredients = newing
-      this.removedIngredients = []
+      const newing = this._ingredients.concat(this.removedIngredients);
+      this._ingredients = newing;
+      this.removedIngredients = [];
     }
 
     this.addIngredientForm = new FormGroup({
@@ -39,39 +39,39 @@ export class ChangeIngredientComponent implements OnInit {
 
   closeModal = () => {
     this.close();
-  };
+  }
 
   addIngredient = () => {
     if (!this.addIngredientForm.value['ingredient']) {
-      return
+      return;
     }
-    this._ingredients.push({ ingredient: this.addIngredientForm.value['ingredient'] })
-    this.addedIngredients.push({ ingredient: this.addIngredientForm.value['ingredient'] })
+    this._ingredients.push({ ingredient: this.addIngredientForm.value['ingredient'] });
+    this.addedIngredients.push({ ingredient: this.addIngredientForm.value['ingredient'] });
 
-    this.addIngredientForm.reset()
+    this.addIngredientForm.reset();
   }
 
   deleteIngredient = (index) => {
-    const removedIngredient = this._ingredients.find((ingredient, i) => i === index)
-    this.removedIngredients.push(removedIngredient)
-    this._ingredients.splice(index, 1)
+    const removedIngredient = this._ingredients.find((ingredient, i) => i === index);
+    this.removedIngredients.push(removedIngredient);
+    this._ingredients.splice(index, 1);
   }
 
   addBackIngredient = (ingredient, index) => {
-    this._ingredients.push(ingredient)
-    this.removedIngredients.splice(index, 1)
+    this._ingredients.push(ingredient);
+    this.removedIngredients.splice(index, 1);
   }
 
   addPizzaToOrder = () => {
-    const price = this.addedIngredients.length > 0 ? (this.addedIngredients.length * 2 + this.orderedPizza.price) : this.orderedPizza.price
+    const price = this.addedIngredients.length > 0 ? (this.addedIngredients.length * 2 + this.orderedPizza.price) : this.orderedPizza.price;
 
     const orderedPizza = {
       ...this.orderedPizza, removedIngredients: [...this.removedIngredients],
       ingredients: this._ingredients, addedIngredients: this.addedIngredients, price: price
-    }
+    };
 
     this.store.dispatch(new AddPizzaInOrder(orderedPizza));
 
-    this.closeModal()
+    this.closeModal();
   }
 }

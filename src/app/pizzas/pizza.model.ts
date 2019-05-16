@@ -10,7 +10,7 @@ export class Pizza {
   removedIngredients?: Array<Ingredient>;
   addedIngredients?: Array<Ingredient>;
   qualities?: any;
-  amount?: number
+  amount?: number;
 }
 
 export class Ingredient {

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { OrderService } from '../order.service'
+import { OrderService } from '../order.service';
 import { Store } from '@ngxs/store';
 
-import { Ingredient, Pizza } from "../../pizzas/pizza.model";
+import { Ingredient, Pizza } from '../../pizzas/pizza.model';
 
 
 @Component({
@@ -16,22 +16,22 @@ export class CheckoutComponent implements OnInit {
   payment = ['Cash', 'Card'];
   checkoutForm: FormGroup;
   orderedPizzas: Pizza[] = [];
-  totalPrice: number = 0
-  excludedIngredients: Ingredient[] = []
+  totalPrice = 0;
+  excludedIngredients: Ingredient[] = [];
 
   constructor(private store: Store, private service: OrderService, private router: Router) { }
 
   ngOnInit () {
     this.store.select(state => state.pizzas.orderedPizzas).subscribe(pizzas => {
-      this.orderedPizzas = pizzas
+      this.orderedPizzas = pizzas;
 
       this.orderedPizzas.map(pizza => {
-        this.excludedIngredients = pizza.removedIngredients
-      })
+        this.excludedIngredients = pizza.removedIngredients;
+      });
 
       pizzas.reduce((previousValue, currentValue, index) => {
-        return this.totalPrice = +(previousValue + currentValue.price).toFixed(2)
-      }, 0)
+        return this.totalPrice = +(previousValue + currentValue.price).toFixed(2);
+      }, 0);
     }
     );
 
@@ -50,11 +50,11 @@ export class CheckoutComponent implements OnInit {
   }
 
   onSubmit () {
-    const receiveEmail = this.checkoutForm.value['send-email'] ? 'yes' : 'no'
-    const receiveSms = this.checkoutForm.value['send-sms'] ? 'yes' : 'no'
+    const receiveEmail = this.checkoutForm.value['send-email'] ? 'yes' : 'no';
+    const receiveSms = this.checkoutForm.value['send-sms'] ? 'yes' : 'no';
     const pizza = this.orderedPizzas.map(item => {
-      const excludedIngredient = item.removedIngredients ? item.removedIngredients.map(ingredient => ingredient.ingredient) : ''
-      const addedIngredients = item.addedIngredients ? item.addedIngredients.map(ingredient => ingredient.ingredient) : ''
+      const excludedIngredient = item.removedIngredients ? item.removedIngredients.map(ingredient => ingredient.ingredient) : '';
+      const addedIngredients = item.addedIngredients ? item.addedIngredients.map(ingredient => ingredient.ingredient) : '';
 
       return `
       Pizza name: ${item.name},
@@ -63,9 +63,9 @@ export class CheckoutComponent implements OnInit {
       amount: ${item.amount},
       excluded ingredients: ${excludedIngredient || 'none'},
       added ingredients: ${addedIngredients || 'none'}
-      `
-    })
-    console.log(`Checkout: 
+      `;
+    });
+    console.log(`Checkout:
     Contact information:
       Name: ${this.checkoutForm.value['name']},
       E-mail: ${this.checkoutForm.value['email']},
@@ -101,17 +101,17 @@ export class CheckoutComponent implements OnInit {
   }
 
   increasePizzaAmount (pizza) {
-    this.service.increasePizzaAmount(pizza)
+    this.service.increasePizzaAmount(pizza);
   }
 
   decreasePizzaAmount (pizza) {
-    this.service.decreasePizzaAmount(pizza)
+    this.service.decreasePizzaAmount(pizza);
   }
 
   deletePizzaFromOrder (pizza) {
-    this.service.deletePizzaFromOrder(pizza)
+    this.service.deletePizzaFromOrder(pizza);
     if (this.orderedPizzas.length === 0) {
-      this.totalPrice = 0
+      this.totalPrice = 0;
     }
   }
 

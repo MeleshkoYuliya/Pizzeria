@@ -14,18 +14,18 @@ export class PizzaDashboardComponent implements OnInit {
   @Input() name: string;
   @Input() info: Array<any>;
   @Input() priceClass: string;
-  @Input() pizza: Pizza
+  @Input() pizza: Pizza;
   @Input() addPizzaToOrderCallback: Function;
-  @Input() isPizzaAddedToOrder: boolean
+  @Input() isPizzaAddedToOrder: boolean;
 
   selectedDough: string;
   selectedSize: number;
-  price: number = 0;
-  isAddCheese: boolean = false;
+  price = 0;
+  isAddCheese = false;
   myclass: string;
   sizes: Array<number> = [];
   ingredients: Array<string> = [];
-  selectedPizza: Pizza
+  selectedPizza: Pizza;
 
   ngOnInit () {
     this.dashboardForm = new FormGroup({
@@ -35,9 +35,9 @@ export class PizzaDashboardComponent implements OnInit {
     });
 
     this.dashboardForm.valueChanges.subscribe((value) => {
-      this.selectedDough = value['dough']
-      this.isAddCheese = value['cheese']
-      this.selectedSize = value['size']
+      this.selectedDough = value['dough'];
+      this.isAddCheese = value['cheese'];
+      this.selectedSize = value['size'];
     });
 
     this.info.map((item) => {
@@ -68,16 +68,16 @@ export class PizzaDashboardComponent implements OnInit {
     this.selectedPizza = {
       ...this.pizza, qualities: { selectedDough: this.selectedDough, selectedSize: this.selectedSize }
       , price: this.price, amount: 1
-    }
+    };
 
     return this.price;
   }
 
   addPizzaToOrder = () => {
-    const orderedPizza = { ...this.selectedPizza }
-    this.addPizzaToOrderCallback(orderedPizza)
-    this.selectedPizza = null
-    this.dashboardForm.reset()
+    const orderedPizza = { ...this.selectedPizza };
+    this.addPizzaToOrderCallback(orderedPizza);
+    this.selectedPizza = null;
+    this.dashboardForm.reset();
   }
 
 }

@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Pizza } from '../pizza.model';
 import { Store } from '@ngxs/store';
-import { AddPizzaInOrder } from '../pizzas.action'
+import { AddPizzaInOrder } from '../pizzas.action';
 
 import { PizzasService } from '../pizzas.service';
 
@@ -19,7 +19,7 @@ export class PizzaDetailComponent implements OnInit {
   selectedSize: number;
   sizes: Array<number> = [];
   nutricion: any;
-  priceClass: string = 'price-card';
+  priceClass = 'price-card';
   pizza: Pizza;
 
   constructor(

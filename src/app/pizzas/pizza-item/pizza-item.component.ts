@@ -1,14 +1,14 @@
-import { Component, OnInit, Input, ViewChild, ChangeDetectionStrategy } from "@angular/core";
-import { Pizza } from "../pizza.model";
-import { AddPizzaInOrder } from '../pizzas.action'
+import { Component, OnInit, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Pizza } from '../pizza.model';
+import { AddPizzaInOrder } from '../pizzas.action';
 import { Store } from '@ngxs/store';
-import { PizzaDashboardComponent } from '../pizza-dashboard/pizza-dashboard.component'
+import { PizzaDashboardComponent } from '../pizza-dashboard/pizza-dashboard.component';
 
 
 @Component({
-  selector: "app-pizza-item",
-  templateUrl: "./pizza-item.component.html",
-  styleUrls: ["./pizza-item.component.scss"],
+  selector: 'app-pizza-item',
+  templateUrl: './pizza-item.component.html',
+  styleUrls: ['./pizza-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PizzaItemComponent implements OnInit {
@@ -16,24 +16,24 @@ export class PizzaItemComponent implements OnInit {
   @ViewChild(PizzaDashboardComponent)
   private pizzaDashboardComponent: PizzaDashboardComponent;
 
-  isOpen: boolean = false;
-  priceClass: string = "price";
+  isOpen = false;
+  priceClass = 'price';
 
   selectedSize: number;
   sizes: Array<number> = [];
   ingredients: Array<string> = [];
-  orderedPizza: Pizza = null
+  orderedPizza: Pizza = null;
 
   constructor(private store: Store) { }
 
   open = () => {
     this.isOpen = true;
-    this.orderedPizza = this.pizzaDashboardComponent.selectedPizza
-  };
+    this.orderedPizza = this.pizzaDashboardComponent.selectedPizza;
+  }
 
   close = () => {
     this.isOpen = false;
-  };
+  }
 
   ngOnInit () {
     this.pizza.info.map(item => {
