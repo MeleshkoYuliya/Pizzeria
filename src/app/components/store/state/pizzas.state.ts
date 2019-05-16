@@ -1,8 +1,8 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { Pizza } from './pizza.model';
-import { PIZZAS } from './mock-pizzas';
+import { Pizza } from '../../models/pizza.model';
+import { PIZZAS } from '../../pizzas/mock-pizzas';
 
-import { AddPizzaInOrder, ChangeOrderedPizzaAmount, ClearOrderCard, DeletePizzaFromOrder } from './pizzas.action';
+import { AddPizzaInOrder, ChangeOrderedPizzaAmount, ClearOrderCard, DeletePizzaFromOrder } from '../actions/pizzas.action';
 import { patch, updateItem, removeItem } from '@ngxs/store/operators';
 
 export class PizzasStateModel {

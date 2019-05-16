@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 
-import { ChangeOrderedPizzaAmount, DeletePizzaFromOrder } from '../pizzas/pizzas.action';
+import { ChangeOrderedPizzaAmount, DeletePizzaFromOrder } from '../store/actions/pizzas.action';
 
 @Injectable({
   providedIn: 'root'

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { ClearOrderCard } from '../../pizzas/pizzas.action';
+import { ClearOrderCard } from '../../store/actions/pizzas.action';
 
 import { OrderService } from '../order.service';
-import { Ingredient, Pizza } from 'src/app/pizzas/pizza.model';
+import { Ingredient, Pizza } from '../../models/pizza.model';
 
 @Component({
   selector: 'app-order-card',

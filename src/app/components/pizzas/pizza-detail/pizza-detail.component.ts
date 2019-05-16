@@ -2,9 +2,9 @@ import { Observable } from 'rxjs';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { Pizza } from '../pizza.model';
+import { Pizza } from '../../models/pizza.model';
 import { Store } from '@ngxs/store';
-import { AddPizzaInOrder } from '../pizzas.action';
+import { AddPizzaInOrder } from '../../store/actions/pizzas.action';
 
 import { PizzasService } from '../pizzas.service';
 

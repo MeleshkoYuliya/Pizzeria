@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
-import { Pizza } from '../pizza.model';
-import { AddPizzaInOrder } from '../pizzas.action';
+import { Pizza } from '../../models/pizza.model';
+import { AddPizzaInOrder } from '../../store/actions/pizzas.action';
 import { Store } from '@ngxs/store';
 import { PizzaDashboardComponent } from '../pizza-dashboard/pizza-dashboard.component';
 

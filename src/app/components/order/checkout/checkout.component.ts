@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { OrderService } from '../order.service';
 import { Store } from '@ngxs/store';
 
-import { Ingredient, Pizza } from '../../pizzas/pizza.model';
+import { Ingredient, Pizza } from '../../models/pizza.model';
 
 
 @Component({

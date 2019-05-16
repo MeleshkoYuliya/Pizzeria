@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
-import { Pizza, Ingredient } from '../pizza.model';
-import { AddPizzaInOrder } from '../pizzas.action';
+import { Pizza, Ingredient } from '../../models/pizza.model';
+import { AddPizzaInOrder } from '../../store/actions/pizzas.action';
 import { Store } from '@ngxs/store';
 import { FormGroup, FormControl } from '@angular/forms';
 

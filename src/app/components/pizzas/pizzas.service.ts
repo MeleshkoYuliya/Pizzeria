@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { map } from 'rxjs/operators';
 
-import { Pizza } from './pizza.model';
+import { Pizza } from '../models/pizza.model';
 
 @Injectable({
   providedIn: 'root'

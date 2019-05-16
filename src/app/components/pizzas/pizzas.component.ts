@@ -3,7 +3,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { PizzasService } from './pizzas.service';
-import { Pizza } from './pizza.model';
+import { Pizza } from '../models/pizza.model';
 
 @Component({
   selector: 'app-pizzas',

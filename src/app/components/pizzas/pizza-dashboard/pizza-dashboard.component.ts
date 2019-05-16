@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Pizza } from '../pizza.model';
+import { Pizza } from '../../models/pizza.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 

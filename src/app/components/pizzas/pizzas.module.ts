@@ -9,7 +9,7 @@ import { PizzaDashboardComponent } from './pizza-dashboard/pizza-dashboard.compo
 
 import { PizzasRoutingModule } from './pizzas-routing.module';
 import { OrderCardComponent } from '../order/order-card/order-card.component';
-import { ModalDirective } from '../pizzas/pizza-item/modal.directive';
+import { ModalDirective } from './pizza-item/modal.directive';
 import { ChangeIngredientComponent } from './change-ingredient/change-ingredient.component';
 
 

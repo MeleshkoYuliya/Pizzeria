@@ -1,4 +1,4 @@
-import { Pizza } from './pizza.model';
+import { Pizza } from '../../models/pizza.model';
 
 export class AddPizzaInOrder {
   static readonly type = '[Pizza] Add';
