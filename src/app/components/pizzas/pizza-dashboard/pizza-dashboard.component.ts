@@ -20,9 +20,8 @@ export class PizzaDashboardComponent implements OnInit {
 
   selectedDough: string;
   selectedSize: number;
-  price = 0;
+  private price: number;
   isAddCheese = false;
-  sizes: Array<number> = [];
   ingredients: Array<string> = [];
   selectedPizza: Pizza;
 
@@ -38,13 +37,13 @@ export class PizzaDashboardComponent implements OnInit {
       this.isAddCheese = value['cheese'];
       this.selectedSize = value['size'];
     });
-
-    this.info.map((item) => {
-      this.sizes.push(item.size);
-    });
   }
 
-  getTotalPrice () {
+  get sizes () {
+    return this.info.map(item => item.size);
+  }
+
+  get totalPrice (): number {
     this.info.map((item) => {
       if (this.selectedSize === item.size) {
         this.price = item.price;
@@ -70,6 +69,7 @@ export class PizzaDashboardComponent implements OnInit {
 
     return this.price;
   }
+
 
   addPizzaToOrder = () => {
     const orderedPizza = { ...this.selectedPizza };
