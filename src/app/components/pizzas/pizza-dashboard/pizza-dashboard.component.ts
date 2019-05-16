@@ -18,10 +18,8 @@ export class PizzaDashboardComponent implements OnInit {
   @Input() addPizzaToOrderCallback: Function;
   @Input() isPizzaAddedToOrder: boolean;
 
-  selectedDough: string;
-  selectedSize: number;
+
   private price: number;
-  isAddCheese = false;
   ingredients: Array<string> = [];
   selectedPizza: Pizza;
 
@@ -32,11 +30,6 @@ export class PizzaDashboardComponent implements OnInit {
       'cheese': new FormControl(null)
     });
 
-    this.dashboardForm.valueChanges.subscribe((value) => {
-      this.selectedDough = value['dough'];
-      this.isAddCheese = value['cheese'];
-      this.selectedSize = value['size'];
-    });
   }
 
   get sizes () {
@@ -45,25 +38,30 @@ export class PizzaDashboardComponent implements OnInit {
 
   get totalPrice (): number {
     this.info.map((item) => {
-      if (this.selectedSize === item.size) {
+      if (this.dashboardForm.value['size'] === item.size) {
         this.price = item.price;
       }
-      if (this.selectedSize === item.size && this.selectedDough === 'thin') {
+      if (this.dashboardForm.value['size'] === item.size && this.dashboardForm.value['dough'] === 'thin') {
         this.price = item.price;
       }
       if (
-        this.selectedSize === item.size &&
-        this.selectedDough === 'traditional'
+        this.dashboardForm.value['size'] === item.size &&
+        this.dashboardForm.value['dough'] === 'traditional'
       ) {
         this.price = item.price + 2;
       }
-      if (this.selectedSize >= 30 && this.selectedSize === item.size && this.isAddCheese) {
+      if (this.dashboardForm.value['size'] >= 30 &&
+        this.dashboardForm.value['size'] === item.size &&
+        this.dashboardForm.value['cheese']) {
         this.price = +(item.price * 0.15 + this.price).toFixed(2);
       }
     });
 
     this.selectedPizza = {
-      ...this.pizza, qualities: { selectedDough: this.selectedDough, selectedSize: this.selectedSize }
+      ...this.pizza, qualities: {
+        selectedDough: this.dashboardForm.value['dough'],
+        selectedSize: this.dashboardForm.value['size']
+      }
       , price: this.price, amount: 1
     };
 

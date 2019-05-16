@@ -37,7 +37,7 @@
            </div>
          </div>
 
-         <div class="cheese-group" *ngIf="selectedSize >= 30">
+         <div class="cheese-group" *ngIf="dashboardForm.value['size'] >= 30">
            <div style="width: 100%">
              <input class="radio" type="checkbox" id="{{ name }} cheese" value="cheese" formControlName="cheese" />
              <label class="cheese" for="{{ name }} cheese">
