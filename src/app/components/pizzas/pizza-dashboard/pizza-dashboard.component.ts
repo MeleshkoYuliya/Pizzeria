@@ -22,7 +22,6 @@ export class PizzaDashboardComponent implements OnInit {
   selectedSize: number;
   price = 0;
   isAddCheese = false;
-  myclass: string;
   sizes: Array<number> = [];
   ingredients: Array<string> = [];
   selectedPizza: Pizza;
@@ -43,7 +42,6 @@ export class PizzaDashboardComponent implements OnInit {
     this.info.map((item) => {
       this.sizes.push(item.size);
     });
-    this.myclass = this.priceClass;
   }
 
   getTotalPrice () {
