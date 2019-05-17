@@ -23,7 +23,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   constructor(private store: Store, private router: Router) { }
 
   ngOnInit () {
-    this.store.select(state => state.pizzas.orderedPizzas).subscribe(pizzas => {
+    this.subscription = this.store.select(state => state.pizzas.orderedPizzas).subscribe(pizzas => {
       this.orderedPizzas = pizzas;
 
       this.orderedPizzas.map(pizza => {
