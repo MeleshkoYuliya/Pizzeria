@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { ClearOrderCard } from '../../store/actions/pizzas.action';
-
-import { OrderService } from '../order.service';
+import { ClearOrderCard, IncreasePizzaAmount, DecreasePizzaAmount, DeletePizzaFromOrder } from '../../store/actions/pizzas.action';
 import { Ingredient, Pizza } from '../../models/pizza.model';
 
 @Component({
@@ -16,7 +14,7 @@ export class OrderCardComponent implements OnInit {
   totalPrice = 0;
   excludedIngredients: Ingredient[] = [];
 
-  constructor(private store: Store, private service: OrderService, ) { }
+  constructor(private store: Store) { }
 
   ngOnInit () {
     this.store.select(state => state.pizzas.orderedPizzas).subscribe(pizzas => {
@@ -35,11 +33,11 @@ export class OrderCardComponent implements OnInit {
   }
 
   increasePizzaAmount (pizza) {
-    this.service.increasePizzaAmount(pizza);
+    this.store.dispatch(new IncreasePizzaAmount({ pizza }));
   }
 
   decreasePizzaAmount (pizza) {
-    this.service.decreasePizzaAmount(pizza);
+    this.store.dispatch(new DecreasePizzaAmount({ pizza }));
   }
 
   clearOrder () {
@@ -48,7 +46,7 @@ export class OrderCardComponent implements OnInit {
   }
 
   deletePizzaFromOrder (pizza) {
-    this.service.deletePizzaFromOrder(pizza);
+    this.store.dispatch(new DeletePizzaFromOrder(pizza));
     if (this.orderedPizzas.length === 0) {
       this.totalPrice = 0;
     }

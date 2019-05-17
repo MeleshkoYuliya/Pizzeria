@@ -18,7 +18,12 @@ export class DeletePizzaFromOrder {
   constructor(public payload: Pizza) { }
 }
 
-export class ChangeOrderedPizzaAmount {
-  static readonly type = '[Pizza] Change';
-  constructor(public payload: { pizza; amount: number; price: number }) { }
+export class IncreasePizzaAmount {
+  static readonly type = '[Pizza] Increase';
+  constructor(public payload: { pizza: Pizza }) { }
+}
+
+export class DecreasePizzaAmount {
+  static readonly type = '[Pizza] Decrease';
+  constructor(public payload: { pizza: Pizza }) { }
 }
