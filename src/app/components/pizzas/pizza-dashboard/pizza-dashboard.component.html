@@ -1,16 +1,16 @@
      <div *ngFor="let item of sizes" class="persons">
-       <div class="persons__image" *ngIf="selectedSize === item" [ngSwitch]="item">
+       <div class="persons__image" *ngIf="dashboardForm.value['size'] === item" [ngSwitch]="item">
          <img src="../assets/images/person.svg" alt="cheese" class="persons__img" />
-         <span *ngSwitchCase="23">
+         <span *ngSwitchCase="size.Small">
            1 - 2
          </span>
-         <span *ngSwitchCase="30">
+         <span *ngSwitchCase="size.Medium">
            2 - 3
          </span>
-         <span *ngSwitchCase="35">
+         <span *ngSwitchCase="size.Large">
            3 - 4
          </span>
-         <span *ngSwitchCase="40">
+         <span *ngSwitchCase="size.XLarge">
            4 - 5
          </span>
          <span *ngSwitchDefault> </span>

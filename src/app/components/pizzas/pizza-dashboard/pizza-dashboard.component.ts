@@ -4,6 +4,13 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
 import { AddPizzaInOrder } from '../../store/actions/pizzas.action';
 
+enum Size {
+  XLarge = 40,
+  Large = 35,
+  Medium = 30,
+  Small = 23,
+}
+
 @Component({
   selector: 'app-pizza-dashboard',
   templateUrl: './pizza-dashboard.component.html',
@@ -24,6 +31,7 @@ export class PizzaDashboardComponent implements OnInit {
   private price: number;
   ingredients: Array<string> = [];
   selectedPizza: Pizza;
+  size = Size;
 
   constructor(
     private store: Store
