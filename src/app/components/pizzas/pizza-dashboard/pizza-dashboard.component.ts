@@ -1,9 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Pizza } from '../../models/pizza.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
 import { AddPizzaInOrder } from '../../store/actions/pizzas.action';
-
 
 @Component({
   selector: 'app-pizza-dashboard',
@@ -19,6 +18,7 @@ export class PizzaDashboardComponent implements OnInit {
   @Input() pizza: Pizza;
   @Input() addPizzaToOrderCallback: Function;
   @Input() isPizzaAddedToOrder: boolean;
+  @Output() changeSelectedPizza = new EventEmitter<any>();
 
 
   private price: number;
@@ -70,9 +70,10 @@ export class PizzaDashboardComponent implements OnInit {
       , price: this.price, amount: 1
     };
 
+    this.changeSelectedPizza.next(this.selectedPizza);
+
     return this.price;
   }
-
 
   addPizzaToOrder = () => {
     this.store.dispatch(new AddPizzaInOrder(this.selectedPizza));
