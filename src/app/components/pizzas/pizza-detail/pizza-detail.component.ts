@@ -1,14 +1,13 @@
 import { Observable } from 'rxjs';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
-import { Pizza } from '../../models/pizza.model';
-import { Store } from '@ngxs/store';
-import { AddPizzaInOrder } from '../../store/actions/pizzas.action';
-
-// import { PizzasService } from '../pizzas.service';
-import { GetPizzas } from '../../store/actions/pizzas.action';
 import { map } from 'rxjs/operators';
+import { Store } from '@ngxs/store';
+
+import { Pizza } from '../../models/pizza.model';
+import { AddPizzaInOrder } from '../../store/actions/pizzas.action';
+import { GetPizzas } from '../../store/actions/pizzas.action';
+
 
 @Component({
   selector: 'app-pizza-detail',
@@ -17,17 +16,12 @@ import { map } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PizzaDetailComponent implements OnInit {
-  pizza$: Observable<Pizza>;
-  selectedSize: number;
-  sizes: Array<number> = [];
-  nutricion: any;
   priceClass = 'price-card';
   pizza: Pizza;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private location: Location,
     private store: Store
   ) {
 
@@ -45,12 +39,10 @@ export class PizzaDetailComponent implements OnInit {
     this.store.select(state => state.pizzas.pizzas).pipe(
       map((pizzas: Pizza[]) => pizzas.find(pizza => pizza.id === +id))
     ).subscribe(pizza => this.pizza = pizza);
+  }
 
-    this.pizza.info.map((item, index) => {
-      this.sizes.push(item.size);
-    });
-
-    this.nutricion = this.pizza.nutricion;
+  get sizes () {
+    return this.pizza.info.map((item) => item.size);
   }
 
   addPizzaToOrderCallback = (orderedPizza) => {
