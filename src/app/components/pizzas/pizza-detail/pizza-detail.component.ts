@@ -6,6 +6,7 @@ import { Store } from '@ngxs/store';
 import { Pizza } from '../../models/pizza.model';
 
 import { GetPizzas } from '../../store/actions/pizzas.action';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { GetPizzas } from '../../store/actions/pizzas.action';
 })
 export class PizzaDetailComponent implements OnInit {
   priceClass = 'price-card';
-  pizza: Pizza;
+  pizza: Observable<Pizza>;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,13 +33,8 @@ export class PizzaDetailComponent implements OnInit {
     }
 
     this.store.dispatch(new GetPizzas());
-
-    this.store.select(state => state.pizzas.pizzas).pipe(
+    this.pizza = this.store.select(state => state.pizzas.pizzas).pipe(
       map((pizzas: Pizza[]) => pizzas.find(pizza => pizza.id === +id))
-    ).subscribe(pizza => this.pizza = pizza);
-  }
-
-  get sizes () {
-    return this.pizza.info.map((item) => item.size);
+    );
   }
 }

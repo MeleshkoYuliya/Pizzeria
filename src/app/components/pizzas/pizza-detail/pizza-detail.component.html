@@ -1,21 +1,22 @@
 <div class="pizza-view">
   <div class="pizza-detail">
-    <img [src]="pizza.image" class="pizza-detail__img" />
+    <img [src]="(pizza | async)?.image" class="pizza-detail__img" />
     <div>
-      <h1 class="pizza-detail__title">{{pizza.name}}</h1>
+      <h1 class="pizza-detail__title">{{(pizza | async)?.name}}</h1>
       <div class="pizza-detail__ingredients">
-        <span class="ingredients__item" *ngFor="let item of pizza.ingredients">
+        <span class="ingredients__item" *ngFor="let item of (pizza | async)?.ingredients">
           {{ item.ingredient }} |
         </span>
       </div>
       <div class="pizza-detail__nutrition nutrition">
         <div class="nutrition__title">Nutrition information per 100g</div>
-        <div>Protein - {{pizza.nutricion.protein}}</div>
-        <div>Fats - {{pizza.nutricion.fats}}</div>
-        <div>Carbohydrates - {{pizza.nutricion.carbohydrates}}</div>
-        <div>Energy - {{pizza.nutricion.energy}}</div>
+        <div>Protein - {{(pizza | async)?.nutricion.protein}}</div>
+        <div>Fats - {{(pizza | async)?.nutricion.fats}}</div>
+        <div>Carbohydrates - {{(pizza | async)?.nutricion.carbohydrates}}</div>
+        <div>Energy - {{(pizza | async)?.nutricion.energy}}</div>
       </div>
-      <app-pizza-dashboard [name]="pizza.name" [info]="pizza.info" [priceClass]='priceClass' [pizza]="pizza">
+      <app-pizza-dashboard [name]="(pizza | async)?.name" [info]="(pizza | async)?.info" [priceClass]='priceClass'
+        [pizza]="pizza | async">
       </app-pizza-dashboard>
     </div>
   </div>
