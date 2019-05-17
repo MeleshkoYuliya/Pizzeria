@@ -1,33 +1,36 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { ClearOrderCard, IncreasePizzaAmount, DecreasePizzaAmount, DeletePizzaFromOrder } from '../../store/actions/pizzas.action';
-import { Ingredient, Pizza } from '../../models/pizza.model';
-import { ISubscription } from 'rxjs/Subscription';
+import { Pizza } from '../../models/pizza.model';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-order-card',
   templateUrl: './order-card.component.html',
   styleUrls: ['./order-card.component.scss'],
 })
-export class OrderCardComponent implements OnInit, OnDestroy {
-  orderedPizzas: Pizza[];
-  quantity = 0;
-  totalPrice = 0;
-  private subscription: ISubscription;
+export class OrderCardComponent implements OnInit {
+  orderedPizzas: Observable<Pizza[]> = this.store.select(state => state.pizzas.orderedPizzas);
+  _quantity: Observable<number> | number;
+  _totalPrice: Observable<number> | number;
 
   constructor(private store: Store) { }
 
-  ngOnInit () {
-    this.subscription = this.store.select(state => state.pizzas.orderedPizzas).subscribe(pizzas => {
-      pizzas.reduce((previousValue, currentValue, index) => {
-        return this.quantity = +(previousValue + currentValue.amount);
-      }, 0);
-      this.orderedPizzas = pizzas;
-      this.orderedPizzas.reduce((previousValue, currentValue, index) => {
-        return this.totalPrice = +(previousValue + currentValue.price).toFixed(2);
-      }, 0);
-    });
+  ngOnInit () { }
 
+  get totalPrice () {
+    return this._totalPrice = this.store.select(state => state.pizzas.orderedPizzas)
+      .pipe(map(pizzas => pizzas.reduce((previousValue, currentValue, index) => {
+        return +(previousValue + currentValue.price).toFixed(2);
+      }, 0)));
+  }
+
+  get quantity () {
+    return this._quantity = this.store.select(state => state.pizzas.orderedPizzas)
+      .pipe(map(pizzas => pizzas.reduce((previousValue, currentValue, index) => {
+        return +(previousValue + currentValue.amount);
+      }, 0)));
   }
 
   increasePizzaAmount (pizza) {
@@ -40,19 +43,12 @@ export class OrderCardComponent implements OnInit, OnDestroy {
 
   clearOrder () {
     this.store.dispatch(new ClearOrderCard());
-    this.totalPrice = 0;
-    this.quantity = 0;
+    this._totalPrice = 0;
+    this._quantity = 0;
   }
 
   deletePizzaFromOrder (pizza) {
     this.store.dispatch(new DeletePizzaFromOrder(pizza));
-    if (this.orderedPizzas.length === 0) {
-      this.totalPrice = 0;
-      this.quantity = 0;
-    }
   }
 
-  ngOnDestroy () {
-    this.subscription.unsubscribe();
-  }
 }
