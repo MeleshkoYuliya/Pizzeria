@@ -1,23 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { ClearOrderCard, IncreasePizzaAmount, DecreasePizzaAmount, DeletePizzaFromOrder } from '../../store/actions/pizzas.action';
 import { Ingredient, Pizza } from '../../models/pizza.model';
+import { ISubscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-order-card',
   templateUrl: './order-card.component.html',
   styleUrls: ['./order-card.component.scss'],
 })
-export class OrderCardComponent implements OnInit {
+export class OrderCardComponent implements OnInit, OnDestroy {
   orderedPizzas: Pizza[];
   quantity = 0;
   totalPrice = 0;
   excludedIngredients: Ingredient[] = [];
+  private subscription: ISubscription;
 
   constructor(private store: Store) { }
 
   ngOnInit () {
-    this.store.select(state => state.pizzas.orderedPizzas).subscribe(pizzas => {
+    this.subscription = this.store.select(state => state.pizzas.orderedPizzas).subscribe(pizzas => {
       pizzas.reduce((previousValue, currentValue, index) => {
         return this.quantity = +(previousValue + currentValue.amount);
       }, 0);
@@ -52,5 +54,9 @@ export class OrderCardComponent implements OnInit {
       this.totalPrice = 0;
       this.quantity = 0;
     }
+  }
+
+  ngOnDestroy () {
+    this.subscription.unsubscribe();
   }
 }

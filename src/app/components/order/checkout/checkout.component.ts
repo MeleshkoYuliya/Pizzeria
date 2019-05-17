@@ -1,23 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 
 import { Ingredient, Pizza } from '../../models/pizza.model';
 import { IncreasePizzaAmount, DecreasePizzaAmount, DeletePizzaFromOrder } from '../../store/actions/pizzas.action';
-
+import { ISubscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent implements OnInit, OnDestroy {
   payment = ['Cash', 'Card'];
   checkoutForm: FormGroup;
   orderedPizzas: Pizza[] = [];
   totalPrice = 0;
   excludedIngredients: Ingredient[] = [];
+  private subscription: ISubscription;
 
   constructor(private store: Store, private router: Router) { }
 
@@ -114,5 +115,7 @@ export class CheckoutComponent implements OnInit {
       this.totalPrice = 0;
     }
   }
-
+  ngOnDestroy () {
+    this.subscription.unsubscribe();
+  }
 }
