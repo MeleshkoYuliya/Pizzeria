@@ -3,7 +3,6 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { GetPizzas } from '../store/actions/pizzas.action';
 import { Store } from '@ngxs/store';
 
-import { PizzasService } from './pizzas.service';
 import { Pizza } from '../models/pizza.model';
 
 @Component({
