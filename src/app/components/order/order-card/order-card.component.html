@@ -1,10 +1,10 @@
 <div class="order-card">
   <div class="order-card__image order"><img src="../assets/images/trash.svg" class="order__image" /></div>
   <div class="order__actions action">
-    <div class="action__cart">Cart({{quantity}})</div>
+    <div class="action__cart">Cart({{quantity | async}})</div>
     <button class="action__clear" (click)="clearOrder()">Clear</button>
   </div>
-  <div *ngFor="let pizza of orderedPizzas" class="pizzas">
+  <div *ngFor="let pizza of orderedPizzas | async" class="pizzas">
     <img [src]="pizza.image" class="pizzas__image" />
     <div class="pizzas__info info">
       <div class="info__name">{{pizza.name}}</div>
@@ -27,6 +27,6 @@
       <div>{{pizza.price}} BYN</div>
     </div>
   </div>
-  <div>Total: {{totalPrice}}</div>
+  <div>Total: {{totalPrice | async}}</div>
   <a routerLink="/checkout"><button class="order__btn">Order now</button></a>
 </div>
