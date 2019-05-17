@@ -17,7 +17,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   checkoutForm: FormGroup;
   orderedPizzas: Pizza[] = [];
   totalPrice = 0;
-  excludedIngredients: Ingredient[] = [];
   private subscription: ISubscription;
 
   constructor(private store: Store, private router: Router) { }
@@ -25,10 +24,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   ngOnInit () {
     this.subscription = this.store.select(state => state.pizzas.orderedPizzas).subscribe(pizzas => {
       this.orderedPizzas = pizzas;
-
-      this.orderedPizzas.map(pizza => {
-        this.excludedIngredients = pizza.removedIngredients;
-      });
 
       pizzas.reduce((previousValue, currentValue, index) => {
         return this.totalPrice = +(previousValue + currentValue.price).toFixed(2);
