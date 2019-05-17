@@ -13,7 +13,6 @@ export class OrderCardComponent implements OnInit, OnDestroy {
   orderedPizzas: Pizza[];
   quantity = 0;
   totalPrice = 0;
-  excludedIngredients: Ingredient[] = [];
   private subscription: ISubscription;
 
   constructor(private store: Store) { }
@@ -27,11 +26,8 @@ export class OrderCardComponent implements OnInit, OnDestroy {
       this.orderedPizzas.reduce((previousValue, currentValue, index) => {
         return this.totalPrice = +(previousValue + currentValue.price).toFixed(2);
       }, 0);
-
-      this.orderedPizzas.map(pizza => {
-        this.excludedIngredients = pizza.removedIngredients;
-      });
     });
+
   }
 
   increasePizzaAmount (pizza) {
