@@ -9,13 +9,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './components/header/header.component';
 
-import { PizzasModule } from './pizzas/pizzas.module';
-import { CheckoutComponent } from './order/checkout/checkout.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PizzasModule } from './components/pizzas/pizzas.module';
+import { CheckoutComponent } from './components/order/checkout/checkout.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
-import { PizzasState } from './pizzas/pizzas.state';
+import { PizzasState } from './components/store/state/pizzas.state';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, CheckoutComponent, PageNotFoundComponent],

@@ -1,28 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { OrderService } from '../order.service';
 import { Store } from '@ngxs/store';
 
-import { Ingredient, Pizza } from '../../pizzas/pizza.model';
-
+import { Ingredient, Pizza } from '../../models/pizza.model';
+import { IncreasePizzaAmount, DecreasePizzaAmount, DeletePizzaFromOrder } from '../../store/actions/pizzas.action';
+import { ISubscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent implements OnInit, OnDestroy {
   payment = ['Cash', 'Card'];
   checkoutForm: FormGroup;
   orderedPizzas: Pizza[] = [];
   totalPrice = 0;
   excludedIngredients: Ingredient[] = [];
+  private subscription: ISubscription;
 
-  constructor(private store: Store, private service: OrderService, private router: Router) { }
+  constructor(private store: Store, private router: Router) { }
 
   ngOnInit () {
-    this.store.select(state => state.pizzas.orderedPizzas).subscribe(pizzas => {
+    this.subscription = this.store.select(state => state.pizzas.orderedPizzas).subscribe(pizzas => {
       this.orderedPizzas = pizzas;
 
       this.orderedPizzas.map(pizza => {
@@ -101,18 +102,20 @@ export class CheckoutComponent implements OnInit {
   }
 
   increasePizzaAmount (pizza) {
-    this.service.increasePizzaAmount(pizza);
+    this.store.dispatch(new IncreasePizzaAmount({ pizza }));
   }
 
   decreasePizzaAmount (pizza) {
-    this.service.decreasePizzaAmount(pizza);
+    this.store.dispatch(new DecreasePizzaAmount({ pizza }));
   }
 
   deletePizzaFromOrder (pizza) {
-    this.service.deletePizzaFromOrder(pizza);
+    this.store.dispatch(new DeletePizzaFromOrder(pizza));
     if (this.orderedPizzas.length === 0) {
       this.totalPrice = 0;
     }
   }
-
+  ngOnDestroy () {
+    this.subscription.unsubscribe();
+  }
 }

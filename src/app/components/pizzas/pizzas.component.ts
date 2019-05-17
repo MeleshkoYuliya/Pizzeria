@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { GetPizzas } from '../store/actions/pizzas.action';
+import { Store } from '@ngxs/store';
 
-import { PizzasService } from './pizzas.service';
-import { Pizza } from './pizza.model';
+import { Pizza } from '../models/pizza.model';
 
 @Component({
   selector: 'app-pizzas',
@@ -12,15 +12,14 @@ import { Pizza } from './pizza.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PizzasComponent implements OnInit {
-  pizzas$: Observable<Pizza[]>;
+  pizzas$: Observable<Pizza[]> = this.store.select(state => state.pizzas.pizzas);
   selectedId: number;
 
   constructor(
-    private service: PizzasService,
-    private route: ActivatedRoute
+    private store: Store
   ) { }
 
   ngOnInit () {
-    return this.pizzas$ = this.service.getPizzas();
+    this.store.dispatch(new GetPizzas());
   }
 }

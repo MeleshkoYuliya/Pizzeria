@@ -1,16 +1,16 @@
      <div *ngFor="let item of sizes" class="persons">
-       <div class="persons__image" *ngIf="selectedSize === item" [ngSwitch]="item">
+       <div class="persons__image" *ngIf="dashboardForm.value['size'] === item" [ngSwitch]="item">
          <img src="../assets/images/person.svg" alt="cheese" class="persons__img" />
-         <span *ngSwitchCase="23">
+         <span *ngSwitchCase="size.Small">
            1 - 2
          </span>
-         <span *ngSwitchCase="30">
+         <span *ngSwitchCase="size.Medium">
            2 - 3
          </span>
-         <span *ngSwitchCase="35">
+         <span *ngSwitchCase="size.Large">
            3 - 4
          </span>
-         <span *ngSwitchCase="40">
+         <span *ngSwitchCase="size.XLarge">
            4 - 5
          </span>
          <span *ngSwitchDefault> </span>
@@ -37,7 +37,7 @@
            </div>
          </div>
 
-         <div class="cheese-group" *ngIf="selectedSize >= 30">
+         <div class="cheese-group" *ngIf="dashboardForm.value['size'] >= 30">
            <div style="width: 100%">
              <input class="radio" type="checkbox" id="{{ name }} cheese" value="cheese" formControlName="cheese" />
              <label class="cheese" for="{{ name }} cheese">
@@ -46,10 +46,10 @@
            </div>
          </div>
        </div>
-       <div [class]="myclass">
+       <div [class]="priceClass">
          <button class="price__btn" (click)="addPizzaToOrder()" [disabled]="!dashboardForm.valid">Add to cart</button>
          <div class="price__bill" *ngIf="dashboardForm.valid">
-           <span> {{ getTotalPrice() }} BYN</span>
+           <span> {{ totalPrice }} BYN</span>
          </div>
        </div>
      </form>
