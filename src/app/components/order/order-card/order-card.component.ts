@@ -43,12 +43,14 @@ export class OrderCardComponent implements OnInit {
   clearOrder () {
     this.store.dispatch(new ClearOrderCard());
     this.totalPrice = 0;
+    this.quantity = 0;
   }
 
   deletePizzaFromOrder (pizza) {
     this.store.dispatch(new DeletePizzaFromOrder(pizza));
     if (this.orderedPizzas.length === 0) {
       this.totalPrice = 0;
+      this.quantity = 0;
     }
   }
 }
