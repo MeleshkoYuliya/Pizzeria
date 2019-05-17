@@ -6,7 +6,9 @@ import { Pizza } from '../../models/pizza.model';
 import { Store } from '@ngxs/store';
 import { AddPizzaInOrder } from '../../store/actions/pizzas.action';
 
-import { PizzasService } from '../pizzas.service';
+// import { PizzasService } from '../pizzas.service';
+import { GetPizzas } from '../../store/actions/pizzas.action';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-pizza-detail',
@@ -25,30 +27,30 @@ export class PizzaDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private service: PizzasService,
     private location: Location,
     private store: Store
   ) {
+
+  }
+
+  ngOnInit (): void {
     const id = +this.route.snapshot.paramMap.get('id');
     if (!id) {
       this.router.navigate(['not-found']);
       return;
     }
-  }
 
-  ngOnInit (): void {
-    this.getPizza();
+    this.store.dispatch(new GetPizzas());
+
+    this.store.select(state => state.pizzas.pizzas).pipe(
+      map((pizzas: Pizza[]) => pizzas.find(pizza => pizza.id === +id))
+    ).subscribe(pizza => this.pizza = pizza);
 
     this.pizza.info.map((item, index) => {
       this.sizes.push(item.size);
     });
 
     this.nutricion = this.pizza.nutricion;
-  }
-
-  getPizza (): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.service.getPizza(id).subscribe(pizza => (this.pizza = pizza));
   }
 
   addPizzaToOrderCallback = (orderedPizza) => {

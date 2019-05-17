@@ -29,8 +29,8 @@ export class PizzasState {
     const state = getState();
     setState(
       patch({
-      pizzas: [...state.pizzas, ...PIZZAS]
-    })
+        pizzas: [...state.pizzas, ...PIZZAS]
+      })
     );
   }
 

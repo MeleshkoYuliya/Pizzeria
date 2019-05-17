@@ -13,8 +13,8 @@ import { PizzaDashboardComponent } from '../pizza-dashboard/pizza-dashboard.comp
 })
 export class PizzaItemComponent implements OnInit {
   @Input() pizza: Pizza;
-   @ViewChild(PizzaDashboardComponent)
- private pizzaDashboardComponent: PizzaDashboardComponent;
+  @ViewChild(PizzaDashboardComponent)
+  private pizzaDashboardComponent: PizzaDashboardComponent;
 
   isOpen = false;
   priceClass = 'price';
