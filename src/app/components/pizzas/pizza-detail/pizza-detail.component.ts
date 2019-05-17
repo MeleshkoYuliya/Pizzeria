@@ -1,11 +1,10 @@
-import { Observable } from 'rxjs';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
 
 import { Pizza } from '../../models/pizza.model';
-import { AddPizzaInOrder } from '../../store/actions/pizzas.action';
+
 import { GetPizzas } from '../../store/actions/pizzas.action';
 
 
@@ -23,9 +22,7 @@ export class PizzaDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private store: Store
-  ) {
-
-  }
+  ) { }
 
   ngOnInit (): void {
     const id = +this.route.snapshot.paramMap.get('id');
@@ -43,9 +40,5 @@ export class PizzaDetailComponent implements OnInit {
 
   get sizes () {
     return this.pizza.info.map((item) => item.size);
-  }
-
-  addPizzaToOrderCallback = (orderedPizza) => {
-    this.store.dispatch(new AddPizzaInOrder(orderedPizza));
   }
 }

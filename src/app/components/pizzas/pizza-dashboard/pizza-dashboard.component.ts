@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Pizza } from '../../models/pizza.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Store } from '@ngxs/store';
+import { AddPizzaInOrder } from '../../store/actions/pizzas.action';
 
 
 @Component({
@@ -23,13 +25,16 @@ export class PizzaDashboardComponent implements OnInit {
   ingredients: Array<string> = [];
   selectedPizza: Pizza;
 
+  constructor(
+    private store: Store
+  ) { }
+
   ngOnInit () {
     this.dashboardForm = new FormGroup({
       'dough': new FormControl(null, Validators.required),
       'size': new FormControl(null, Validators.required),
       'cheese': new FormControl(null)
     });
-
   }
 
   get sizes () {
@@ -70,10 +75,8 @@ export class PizzaDashboardComponent implements OnInit {
 
 
   addPizzaToOrder = () => {
-    const orderedPizza = { ...this.selectedPizza };
-    this.addPizzaToOrderCallback(orderedPizza);
+    this.store.dispatch(new AddPizzaInOrder(this.selectedPizza));
     this.selectedPizza = null;
     this.dashboardForm.reset();
   }
-
 }
