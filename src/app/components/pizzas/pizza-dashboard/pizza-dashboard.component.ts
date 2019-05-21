@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Pizza } from '../../models/pizza.model';
+import { Pizza } from '../../../models/pizza.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
-import { AddPizzaInOrder } from '../../store/actions/pizzas.action';
+import { AddPizzaInOrder } from '../../../store/actions/pizzas.action';
 
 enum Size {
   XLarge = 40,

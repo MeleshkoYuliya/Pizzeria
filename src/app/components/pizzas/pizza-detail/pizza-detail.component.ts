@@ -3,9 +3,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
 
-import { Pizza } from '../../models/pizza.model';
+import { Pizza } from '../../../models/pizza.model';
 
-import { GetPizzas } from '../../store/actions/pizzas.action';
+import { GetPizzas } from '../../../store/actions/pizzas.action';
 import { Observable } from 'rxjs';
 
 

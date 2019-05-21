@@ -15,7 +15,7 @@ import { PizzasModule } from './components/pizzas/pizzas.module';
 import { CheckoutComponent } from './components/order/checkout/checkout.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
-import { PizzasState } from './components/store/state/pizzas.state';
+import { PizzasState } from './store/state/pizzas.state';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, CheckoutComponent, PageNotFoundComponent],
