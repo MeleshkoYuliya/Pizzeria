@@ -9,7 +9,6 @@ import { PizzaDashboardComponent } from './pizza-dashboard/pizza-dashboard.compo
 
 import { AppRoutingModule } from '../../app-routing.module';
 import { OrderCardComponent } from '../order/order-card/order-card.component';
-import { ModalDirective } from './pizza-item/modal.directive';
 import { ChangeIngredientComponent } from './change-ingredient/change-ingredient.component';
 
 
@@ -26,7 +25,6 @@ import { ChangeIngredientComponent } from './change-ingredient/change-ingredient
     PizzaDetailComponent,
     PizzaDashboardComponent,
     OrderCardComponent,
-    ModalDirective,
     ChangeIngredientComponent
   ],
   exports: [
