@@ -1,9 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Store } from '@ngxs/store';
+import { Select } from '@ngxs/store';
+import { PizzasState } from '../../../store/state/pizzas.state';
 
-import { Ingredient, Pizza } from '../../../models/pizza.model';
+import { Pizza } from '../../../models/pizza.model';
 import { IncreasePizzaAmount, DecreasePizzaAmount, DeletePizzaFromOrder } from '../../../store/actions/pizzas.action';
 import { ISubscription } from 'rxjs/Subscription';
 
@@ -13,24 +15,19 @@ import { ISubscription } from 'rxjs/Subscription';
   styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit, OnDestroy {
+  @Select(PizzasState.getOrderedPizzas) orderedPizzas$: Observable<Pizza[]>;
+  orderedPizzas: Pizza[];
   payment = ['Cash', 'Card'];
   checkoutForm: FormGroup;
-  orderedPizzas: Pizza[] = [];
-  totalPrice = 0;
   private subscription: ISubscription;
 
-  constructor(private store: Store, private router: Router) { }
+  constructor(private store: Store) { }
 
   ngOnInit () {
-    this.subscription = this.store.select(state => state.pizzas.orderedPizzas).subscribe(pizzas => {
+    this.subscription = this.orderedPizzas$.subscribe(pizzas => {
       this.orderedPizzas = pizzas;
-
-      pizzas.reduce((previousValue, currentValue, index) => {
-        return this.totalPrice = +(previousValue + currentValue.price).toFixed(2);
-      }, 0);
     }
     );
-
     this.checkoutForm = new FormGroup({
       'name': new FormControl(null, [Validators.minLength(3), Validators.required]),
       'phone': new FormControl(null, [Validators.required, this.validatorPhoneNumber]),
@@ -43,6 +40,15 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       'send-sms': new FormControl(null),
       'send-email': new FormControl(null)
     });
+  }
+
+  get totalPrice () {
+    return this.orderedPizzas$.subscribe(pizzas => {
+      pizzas.reduce((previousValue, currentValue, index) => {
+        return +(previousValue + currentValue.price).toFixed(2);
+      }, 0);
+    }
+    );
   }
 
   onSubmit () {
@@ -106,9 +112,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   deletePizzaFromOrder (pizza) {
     this.store.dispatch(new DeletePizzaFromOrder(pizza));
-    if (this.orderedPizzas.length === 0) {
-      this.totalPrice = 0;
-    }
   }
   ngOnDestroy () {
     this.subscription.unsubscribe();

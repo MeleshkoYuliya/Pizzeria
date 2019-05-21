@@ -12,25 +12,19 @@ import { PizzasState } from '../../../store/state/pizzas.state';
   templateUrl: './order-card.component.html',
   styleUrls: ['./order-card.component.scss'],
 })
-export class OrderCardComponent implements OnInit {
+export class OrderCardComponent {
   @Select(PizzasState.getOrderedPizzas) orderedPizzas: Observable<Pizza[]>;
-
-  _quantity: Observable<number> | number;
-  _totalPrice: Observable<number> | number;
-
   constructor(private store: Store) { }
 
-  ngOnInit () { }
-
   get totalPrice () {
-    return this._totalPrice = this.orderedPizzas
+    return this.orderedPizzas
       .pipe(map(pizzas => pizzas.reduce((previousValue, currentValue, index) => {
         return +(previousValue + currentValue.price).toFixed(2);
       }, 0)));
   }
 
   get quantity () {
-    return this._quantity = this.orderedPizzas
+    return this.orderedPizzas
       .pipe(map(pizzas => pizzas.reduce((previousValue, currentValue, index) => {
         return +(previousValue + currentValue.amount);
       }, 0)));
@@ -46,8 +40,6 @@ export class OrderCardComponent implements OnInit {
 
   clearOrder () {
     this.store.dispatch(new ClearOrderCard());
-    this._totalPrice = 0;
-    this._quantity = 0;
   }
 
   deletePizzaFromOrder (pizza) {

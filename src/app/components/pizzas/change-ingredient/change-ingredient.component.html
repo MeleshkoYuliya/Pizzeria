@@ -1,7 +1,7 @@
 <div class="dashboard">
   <div class="dashboard__title">Remove Ingredients</div>
   <div class="pizza__ingredients ingredients">
-    <div class="ingredients__item item" *ngFor="let ingredient of _ingredients; let i=index">
+    <div class="ingredients__item item" *ngFor="let ingredient of ingredients; let i=index">
       {{ ingredient.ingredient }}
       <button class="item__delete-btn" (click)="deleteIngredient(i)">
         <img src="../assets/images/cross.svg" alt="cheese" class="item__delete-img" />

@@ -19,16 +19,16 @@ export class ChangeIngredientComponent implements OnInit {
 
   removedIngredients: Ingredient[] = [];
   addedIngredients: Ingredient[] = [];
-  _ingredients: Ingredient[];
+  ingredients: Ingredient[];
 
   constructor(private store: Store) { }
 
   ngOnInit () {
-    this._ingredients = this.pizza.ingredients;
+    this.ingredients = this.pizza.ingredients;
 
     if (this.removedIngredients) {
-      const newing = this._ingredients.concat(this.removedIngredients);
-      this._ingredients = newing;
+      const newing = this.ingredients.concat(this.removedIngredients);
+      this.ingredients = newing;
       this.removedIngredients = [];
     }
 
@@ -45,20 +45,20 @@ export class ChangeIngredientComponent implements OnInit {
     if (!this.addIngredientForm.value['ingredient']) {
       return;
     }
-    this._ingredients.push({ ingredient: this.addIngredientForm.value['ingredient'] });
+    this.ingredients.push({ ingredient: this.addIngredientForm.value['ingredient'] });
     this.addedIngredients.push({ ingredient: this.addIngredientForm.value['ingredient'] });
 
     this.addIngredientForm.reset();
   }
 
   deleteIngredient = (index) => {
-    const removedIngredient = this._ingredients.find((ingredient, i) => i === index);
+    const removedIngredient = this.ingredients.find((ingredient, i) => i === index);
     this.removedIngredients.push(removedIngredient);
-    this._ingredients.splice(index, 1);
+    this.ingredients.splice(index, 1);
   }
 
   addBackIngredient = (ingredient, index) => {
-    this._ingredients.push(ingredient);
+    this.ingredients.push(ingredient);
     this.removedIngredients.splice(index, 1);
   }
 
@@ -67,7 +67,7 @@ export class ChangeIngredientComponent implements OnInit {
 
     const orderedPizza = {
       ...this.orderedPizza, removedIngredients: [...this.removedIngredients],
-      ingredients: this._ingredients, addedIngredients: this.addedIngredients, price: price
+      ingredients: this.ingredients, addedIngredients: this.addedIngredients, price: price
     };
 
     this.store.dispatch(new AddPizzaInOrder(orderedPizza));

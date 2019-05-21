@@ -1,4 +1,4 @@
-import { State, Action, StateContext, Selector, NgxsOnInit } from '@ngxs/store';
+import { State, Action, StateContext, Selector, NgxsOnInit, createSelector } from '@ngxs/store';
 import { Pizza } from '../../models/pizza.model';
 import { PIZZAS } from '../../components/pizzas/mock-pizzas';
 
@@ -29,6 +29,12 @@ export class PizzasState implements NgxsOnInit {
   @Selector()
   static getPizzas (state: PizzasStateModel) {
     return state.pizzas;
+  }
+
+  static getPizza (id: string | number) {
+    return createSelector([PizzasState], (state: PizzasStateModel) => {
+      return state.pizzas.find(pizza => pizza.id === id);
+    });
   }
 
   @Selector()

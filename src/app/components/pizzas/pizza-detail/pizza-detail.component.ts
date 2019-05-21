@@ -17,8 +17,8 @@ import { Pizza } from '../../../models/pizza.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PizzaDetailComponent implements OnInit {
-  @Select(PizzasState.getPizzas) pizzas$: Observable<Pizza[]>;
-  pizza: Observable<Pizza>;
+  id: number;
+  @Select(PizzasState.getPizza(7)) pizza: Observable<Pizza>;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,14 +26,19 @@ export class PizzaDetailComponent implements OnInit {
   ) { }
 
   ngOnInit (): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    if (!id) {
+
+    this.id = +this.route.snapshot.paramMap.get('id');
+    console.log(this.id);
+
+    if (!this.id) {
       this.router.navigate(['not-found']);
       return;
     }
 
-    this.pizza = this.pizzas$.pipe(
-      map((pizzas: Pizza[]) => pizzas.find(pizza => pizza.id === +id))
-    );
+
+
+    // this.pizza = this.pizzas$.pipe(
+    //   map((pizzas: Pizza[]) => pizzas.find(pizza => pizza.id === +id))
+    // );
   }
 }

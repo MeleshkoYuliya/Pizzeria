@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Pizza } from '../../../models/pizza.model';
 
 @Component({
@@ -7,7 +7,7 @@ import { Pizza } from '../../../models/pizza.model';
   styleUrls: ['./pizza-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PizzaItemComponent implements OnInit {
+export class PizzaItemComponent {
   @Input() pizza: Pizza;
 
   isOpen = false;
@@ -15,8 +15,6 @@ export class PizzaItemComponent implements OnInit {
 
   selectedSize: number;
   orderedPizza: Pizza = null;
-
-  constructor() { }
 
   open = () => {
     this.isOpen = true;
@@ -36,5 +34,4 @@ export class PizzaItemComponent implements OnInit {
     return this.pizza.ingredients.map(item => item.ingredient);
   }
 
-  ngOnInit () { }
 }
