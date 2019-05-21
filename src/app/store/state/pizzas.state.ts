@@ -1,4 +1,4 @@
-import { State, Action, StateContext, Selector } from '@ngxs/store';
+import { State, Action, StateContext, Selector, NgxsOnInit } from '@ngxs/store';
 import { Pizza } from '../../models/pizza.model';
 import { PIZZAS } from '../../components/pizzas/mock-pizzas';
 
@@ -24,11 +24,21 @@ export class PizzasStateModel {
     orderedPizzas: []
   }
 })
-export class PizzasState {
+export class PizzasState implements NgxsOnInit {
 
   @Selector()
   static getPizzas (state: PizzasStateModel) {
     return state.pizzas;
+  }
+
+  @Selector()
+  static getOrderedPizzas (state: PizzasStateModel) {
+    return state.orderedPizzas;
+  }
+
+  ngxsOnInit (ctx: StateContext<PizzasStateModel>) {
+    console.log('State initialized, now getting animals');
+    ctx.dispatch(new GetPizzas());
   }
 
   @Action(GetPizzas)

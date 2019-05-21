@@ -4,6 +4,8 @@ import { ClearOrderCard, IncreasePizzaAmount, DecreasePizzaAmount, DeletePizzaFr
 import { Pizza } from '../../../models/pizza.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Select } from '@ngxs/store';
+import { PizzasState } from '../../../store/state/pizzas.state';
 
 @Component({
   selector: 'app-order-card',
@@ -11,7 +13,8 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./order-card.component.scss'],
 })
 export class OrderCardComponent implements OnInit {
-  orderedPizzas: Observable<Pizza[]> = this.store.select(state => state.pizzas.orderedPizzas);
+  @Select(PizzasState.getOrderedPizzas) orderedPizzas: Observable<Pizza[]>;
+
   _quantity: Observable<number> | number;
   _totalPrice: Observable<number> | number;
 
