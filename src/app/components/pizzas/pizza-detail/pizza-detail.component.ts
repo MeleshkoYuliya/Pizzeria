@@ -2,10 +2,12 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
+import { Select } from '@ngxs/store';
+import { PizzasState } from '../../../store/state/pizzas.state';
 
-import { Pizza } from '../../models/pizza.model';
+import { Pizza } from '../../../models/pizza.model';
 
-import { GetPizzas } from '../../store/actions/pizzas.action';
+import { GetPizzas } from '../../../store/actions/pizzas.action';
 import { Observable } from 'rxjs';
 
 
@@ -16,7 +18,7 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PizzaDetailComponent implements OnInit {
-  priceClass = 'price-card';
+  @Select(PizzasState.getPizzas) pizzas$: Observable<Pizza[]>;
   pizza: Observable<Pizza>;
 
   constructor(
@@ -33,7 +35,7 @@ export class PizzaDetailComponent implements OnInit {
     }
 
     this.store.dispatch(new GetPizzas());
-    this.pizza = this.store.select(state => state.pizzas.pizzas).pipe(
+    this.pizza = this.pizzas$.pipe(
       map((pizzas: Pizza[]) => pizzas.find(pizza => pizza.id === +id))
     );
   }

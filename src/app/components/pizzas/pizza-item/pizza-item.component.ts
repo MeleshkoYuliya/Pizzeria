@@ -1,7 +1,5 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
-import { Pizza } from '../../models/pizza.model';
-import { Store } from '@ngxs/store';
-
+import { Pizza } from '../../../models/pizza.model';
 
 @Component({
   selector: 'app-pizza-item',
@@ -16,11 +14,9 @@ export class PizzaItemComponent implements OnInit {
   priceClass = 'price';
 
   selectedSize: number;
-  sizes: Array<number> = [];
-  ingredients: Array<string> = [];
   orderedPizza: Pizza = null;
 
-  constructor(private store: Store) { }
+  constructor() { }
 
   open = () => {
     this.isOpen = true;
@@ -32,13 +28,13 @@ export class PizzaItemComponent implements OnInit {
   close = () => {
     this.isOpen = false;
   }
-
-  ngOnInit () {
-    this.pizza.info.map(item => {
-      this.sizes.push(item.size);
-    });
-    this.pizza.ingredients.map(item => {
-      this.ingredients.push(item.ingredient);
-    });
+  get sizes () {
+    return this.pizza.info.map(item => item.size);
   }
+
+  get ingredients () {
+    return this.pizza.ingredients.map(item => item.ingredient);
+  }
+
+  ngOnInit () { }
 }

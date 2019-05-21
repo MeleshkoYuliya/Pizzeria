@@ -19,7 +19,6 @@
     (changeSelectedPizza)="handleMyEvent($event)">
   </app-pizza-dashboard>
 
-  <app-change-ingredient *appModal="!isOpen" class="modal" [pizza]="pizza" [close]="close"
-    [orderedPizza]="orderedPizza">
+  <app-change-ingredient *ngIf="isOpen" class="modal" [pizza]="pizza" [close]="close" [orderedPizza]="orderedPizza">
   </app-change-ingredient>
 </div>

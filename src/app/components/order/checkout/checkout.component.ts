@@ -3,8 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 
-import { Ingredient, Pizza } from '../../models/pizza.model';
-import { IncreasePizzaAmount, DecreasePizzaAmount, DeletePizzaFromOrder } from '../../store/actions/pizzas.action';
+import { Ingredient, Pizza } from '../../../models/pizza.model';
+import { IncreasePizzaAmount, DecreasePizzaAmount, DeletePizzaFromOrder } from '../../../store/actions/pizzas.action';
 import { ISubscription } from 'rxjs/Subscription';
 
 @Component({

@@ -1,6 +1,6 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { Pizza } from '../../models/pizza.model';
-import { PIZZAS } from '../../pizzas/mock-pizzas';
+import { PIZZAS } from '../../components/pizzas/mock-pizzas';
 
 import {
   AddPizzaInOrder,
