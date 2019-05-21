@@ -23,14 +23,14 @@ export class OrderCardComponent implements OnInit {
   ngOnInit () { }
 
   get totalPrice () {
-    return this._totalPrice = this.store.select(state => state.pizzas.orderedPizzas)
+    return this._totalPrice = this.orderedPizzas
       .pipe(map(pizzas => pizzas.reduce((previousValue, currentValue, index) => {
         return +(previousValue + currentValue.price).toFixed(2);
       }, 0)));
   }
 
   get quantity () {
-    return this._quantity = this.store.select(state => state.pizzas.orderedPizzas)
+    return this._quantity = this.orderedPizzas
       .pipe(map(pizzas => pizzas.reduce((previousValue, currentValue, index) => {
         return +(previousValue + currentValue.amount);
       }, 0)));
