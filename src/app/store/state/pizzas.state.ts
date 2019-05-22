@@ -44,7 +44,6 @@ export class PizzasState implements NgxsOnInit {
   }
 
   ngxsOnInit (ctx: StateContext<PizzasStateModel>) {
-    console.log('State initialized, now getting animals');
     ctx.dispatch(new GetPizzas());
   }
 
