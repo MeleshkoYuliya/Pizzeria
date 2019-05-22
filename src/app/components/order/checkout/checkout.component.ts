@@ -43,12 +43,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   get totalPrice () {
-    return this.orderedPizzas$.subscribe(pizzas => {
-      pizzas.reduce((previousValue, currentValue, index) => {
-        return +(previousValue + currentValue.price).toFixed(2);
-      }, 0);
-    }
-    );
+    return this.orderedPizzas.reduce((previousValue, currentValue, index) => {
+      return +(previousValue + currentValue.price).toFixed(2);
+    }, 0);
+
   }
 
   onSubmit () {
