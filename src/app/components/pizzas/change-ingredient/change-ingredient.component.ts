@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { Pizza, Ingredient } from '../../../models/pizza.model';
 import { AddPizzaInOrder } from '../../../store/actions/pizzas.action';
 import { Store } from '@ngxs/store';
@@ -16,6 +16,7 @@ export class ChangeIngredientComponent implements OnInit {
   @Input() pizza: Pizza;
   @Input() close: Function;
   @Input() orderedPizza: Pizza;
+  @Output() changeIsOpen = new EventEmitter<boolean>();
 
   removedIngredients: Ingredient[] = [];
   addedIngredients: Ingredient[] = [];
@@ -37,8 +38,8 @@ export class ChangeIngredientComponent implements OnInit {
     });
   }
 
-  closeModal = () => {
-    this.close();
+  closeModal = (isopen) => {
+    this.changeIsOpen.emit(isopen);
   }
 
   addIngredient = () => {
@@ -72,6 +73,6 @@ export class ChangeIngredientComponent implements OnInit {
 
     this.store.dispatch(new AddPizzaInOrder(orderedPizza));
 
-    this.closeModal();
+    this.closeModal(false);
   }
 }

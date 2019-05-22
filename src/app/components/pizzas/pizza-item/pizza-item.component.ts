@@ -16,16 +16,14 @@ export class PizzaItemComponent {
   selectedSize: number;
   orderedPizza: Pizza = null;
 
-  open = () => {
-    this.isOpen = true;
+  changeIsOpen (isopen) {
+    this.isOpen = isopen;
   }
 
   handleMyEvent = (pizza) => {
     this.orderedPizza = pizza;
   }
-  close = () => {
-    this.isOpen = false;
-  }
+
   get sizes () {
     return this.pizza.info.map(item => item.size);
   }
