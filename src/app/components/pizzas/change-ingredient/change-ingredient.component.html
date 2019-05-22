@@ -22,7 +22,7 @@
     <input class="dashboard__add-inp" formControlName="ingredient" />
   </form>
   <div class="dashboard__buttons button">
-    <button class="button__cancel" (click)="closeModal()">Cancel</button>
+    <button class="button__cancel" (click)="closeModal(false)">Cancel</button>
     <button class="button__add" (click)="addPizzaToOrder()" [disabled]="!orderedPizza">Add to cart</button>
   </div>
 </div>

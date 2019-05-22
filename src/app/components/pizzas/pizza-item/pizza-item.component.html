@@ -1,6 +1,6 @@
 <div class="pizzas__item pizza">
   <div class="burger">
-    <button (click)="open()" class="burger__btn">
+    <button (click)="changeIsOpen(true)" class="burger__btn">
       <img src="../assets/images/burger.svg" alt="cheese" class="burger__img" />
     </button>
   </div>
@@ -19,6 +19,7 @@
     (changeSelectedPizza)="handleMyEvent($event)">
   </app-pizza-dashboard>
 
-  <app-change-ingredient *ngIf="isOpen" class="modal" [pizza]="pizza" [close]="close" [orderedPizza]="orderedPizza">
+  <app-change-ingredient *ngIf="isOpen" class="modal" [pizza]="pizza" (changeIsOpen)="changeIsOpen($event)"
+    [orderedPizza]="orderedPizza">
   </app-change-ingredient>
 </div>
