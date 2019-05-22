@@ -15,8 +15,8 @@
         <div>Carbohydrates - {{(pizza | async)?.nutricion.carbohydrates}}</div>
         <div>Energy - {{(pizza | async)?.nutricion.energy}}</div>
       </div>
-      <app-pizza-dashboard [name]="(pizza | async)?.name" [info]="(pizza | async)?.info" [priceClass]='"price-card"'
-        [pizza]="pizza | async">
+      <app-pizza-dashboard [name]="(pizza | async)?.name || ''" [info]="(pizza | async)?.info || []"
+        [priceClass]='"price-card"' [pizza]="pizza | async">
       </app-pizza-dashboard>
     </div>
   </div>

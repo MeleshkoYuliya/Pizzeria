@@ -16,7 +16,7 @@ export class PizzasStateModel {
   pizzas: Pizza[];
   orderedPizzas: Pizza[];
 }
-
+// @dynamic
 @State<PizzasStateModel>({
   name: 'pizzas',
   defaults: {
@@ -31,10 +31,16 @@ export class PizzasState implements NgxsOnInit {
     return state.pizzas;
   }
 
-  static getPizza (id: string | number) {
-    return createSelector([PizzasState], (state: PizzasStateModel) => {
-      return state.pizzas.find(pizza => pizza.id === id);
-    });
+  // static getPizza (id: string | number) {
+  //   return createSelector([PizzasState], (state: PizzasStateModel) => {
+  //     return state.pizzas.find(pizza => pizza.id === id);
+  //   });
+  // }
+  @Selector()
+  static getPizza (state: PizzasStateModel) {
+    return (id: number) => {
+      return state.pizzas[id];
+    };
   }
 
   @Selector()

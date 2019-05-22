@@ -46,7 +46,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     return this.orderedPizzas.reduce((previousValue, currentValue, index) => {
       return +(previousValue + currentValue.price).toFixed(2);
     }, 0);
-
   }
 
   onSubmit () {
