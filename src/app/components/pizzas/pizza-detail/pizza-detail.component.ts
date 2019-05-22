@@ -32,7 +32,7 @@ export class PizzaDetailComponent implements OnInit, OnDestroy {
     this.subscription = this.route.params.subscribe(params => {
       this.id = params['id'] ? +params['id'] : 0;
     });
-    if (!this.pizza) {
+    if (!this.id) {
       this.router.navigate(['/not-found']);
     }
   }
