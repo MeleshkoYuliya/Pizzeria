@@ -16,7 +16,7 @@ export class PizzasStateModel {
   pizzas: Pizza[];
   orderedPizzas: Pizza[];
 }
-// @dynamic
+
 @State<PizzasStateModel>({
   name: 'pizzas',
   defaults: {
