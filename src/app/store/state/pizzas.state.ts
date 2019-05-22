@@ -32,15 +32,15 @@ export class PizzasState implements NgxsOnInit {
   }
 
   @Selector()
+  static getOrderedPizzas (state: PizzasStateModel) {
+    return state.orderedPizzas;
+  }
+
+  @Selector()
   static getPizza (state: PizzasStateModel) {
     return (id: number) => {
       return state.pizzas[id];
     };
-  }
-
-  @Selector()
-  static getOrderedPizzas (state: PizzasStateModel) {
-    return state.orderedPizzas;
   }
 
   ngxsOnInit (ctx: StateContext<PizzasStateModel>) {
