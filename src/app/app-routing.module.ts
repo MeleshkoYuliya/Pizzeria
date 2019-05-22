@@ -8,7 +8,6 @@ import { PizzaDetailComponent } from './components/pizzas/pizza-detail/pizza-det
 const routes: Routes = [
   { path: 'pizzas', component: PizzasComponent },
   { path: 'pizzas/:id', component: PizzaDetailComponent },
-  { path: 'pizzas/**', redirectTo: '/not-found' },
   { path: 'checkout', component: CheckoutComponent },
   { path: '', redirectTo: '/pizzas', pathMatch: 'full' },
   { path: 'not-found', component: PageNotFoundComponent },
