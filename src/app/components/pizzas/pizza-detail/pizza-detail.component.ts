@@ -16,7 +16,9 @@ import { ISubscription } from 'rxjs/Subscription';
 })
 export class PizzaDetailComponent implements OnInit, OnDestroy {
   id: number;
+
   private subscription: ISubscription;
+
   @Select(PizzasState.getPizza) getSelectedPizza: Observable<(id: number) => Pizza>;
 
   get pizza () {
