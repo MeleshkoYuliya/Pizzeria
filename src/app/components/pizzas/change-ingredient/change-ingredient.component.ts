@@ -45,11 +45,11 @@ export class ChangeIngredientComponent implements OnInit {
   }
 
   addIngredient = () => {
-    if (!this.addIngredientForm.value['ingredient']) {
+    if (!this.addIngredientForm.value.ingredient) {
       return;
     }
-    this.ingredients.push({ ingredient: this.addIngredientForm.value['ingredient'] });
-    this.addedIngredients.push({ ingredient: this.addIngredientForm.value['ingredient'] });
+    this.ingredients.push({ ingredient: this.addIngredientForm.value.ingredient });
+    this.addedIngredients.push({ ingredient: this.addIngredientForm.value.ingredient });
 
     this.addIngredientForm.reset();
   }
