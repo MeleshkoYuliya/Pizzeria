@@ -30,7 +30,6 @@ export class PizzaDashboardComponent implements OnInit {
 
   private price: number;
   ingredients: Array<string> = [];
-  selectedPizza: Pizza;
   size = Size;
 
   constructor(
@@ -70,22 +69,24 @@ export class PizzaDashboardComponent implements OnInit {
       }
     });
 
-    this.selectedPizza = {
+    this.changeSelectedPizza.next(this.selectedPizza);
+
+    return this.price;
+  }
+
+  get selectedPizza () {
+    const pizza = {
       ...this.pizza, qualities: {
         selectedDough: this.dashboardForm.value['dough'],
         selectedSize: this.dashboardForm.value['size']
       }
       , price: this.price, amount: 1
     };
-
-    this.changeSelectedPizza.next(this.selectedPizza);
-
-    return this.price;
+    return pizza;
   }
 
   addPizzaToOrder = () => {
     this.store.dispatch(new AddPizzaInOrder(this.selectedPizza));
-    this.selectedPizza = null;
     this.dashboardForm.reset();
   }
 }
