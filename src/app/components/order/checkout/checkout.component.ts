@@ -97,9 +97,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   validatorIsNumber (control: FormControl): { [s: string]: boolean } {
     const pattern: RegExp = /^\d+$/;
+
     if (!pattern.test(control.value)) {
       return { 'custom': true };
     }
+
     return null;
   }
 
