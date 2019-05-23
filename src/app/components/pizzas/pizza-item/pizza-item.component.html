@@ -15,7 +15,7 @@
       {{ ingredient }} |
     </span>
   </div>
-  <app-pizza-dashboard [name]="pizza.name" [info]="pizza.info" [priceClass]="priceClass" [pizza]="pizza"
+  <app-pizza-dashboard [name]="pizza.name" [info]="pizza.info" [priceClass]="'price'" [pizza]="pizza"
     (changeSelectedPizza)="handleMyEvent($event)">
   </app-pizza-dashboard>
 

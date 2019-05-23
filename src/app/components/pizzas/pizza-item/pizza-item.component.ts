@@ -11,8 +11,6 @@ export class PizzaItemComponent {
   @Input() pizza: Pizza;
 
   isOpen = false;
-  priceClass = 'price';
-
   selectedSize: number;
   orderedPizza: Pizza = null;
 
