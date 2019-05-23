@@ -1,15 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Pizza } from '../../../models/pizza.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
-import { AddPizzaInOrder } from '../../../store/actions/pizzas.action';
 
-enum Size {
-  XLarge = 40,
-  Large = 35,
-  Medium = 30,
-  Small = 23,
-}
+import { AddPizzaInOrder } from '../../../store/actions/pizzas.action';
+import { PizzaSizes } from '../../../enums/pizza-sizes.enum';
+import { Pizza } from '../../../models/pizza.model';
 
 @Component({
   selector: 'app-pizza-dashboard',
@@ -30,7 +25,7 @@ export class PizzaDashboardComponent implements OnInit {
   private price: number;
 
   ingredients: Array<string> = [];
-  size = Size;
+  size = PizzaSizes;
 
   constructor(
     private store: Store
