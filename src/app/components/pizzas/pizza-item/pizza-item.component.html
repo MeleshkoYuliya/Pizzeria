@@ -16,7 +16,7 @@
     </span>
   </div>
   <app-pizza-dashboard [name]="pizza.name" [info]="pizza.info" [priceClass]="'price'" [pizza]="pizza"
-    (changeSelectedPizza)="handleMyEvent($event)">
+    (changeSelectedPizza)="handleOrderedPizza($event)">
   </app-pizza-dashboard>
 
   <app-change-ingredient *ngIf="isOpen" class="modal" [pizza]="pizza" (changeIsOpen)="changeIsOpen($event)"

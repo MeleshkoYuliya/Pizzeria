@@ -18,7 +18,7 @@ export class PizzaItemComponent {
     this.isOpen = isopen;
   }
 
-  handleMyEvent = (pizza) => {
+  handleOrderedPizza = (pizza) => {
     this.orderedPizza = pizza;
   }
 
