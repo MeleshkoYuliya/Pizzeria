@@ -1,8 +1,10 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
-import { Pizza, Ingredient } from '../../../models/pizza.model';
-import { AddPizzaInOrder } from '../../../store/actions/pizzas.action';
 import { Store } from '@ngxs/store';
 import { FormGroup, FormControl } from '@angular/forms';
+
+import { Pizza, Ingredient } from '../../../models/pizza.model';
+import { AddPizzaInOrder } from '../../../store/actions/pizzas.action';
+
 
 @Component({
   selector: 'app-change-ingredient',

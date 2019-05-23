@@ -1,4 +1,5 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+
 import { Pizza } from '../../../models/pizza.model';
 
 @Component({

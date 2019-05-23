@@ -3,11 +3,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { Select } from '@ngxs/store';
-import { PizzasState } from '../../../store/state/pizzas.state';
+import { ISubscription } from 'rxjs/Subscription';
 
+import { PizzasState } from '../../../store/state/pizzas.state';
 import { Pizza } from '../../../models/pizza.model';
 import { IncreasePizzaAmount, DecreasePizzaAmount, DeletePizzaFromOrder } from '../../../store/actions/pizzas.action';
-import { ISubscription } from 'rxjs/Subscription';
+
 
 @Component({
   selector: 'app-checkout',
@@ -16,9 +17,11 @@ import { ISubscription } from 'rxjs/Subscription';
 })
 export class CheckoutComponent implements OnInit, OnDestroy {
   @Select(PizzasState.getOrderedPizzas) orderedPizzas$: Observable<Pizza[]>;
+
   orderedPizzas: Pizza[];
   payment = ['Cash', 'Card'];
   checkoutForm: FormGroup;
+
   private subscription: ISubscription;
 
   constructor(private store: Store) { }
@@ -64,17 +67,18 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       added ingredients: ${addedIngredients || 'none'}
       `;
     });
+
     console.log(`Checkout:
     Contact information:
-      Name: ${this.checkoutForm.value['name']},
-      E-mail: ${this.checkoutForm.value['email']},
-      Phone Number: ${this.checkoutForm.value['phone']}
+      Name: ${this.checkoutForm.value.name},
+      E-mail: ${this.checkoutForm.value.email},
+      Phone Number: ${this.checkoutForm.value.phone}
     Delivery:
-      Address: ${this.checkoutForm.value['address']},
-      Floor: ${this.checkoutForm.value['floor']},
-      Flat/office: ${this.checkoutForm.value['flat']}
-    Payment: ${this.checkoutForm.value['payment']},
-    Comments: ${this.checkoutForm.value['comments']},
+      Address: ${this.checkoutForm.value.address},
+      Floor: ${this.checkoutForm.value.floor},
+      Flat/office: ${this.checkoutForm.value.flat}
+    Payment: ${this.checkoutForm.value.payment},
+    Comments: ${this.checkoutForm.value.comments},
     Agree to receive:
       Emails: ${receiveEmail},
       SMS: ${receiveSms},
@@ -110,6 +114,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   deletePizzaFromOrder (pizza) {
     this.store.dispatch(new DeletePizzaFromOrder(pizza));
   }
+
   ngOnDestroy () {
     this.subscription.unsubscribe();
   }

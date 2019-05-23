@@ -27,8 +27,8 @@ export class PizzaDashboardComponent implements OnInit {
   @Input() isPizzaAddedToOrder: boolean;
   @Output() changeSelectedPizza = new EventEmitter<any>();
 
-
   private price: number;
+
   ingredients: Array<string> = [];
   size = Size;
 

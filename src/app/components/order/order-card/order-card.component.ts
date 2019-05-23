@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { ClearOrderCard, IncreasePizzaAmount, DecreasePizzaAmount, DeletePizzaFromOrder } from '../../../store/actions/pizzas.action';
-import { Pizza } from '../../../models/pizza.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Select } from '@ngxs/store';
+
+import { ClearOrderCard, IncreasePizzaAmount, DecreasePizzaAmount, DeletePizzaFromOrder } from '../../../store/actions/pizzas.action';
+import { Pizza } from '../../../models/pizza.model';
 import { PizzasState } from '../../../store/state/pizzas.state';
 
 @Component({
@@ -14,6 +15,7 @@ import { PizzasState } from '../../../store/state/pizzas.state';
 })
 export class OrderCardComponent {
   @Select(PizzasState.getOrderedPizzas) orderedPizzas: Observable<Pizza[]>;
+
   constructor(private store: Store) { }
 
   get totalPrice () {
