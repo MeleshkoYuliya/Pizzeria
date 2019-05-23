@@ -50,21 +50,21 @@ export class PizzaDashboardComponent implements OnInit {
 
   get totalPrice (): number {
     this.info.map((item) => {
-      if (this.dashboardForm.value['size'] === item.size) {
+      if (this.dashboardForm.value.size === item.size) {
         this.price = item.price;
       }
-      if (this.dashboardForm.value['size'] === item.size && this.dashboardForm.value['dough'] === 'thin') {
+      if (this.dashboardForm.value.size === item.size && this.dashboardForm.value.dough === 'thin') {
         this.price = item.price;
       }
       if (
-        this.dashboardForm.value['size'] === item.size &&
-        this.dashboardForm.value['dough'] === 'traditional'
+        this.dashboardForm.value.size === item.size &&
+        this.dashboardForm.value.dough === 'traditional'
       ) {
         this.price = item.price + 2;
       }
-      if (this.dashboardForm.value['size'] >= 30 &&
-        this.dashboardForm.value['size'] === item.size &&
-        this.dashboardForm.value['cheese']) {
+      if (this.dashboardForm.value.size >= 30 &&
+        this.dashboardForm.value.size === item.size &&
+        this.dashboardForm.value.cheese) {
         this.price = +(item.price * 0.15 + this.price).toFixed(2);
       }
     });
@@ -77,8 +77,8 @@ export class PizzaDashboardComponent implements OnInit {
   get selectedPizza () {
     const pizza = {
       ...this.pizza, qualities: {
-        selectedDough: this.dashboardForm.value['dough'],
-        selectedSize: this.dashboardForm.value['size']
+        selectedDough: this.dashboardForm.value.dough,
+        selectedSize: this.dashboardForm.value.size
       }
       , price: this.price, amount: 1
     };
