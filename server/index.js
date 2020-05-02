@@ -9,6 +9,8 @@ const mongoose = require('./utils/mongoose');
 const logger = require('./utils/logger');
 const config = require('./config');
 
+const userController = require('./controllers/user.controller');
+
 const app = express();
 const server = require('http').createServer(app);
 
@@ -18,7 +20,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Routes
-app.use('/api', (res, req)=> console.log('Works!'));
+app.use('/api', userController);
 
 app.use((req, res, next) => {
   next(new NotFoundError());
