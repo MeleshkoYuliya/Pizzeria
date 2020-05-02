@@ -1,3 +1,11 @@
 <nav class="header">
-  <a routerLink="/pizzas" class="header-link">Menu</a>
+  <div class="header-link" *ngIf=isAuthenticated>Log out</div>
+  <ul id="nav-mobile" class="right hide-on-med-and-down" *ngIf=!isAuthenticated>
+    <li routerLinkActive="active">
+      <a routerLink="/login" class="header-link">Log in</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/register" class="header-link">Register</a>
+    </li>
+  </ul>
 </nav>
