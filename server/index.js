@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
-const path = require('path');
 
 const { NotFoundError } = require('./utils/errors');
 const mongoose = require('./utils/mongoose');
@@ -11,6 +10,7 @@ const config = require('./config');
 
 const userController = require('./controllers/user.controller');
 const pizzaController = require('./controllers/pizza.controller');
+const orderController = require('./controllers/order.controller');
 
 const app = express();
 const server = require('http').createServer(app);
@@ -23,6 +23,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Routes
 app.use('/api', userController);
 app.use('/api', pizzaController);
+app.use('/api', orderController);
 
 app.use((req, res, next) => {
   next(new NotFoundError());
