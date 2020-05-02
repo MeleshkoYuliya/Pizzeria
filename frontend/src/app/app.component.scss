@@ -24,3 +24,34 @@
     background-color: rgba(0,0,0,0.1);
   }
 } 
+
+.store_link{
+  width: 35px
+}
+
+.img_link{
+  display: flex;
+}
+
+.imgLink_container{
+  display: flex;
+  cursor: pointer;
+  padding: 0px 20px;
+  height: 100%;
+  &:hover{
+    background-color: rgba(0,0,0,0.1);
+  }
+}
+.logo_link{
+  display: flex;
+  position: absolute;
+  left: 0px;
+  height: 65px;
+  padding: 0 20px;
+  &:hover{
+    background-color: rgba(0,0,0,0.1);
+  }
+  &__img{
+    width: 50px;
+  }
+}
