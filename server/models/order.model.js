@@ -46,6 +46,10 @@ const orderSchema = new Schema({
       }
     }
   ],
+  totalPrice:{
+    type: Number,
+    required:true,
+  },
   user: {
     ref: 'User',
     type: Schema.Types.ObjectId

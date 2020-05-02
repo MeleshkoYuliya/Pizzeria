@@ -56,15 +56,33 @@ export class CheckoutComponent implements OnInit {
       const excludedIngredient = item.removedIngredients ? item.removedIngredients.map(ingredient => ingredient) : ''
       const addedIngredients = item.addedIngredients ? item.addedIngredients.map(ingredient => ingredient) : ''
 
-      return `
-      Pizza name: ${item.name},
-      dough: ${item.qualities.selectedDough},
-      size: ${item.qualities.selectedSize},
-      amount: ${item.amount},
-      excluded ingredients: ${excludedIngredient || 'none'},
-      added ingredients: ${addedIngredients || 'none'}
-      `
-    })
+      return {
+        name: item.name,
+        quantity: item.amount,
+        cost: item.price,
+      }
+      // Pizza name: ${item.name},
+      // dough: ${item.qualities.selectedDough},
+      // size: ${item.qualities.selectedSize},
+      // amount: ${item.amount},
+      // excluded ingredients: ${excludedIngredient || 'none'},
+      // added ingredients: ${addedIngredients || 'none'}
+      
+    });
+    const order = {
+      name: this.checkoutForm.value['name'],
+phone: this.checkoutForm.value['phone'],
+email: this.checkoutForm.value['email'],
+address: this.checkoutForm.value['address'],
+flat: this.checkoutForm.value['flat'],
+floor: this.checkoutForm.value['floor'],
+payment: this.checkoutForm.value['payment'],
+pizzas: [
+  pizza
+],
+totalPrice: this.totalPrice,
+    }
+    this.service.saveOrder(order);
     console.log(`Checkout: 
     Contact information:
       Name: ${this.checkoutForm.value['name']},

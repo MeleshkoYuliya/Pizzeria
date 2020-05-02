@@ -1,4 +1,6 @@
 import { Injectable } from "@angular/core";
+import {HttpClient} from '@angular/common/http';
+import { Observable } from "rxjs";
 import { Store } from '@ngxs/store';
 
 import { ChangeOrderedPizzaAmount, DeletePizzaFromOrder } from '../pizzas/pizzas.action'
@@ -7,7 +9,7 @@ import { ChangeOrderedPizzaAmount, DeletePizzaFromOrder } from '../pizzas/pizzas
   providedIn: "root"
 })
 export class OrderService {
-  constructor(private store: Store) { }
+  constructor(private store: Store, private http: HttpClient) { }
 
   increasePizzaAmount (pizza) {
     let amount = pizza.amount + 1
@@ -27,5 +29,9 @@ export class OrderService {
 
   deletePizzaFromOrder (pizza) {
     this.store.dispatch(new DeletePizzaFromOrder(pizza));
+  }
+
+  saveOrder(order: Object): Observable<any>{   
+    return this.http.post<any>('/order', order);
   }
 }
