@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { OrderService } from '../order.service'
 import { Store } from '@ngxs/store';
 
-import { Ingredient, Pizza } from "../../pizzas/pizza.model";
+import { Pizza } from "../../pizzas/pizza.model";
 
 
 @Component({
@@ -17,7 +17,7 @@ export class CheckoutComponent implements OnInit {
   checkoutForm: FormGroup;
   orderedPizzas: Pizza[] = [];
   totalPrice: number = 0
-  excludedIngredients: Ingredient[] = []
+  excludedIngredients: string[] = []
 
   constructor(private store: Store, private service: OrderService, private router: Router) { }
 
@@ -53,8 +53,8 @@ export class CheckoutComponent implements OnInit {
     const receiveEmail = this.checkoutForm.value['send-email'] ? 'yes' : 'no'
     const receiveSms = this.checkoutForm.value['send-sms'] ? 'yes' : 'no'
     const pizza = this.orderedPizzas.map(item => {
-      const excludedIngredient = item.removedIngredients ? item.removedIngredients.map(ingredient => ingredient.ingredient) : ''
-      const addedIngredients = item.addedIngredients ? item.addedIngredients.map(ingredient => ingredient.ingredient) : ''
+      const excludedIngredient = item.removedIngredients ? item.removedIngredients.map(ingredient => ingredient) : ''
+      const addedIngredients = item.addedIngredients ? item.addedIngredients.map(ingredient => ingredient) : ''
 
       return `
       Pizza name: ${item.name},

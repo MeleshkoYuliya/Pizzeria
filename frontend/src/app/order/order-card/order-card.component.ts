@@ -3,7 +3,7 @@ import { Store } from '@ngxs/store';
 import { ClearOrderCard } from '../../pizzas/pizzas.action'
 
 import { OrderService } from '../order.service'
-import { Ingredient, Pizza } from 'src/app/pizzas/pizza.model';
+import { Pizza } from 'src/app/pizzas/pizza.model';
 
 @Component({
   selector: 'app-order-card',
@@ -14,7 +14,7 @@ export class OrderCardComponent implements OnInit {
   orderedPizzas: Pizza[];
   quantity: number = 0
   totalPrice: number = 0
-  excludedIngredients: Ingredient[] = []
+  excludedIngredients: string[] = []
 
   constructor(private store: Store, private service: OrderService, ) { }
 

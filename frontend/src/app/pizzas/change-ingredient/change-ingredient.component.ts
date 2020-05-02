@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from "@angular/core";
-import { Pizza, Ingredient } from '../pizza.model';
+import { Pizza } from '../pizza.model';
 import { AddPizzaInOrder } from '../pizzas.action'
 import { Store } from '@ngxs/store';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -17,9 +17,9 @@ export class ChangeIngredientComponent implements OnInit {
   @Input() close: Function;
   @Input() orderedPizza: Pizza;
 
-  removedIngredients: Ingredient[] = []
-  addedIngredients: Ingredient[] = []
-  _ingredients: Ingredient[];
+  removedIngredients: string[] = []
+  addedIngredients: string[] = []
+  _ingredients: string[];
 
   constructor(private store: Store) { }
 
@@ -45,8 +45,8 @@ export class ChangeIngredientComponent implements OnInit {
     if (!this.addIngredientForm.value['ingredient']) {
       return
     }
-    this._ingredients.push({ ingredient: this.addIngredientForm.value['ingredient'] })
-    this.addedIngredients.push({ ingredient: this.addIngredientForm.value['ingredient'] })
+    this._ingredients.push( this.addIngredientForm.value['ingredient'])
+    this.addedIngredients.push(this.addIngredientForm.value['ingredient'])
 
     this.addIngredientForm.reset()
   }
