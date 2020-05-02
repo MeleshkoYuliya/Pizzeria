@@ -38,7 +38,8 @@ export class AuthService {
     return this.token;
   }
 
-  isAuthenticated(): boolean {    
+  isAuthenticated(): boolean {   
+    this.token = localStorage.getItem('auth-token'); 
     return !!this.token;
   }
 

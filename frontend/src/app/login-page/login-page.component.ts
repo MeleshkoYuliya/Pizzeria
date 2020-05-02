@@ -35,6 +35,10 @@ export class LoginPageComponent implements OnInit, OnDestroy {
         MaterialService.toast('Пожалуйста войдите в систему заного')
       }
     })
+
+    if(this.auth.isAuthenticated()){
+      this.router.navigate(['/pizzas'])
+    };
   }
 
   ngOnDestroy() {

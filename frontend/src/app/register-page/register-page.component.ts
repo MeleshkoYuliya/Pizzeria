@@ -24,6 +24,9 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required, Validators.minLength(6)])
     })
+    if(this.auth.isAuthenticated()){
+      this.router.navigate(['/pizzas'])
+    };
   }
 
   ngOnDestroy() {
