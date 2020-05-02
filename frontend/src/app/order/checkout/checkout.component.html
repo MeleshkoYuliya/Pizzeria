@@ -1,8 +1,8 @@
 <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
   <div class="checkout-card">
-    <h2>Cart</h2>
+    <div class="checkout-card__title">Cart</div>
     <div *ngFor="let pizza of orderedPizzas" class="pizzas">
-      <img [src]="pizza.image" class="pizzas__image" />
+      <img [src]="pizza.imagePath" class="pizzas__image" />
       <div class="pizzas__info info">
         <div class="info__name">{{pizza.name}}</div>
         <div class="info__quality">
@@ -27,7 +27,7 @@
     <div>Total: {{totalPrice}}</div>
   </div>
   <div class="checkout-card">
-    <h2>Contact information</h2>
+    <div class="checkout-card__title">Contact information</div>
     <div class="contacts">
       <div><label for="name" class="input-label">Name</label>
         <input type="text" id="name" class="input-contact" autocomplete="off" name="name" formControlName="name">
@@ -61,7 +61,7 @@
     </div>
   </div>
   <div class="checkout-card">
-    <h2>Delivery</h2>
+    <div class="checkout-card__title">Delivery</div>
     <div class="contacts">
       <div><label for="address" class="input-label">Address</label>
         <input type="text" id="address" class="input-contact" autocomplete="off" formControlName="address">
@@ -95,7 +95,7 @@
     </div>
   </div>
   <div class="checkout-card">
-    <h2>Payment</h2>
+    <div class="checkout-card__title">Payment</div>
     <div class="payment-types type">
       <div class="type__item" *ngFor="let pay of payment">
         <input type="radio" class="payment" [id]="pay" name="payment" [value]="pay" formControlName="payment" /><label

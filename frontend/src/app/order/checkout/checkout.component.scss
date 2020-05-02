@@ -7,6 +7,12 @@
   border-radius: 5px;
   box-shadow: 4px 3px 9px rgba(0, 0, 0, 0.07),
     6px 9px 18px rgba(0, 0, 0, 0.06);
+  &__title{
+    font-size: 24px;
+    color: #0D655C;
+    font-weight: 800;
+    margin-bottom: 20px;
+  }
 }
 
 .input-label {
@@ -126,7 +132,8 @@
   width: 70px;
   justify-content: space-between;
   font-size: 18px;
-  font-weight: 900
+  color:  grey;
+  font-weight: 600
 }
 
 
@@ -154,9 +161,9 @@
 
 .info-inp:checked+label:before {
   color: white;
-  background-color: #0f880f;
+  background-color:  #0D655C;
   border-radius: 3px;
-  border: 1px solid #0f880f;
+  border: 1px solid  #0D655C;
   cursor: pointer
 }
 
@@ -173,8 +180,8 @@
   right: 20px;
   bottom: 30px;
   text-transform: uppercase;
-  color: white;
-  background-color: rgb(230, 48, 48);
+  color: #A35115;
+  background-color: #FB9040;
   outline: none;
   border: none;
   border-radius: 25px;
@@ -185,7 +192,8 @@
   margin-top: 20px;
 
   &:disabled {
-    background-color: rgb(167, 117, 117);
+    background-color: #FDC296;
+    color: white;
     cursor: not-allowed
   }
 }
