@@ -26,7 +26,7 @@ export class PizzasState {
   load ({ getState, patchState }: StateContext<PizzasStateModel>, { payload }: LoadPizzas) {
     const state = getState();
     patchState({
-      pizzas: [...state.pizzas, ...payload]
+      pizzas: payload
     });
   }
 
@@ -63,7 +63,7 @@ export class PizzasState {
     const state = getState();
     setState(
       patch({
-        orderedPizzas: removeItem<any>(pizza => pizza.id === payload.id)
+        orderedPizzas: removeItem<any>(pizza => pizza._id === payload._id)
       })
     );
   }

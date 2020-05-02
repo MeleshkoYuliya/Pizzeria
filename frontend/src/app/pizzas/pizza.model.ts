@@ -1,7 +1,7 @@
 
 export class Pizza {
-  id: string | number;
-  image: string;
+  _id: string | number;
+  imagePath: string;
   name: string;
   ingredients: Array<string>;
   info: Array<Info>;

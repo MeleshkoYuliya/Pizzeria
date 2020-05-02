@@ -21,15 +21,12 @@ export class PizzasService {
       tap(
         (pizzas) => {
           this.store.dispatch(new LoadPizzas(pizzas));
-          return this.store.select(state => state.pizzas.pizzas);
         }
       )
     );
   }
 
-  getPizza (id: number | string) {
-    return this.getPizzas().pipe(
-      map((pizzas: Pizza[]) => pizzas.find(pizza => pizza.id === +id))
-    );
+  getPizza (id: string): Observable<Pizza> {
+    return this.http.get<Pizza>(`/api/pizzas/${id}`);
   }
 }

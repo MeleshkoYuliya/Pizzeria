@@ -1,11 +1,11 @@
 <div class="pizza-view">
   <div class="pizza-detail">
-    <img [src]="pizza.image" class="pizza-detail__img" />
+    <img [src]="pizza.imagePath" class="pizza-detail__img" />
     <div>
-      <h1 class="pizza-detail__title">{{pizza.name}}</h1>
+      <h1 class="pizza-detail__title">{{name}}</h1>
       <div class="pizza-detail__ingredients">
         <span class="ingredients__item" *ngFor="let item of pizza.ingredients">
-          {{ item.ingredient }} |
+          {{ item }} |
         </span>
       </div>
       <div class="pizza-detail__nutrition nutrition">
