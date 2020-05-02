@@ -40,7 +40,7 @@ export class PizzaItemComponent implements OnInit {
       this.sizes.push(item.size);
     });
     this.pizza.ingredients.map(item => {
-      this.ingredients.push(item.ingredient);
+      this.ingredients.push(item);
     });
   }
 
