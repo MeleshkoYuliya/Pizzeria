@@ -41,11 +41,11 @@ app.use((err, req, res, next) => {
 });
 
 if (process.env.NODE_ENV === 'production'){
-  app.use(express.static('frontend/dist/Pizzeria'));
+  app.use(express.static('client/dist/client'));
   app.get('*', (res, req)=>{
     res.sendFile(
       path.resolve(
-        __dirname, 'frontend', 'dist', 'Pizzeria', 'index.html'
+        __dirname, 'client', 'dist', 'client', 'index.html'
       )
     )
   });
