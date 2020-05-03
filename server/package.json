@@ -7,10 +7,10 @@
     "node": "12.12.0"
   },
   "scripts": {
-    "client-install": "npm install --prefix client",
+    "client-install": "npm install --prefix ../client",
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTON=false npm run client-install && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTON=false npm run client-install && npm run build --prefix ../client"
   },
   "author": "Yuliya",
   "license": "ISC",
