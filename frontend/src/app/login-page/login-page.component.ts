@@ -1,9 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core'
-import {FormControl, FormGroup, Validators} from '@angular/forms'
-import {AuthService} from '../shared/services/auth.service'
-import {Subscription} from 'rxjs'
-import {ActivatedRoute, Params, Router} from '@angular/router'
-import {MaterialService} from '../shared/classes/material.service'
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../shared/services/auth.service';
+import {Subscription} from 'rxjs';
+import {ActivatedRoute, Params, Router} from '@angular/router';
+import {MaterialService} from '../shared/classes/material.service';
 
 @Component({
   selector: 'app-login-page',
@@ -12,8 +12,8 @@ import {MaterialService} from '../shared/classes/material.service'
 })
 export class LoginPageComponent implements OnInit, OnDestroy {
 
-  form: FormGroup
-  aSub: Subscription
+  form: FormGroup;
+  aSub: Subscription;
 
   constructor(private auth: AuthService,
               private router: Router,
@@ -28,13 +28,13 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
     this.route.queryParams.subscribe((params: Params) => {
       if (params['registered']) {
-        MaterialService.toast('Теперь вы можете зайти в систему используя свои данные')
+        MaterialService.toast('Now you can log in using your data')
       } else if (params['accessDenied']) {
-        MaterialService.toast('Для начала авторизуйтесь в системе')
+        MaterialService.toast('To get started, log in to the system')
       } else if (params['sessionFailed']) {
-        MaterialService.toast('Пожалуйста войдите в систему заного')
+        MaterialService.toast('Please log in.')
       }
-    })
+    });
 
     if(this.auth.isAuthenticated()){
       this.router.navigate(['/pizzas'])
@@ -48,7 +48,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.form.disable()
+    this.form.disable();
 
     this.aSub = this.auth.login(this.form.value).subscribe(
       () => this.router.navigate(['/pizzas']),

@@ -1,23 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { OrderService } from '../order.service'
+import { OrderService } from '../order.service';
+import {Subscription} from 'rxjs';
 import { Store } from '@ngxs/store';
+import {MaterialService} from '../../shared/classes/material.service';
 
 import { Pizza } from "../../pizzas/pizza.model";
-
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent implements OnInit, OnDestroy {
   payment = ['Cash', 'Card'];
   checkoutForm: FormGroup;
   orderedPizzas: Pizza[] = [];
   totalPrice: number = 0
   excludedIngredients: string[] = []
+
+  aSub: Subscription
 
   constructor(private store: Store, private service: OrderService, private router: Router) { }
 
@@ -50,16 +53,17 @@ export class CheckoutComponent implements OnInit {
   }
 
   onSubmit () {
-    const receiveEmail = this.checkoutForm.value['send-email'] ? 'yes' : 'no'
-    const receiveSms = this.checkoutForm.value['send-sms'] ? 'yes' : 'no'
+    this.checkoutForm.disable();
+    const receiveEmail = this.checkoutForm.value['send-email'] ? 'yes' : 'no';
+    const receiveSms = this.checkoutForm.value['send-sms'] ? 'yes' : 'no';
     const pizza = this.orderedPizzas.map(item => {
       return {
         name: item.name,
         quantity: item.amount,
         cost: item.price,
       }
-      
     });
+
     const order = {
       name: this.checkoutForm.value['name'],
       phone: this.checkoutForm.value['phone'],
@@ -75,7 +79,11 @@ export class CheckoutComponent implements OnInit {
       ],
       totalPrice: this.totalPrice,
     }
-    this.service.saveOrder(order).subscribe(()=> console.log('sfjisjdfij'));
+     this.aSub = this.service.saveOrder(order).subscribe(() => this.router.navigate(['/pizzas']),
+     error => {
+       MaterialService.toast(error.error.message)
+       this.checkoutForm.enable();
+     });
   }
 
   validatorPhoneNumber (control: FormControl): { [s: string]: boolean } {
@@ -109,4 +117,9 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
+  ngOnDestroy() {
+    if (this.aSub) {
+      this.aSub.unsubscribe()
+    }
+  }
 }
