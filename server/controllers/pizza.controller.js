@@ -1,6 +1,7 @@
 const express = require('express');
 const Pizza = require('../models/pizza.model');
 const auth = require('../middlewares/auth');
+const path = require('path');
 const router = express.Router();
 
 router.get('/pizzas',auth, async (req, res, next) => {
@@ -15,7 +16,7 @@ router.get('/pizzas',auth, async (req, res, next) => {
 router.get('/pizzas/:id',auth, async (req, res, next) => {
   try {
     const pizza = await Pizza.findById(req.params.id);
-    res.status(200).json(pizza);
+    res.status(200).json(pizza);    
   } catch (e) {
     next(e);
   }

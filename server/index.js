@@ -8,6 +8,7 @@ const { NotFoundError } = require('./utils/errors');
 const mongoose = require('./utils/mongoose');
 const logger = require('./utils/logger');
 const config = require('./config');
+const {dirPath} = require('../dir');
 
 const userController = require('./controllers/user.controller');
 const pizzaController = require('./controllers/pizza.controller');
@@ -40,12 +41,13 @@ app.use((err, req, res, next) => {
   res.status(status).json({ status, message, details });
 });
 
+
 if (process.env.NODE_ENV === 'production'){
   app.use(express.static('client/dist/client'));
   app.get('*', (res, req)=>{
     res.sendFile(
       path.resolve(
-        __dirname, 'client', 'dist', 'client', 'index.html'
+        dirPath, 'client', 'dist', 'client', 'index.html'
       )
     )
   });
