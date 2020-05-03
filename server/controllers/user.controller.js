@@ -29,11 +29,11 @@ router.post('/login', (req, res, next) => {
   User
     .findOne({ email })
     .then(user => {
-      if (!user) return Promise.reject(new UnauthorizedError('Неверный email или пароль'));
+      if (!user) return Promise.reject(new UnauthorizedError('Wrong email or password!'));
 
       const isPasswordValid = verifyPassword(password, user.password);
 
-      if (!isPasswordValid) return Promise.reject(new UnauthorizedError('Неверный email или пароль'));
+      if (!isPasswordValid) return Promise.reject(new UnauthorizedError('Wrong email or password!'));
 
       return user.save();
     })

@@ -10,7 +10,6 @@ module.exports = (req, res, next) => {
 
     User
       .findById(data.id)
-      .populate({ path: 'goals.goal', select: 'title description amount' })
       .then(user => {
         if (!user) next(new UnauthorizedError('Invalid token'));
 
