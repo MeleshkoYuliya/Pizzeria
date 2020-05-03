@@ -28,4 +28,8 @@ export class PizzasService {
   getPizza (id: string): Observable<Pizza> {
     return this.http.get<Pizza>(`/api/pizzas/${id}`);
   }
+
+  createPizza (pizza : Object): Observable<Object>{
+    return this.http.post<Object>('/api/pizza', pizza);
+  }
 }

@@ -8,8 +8,10 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 import {AuthGuard} from './shared/classes/auth.guard'
 import { OrderCardComponent } from './order/order-card/order-card.component';
 import { OrderDashboardComponent } from './order-dashboard/order-dashboard.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 const routes: Routes = [
+  {path: 'admin-dashboard', component: AdminDashboardComponent},
   {path: 'login', component: LoginPageComponent},
   {path: 'register', component: RegisterPageComponent},
   {path: 'store', component: OrderCardComponent},
