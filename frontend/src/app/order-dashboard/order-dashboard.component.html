@@ -1,0 +1,29 @@
+<div *ngFor="let order of orders | async" class="order">
+  <button class="order__delete-btn"><img src="../assets/images/cross.svg"
+    alt="cheese" class="order__delete-img" type="button"/>
+  </button>
+  <div class="order__title">Order Info</div>
+  <div class="order__subtitle">Order Date: <span>{{order.date|date}}</span></div>
+  <ul>
+    <div class="order__subtitle">Personal Info:</div>
+    <li class="order__item">
+      Name: <span>{{order.name}}</span>
+    </li>
+    <li class="order__item">
+      Phone: <span>{{order.phone}}</span>
+    </li>
+    <li class="order__item">
+      Address: <span>{{order.address}},
+        flat: {{order.flat}}, floor: {{order.floor}}</span>
+    </li>
+  </ul>
+  <div class="order__subtitle">Payment: <span>{{order.payment || "card"}}</span></div>
+  <div class="order__subtitle">Pizzas:</div>
+  <div *ngFor="let pizza of order.pizzas">
+    <div class="order__item">Name: <span>{{pizza.name}}</span></div>
+    <div class="order__item">Quantity: <span>{{pizza.quantity}}</span></div>
+    <div class="order__item">Cost: <span>{{pizza.cost}}</span></div>
+    <hr/>
+  </div>
+  <div class="order__subtitle">Total price: <span>{{order.totalPrice}}</span></div>
+</div>

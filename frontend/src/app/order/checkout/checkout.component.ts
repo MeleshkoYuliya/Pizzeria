@@ -79,7 +79,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       ],
       totalPrice: this.totalPrice,
     }
-     this.aSub = this.service.saveOrder(order).subscribe(() => this.router.navigate(['/pizzas']),
+     this.aSub = this.service.saveOrder(order).subscribe(() => this.router.navigate(['/orders']),
      error => {
        MaterialService.toast(error.error.message)
        this.checkoutForm.enable();

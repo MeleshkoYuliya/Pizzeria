@@ -19,6 +19,7 @@ import { PizzasState } from './pizzas/pizzas.state';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { TokenInterceptor } from './shared/classes/token.interceptor';
+import { OrderDashboardComponent } from './order-dashboard/order-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { TokenInterceptor } from './shared/classes/token.interceptor';
     PageNotFoundComponent,
     LoginPageComponent,
     RegisterPageComponent,
+    OrderDashboardComponent,
   ],
   imports: [
     BrowserModule,

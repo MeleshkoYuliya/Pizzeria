@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import { Observable } from "rxjs";
 import { Store } from '@ngxs/store';
 import {Order} from './interfaces';
+import {tap} from 'rxjs/operators';
 
 import { ChangeOrderedPizzaAmount, DeletePizzaFromOrder } from '../pizzas/pizzas.action'
 
@@ -11,6 +12,8 @@ import { ChangeOrderedPizzaAmount, DeletePizzaFromOrder } from '../pizzas/pizzas
 })
 export class OrderService {
   constructor(private store: Store, private http: HttpClient) { }
+
+  orders: Order[] = [];
 
   increasePizzaAmount (pizza) {
     let amount = pizza.amount + 1
@@ -34,5 +37,16 @@ export class OrderService {
 
   saveOrder(order: Order): Observable<Order>{   
     return this.http.post<Order>('/api/order', order);
+  }
+
+  getOrders(): Observable<Order[]>{   
+    return this.http.get<Order[]>('/api/orders')
+    .pipe(
+      tap(
+        (orders) => {
+          this.orders = orders;
+        }
+      )
+    );
   }
 }

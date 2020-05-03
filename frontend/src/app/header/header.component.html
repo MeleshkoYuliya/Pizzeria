@@ -1,6 +1,9 @@
 <nav class="header">
   <a routerLink="/pizzas" *ngIf=checkAuth() class="logo_link"><img src="../assets/images/pizza.svg" class="logo_link__img" />Pizza-Hit</a>
   <div *ngIf=checkAuth() routerLinkActive="active" class="imgLink_container"><a routerLink="/store" class="img_link"><img src="../assets/images/store.svg" class="store_link" /></a></div>
+  <div *ngIf=checkAuth() routerLinkActive="active" class="header-link button-link">
+    <a routerLink="/orders" class="header-link">Orders</a>
+  </div> 
   <div class="header-link button-link" *ngIf=checkAuth() (click)="logout()">Log out</div>
   <ul id="nav-mobile" class="right hide-on-med-and-down" *ngIf=!checkAuth()>
     <li routerLinkActive="active">
