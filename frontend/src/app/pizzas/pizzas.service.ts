@@ -5,7 +5,6 @@ import {tap} from 'rxjs/operators';
 import {LoadPizzas} from './pizzas.action';
 import { Observable } from "rxjs";
 import { Store } from '@ngxs/store';
-import { map } from "rxjs/operators";
 
 import { Pizza } from "./pizza.model";
 

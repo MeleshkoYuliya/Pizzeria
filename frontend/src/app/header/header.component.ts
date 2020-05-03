@@ -1,7 +1,6 @@
-import { Component, OnInit } from "@angular/core";
-import {Router} from '@angular/router'
+import { Component } from "@angular/core";
+import {Router} from '@angular/router';
 import { AuthService } from '../shared/services/auth.service';
-import {tap} from 'rxjs/operators';
 
 @Component({
   selector: "app-header",
@@ -12,7 +11,7 @@ export class HeaderComponent {
 constructor(private auth: AuthService,  private router: Router){}
 
 checkAuth (){
-  return this.auth.isAuthenticated()
+  return this.auth.isAuthenticated();
 }
 
  logout(){
