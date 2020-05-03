@@ -3,9 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "10.15.0",
+    "npm": "6.11.3"
+  },
   "scripts": {
+    "client-install": "npm install --prefix frontend",
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTON=false npm run client-install && npm run build --prefix frontend"
   },
   "author": "Yuliya",
   "license": "ISC",

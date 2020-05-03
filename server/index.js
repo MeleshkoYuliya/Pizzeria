@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -38,6 +39,17 @@ app.use((err, req, res, next) => {
 
   res.status(status).json({ status, message, details });
 });
+
+if (process.env.NODE_ENV === 'production'){
+  app.use(express.static('frontend/dist/Pizzeria'));
+  app.get('*', (res, req)=>{
+    res.sendFile(
+      path.resolve(
+        __dirname, 'frontend', 'dist', 'Pizzeria', 'index.html'
+      )
+    )
+  });
+}
 
 mongoose
   .then(() =>
