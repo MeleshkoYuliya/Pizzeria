@@ -1,0 +1,201 @@
+.order-card {
+  width: 70%;
+  min-width: 450px;
+  padding: 12px;
+  margin: 60px auto 0px auto;
+  background-color: white;
+  border-radius: 5px;
+  border-top: solid 2px #289C90;
+  box-shadow: 4px 3px 9px rgba(0, 0, 0, 0.07), 6px 9px 18px rgba(0, 0, 0, 0.06);
+  position: relative;
+}
+
+.order-card__image,
+.order {
+  border-radius: 50%;
+  border-top: solid 3px #289C90;
+  background-color: white;
+  width: 60px;
+  height: 60px;
+  align-items: center;
+  text-align: center;
+  padding: 4px;
+  position: absolute;
+  z-index: 10;
+  top: -33px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+
+  &__image {
+    width: 40px;
+  }
+
+  &__btn {
+    text-transform: uppercase;
+    color: #A35115;
+    background-color: #FB9040;
+    outline: none;
+    border: none;
+    border-radius: 25px;
+    font-size: 11px;
+    font-weight: bolder;
+    padding: 9px;
+    cursor: pointer;
+    margin-top: 10px;
+    &:disabled {
+      background-color: #FDC296;
+      color: white;
+      cursor: not-allowed
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+}
+
+.action {
+  &__clear {
+    color: #A35115;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    background-color: white;
+    text-transform: uppercase;
+    padding: 8px 15px;
+    border-radius: 25px;
+    &:hover{
+      background-color: #FDC296;
+    }
+  }
+
+  &__cart{
+    color: #0D655C;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+}
+
+.pizzas {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 87%;
+  margin: 10px 0px 20px 10px;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: solid 1px rgb(172, 168, 168);
+
+  &__image {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+.pizzas__info,
+.info {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+
+  &__name {
+    font-weight: bolder;
+    font-size: 20px;
+    margin: 5px 0 10px 0;
+    letter-spacing: 1px
+  }
+
+  &__quality {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-transform: capitalize;
+    font-size: 18px
+  }
+
+  &__delete-btn {
+    border: none;
+    outline: none;
+    position: absolute;
+    right: -45px;
+    top: 50px;
+    cursor: pointer;
+  }
+
+  &__delete-img {
+    width: 14px
+  }
+
+  &__excluded-ing {
+    color: rgb(180, 7, 7);
+    font-size: 16px;
+    font-family: cursive
+  }
+}
+
+.info__options,
+.option {
+  width: 95%;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  &__count {
+    display: flex;
+    flex-direction: row;
+    width: 30%;
+    justify-content: space-between
+  }
+
+  &__decrease-btn {
+    border-radius: 50%;
+    width: 26px;
+    text-align: center;
+    vertical-align: middle;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: rgb(177, 174, 174);
+    font-size: 18px;
+    font-weight: bolder;
+    color: rgb(97, 96, 96)
+  }
+
+  &__increase-btn {
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    width: 26px;
+    outline: none;
+    border: none;
+    background-color: rgb(154, 219, 159);
+    font-size: 18px;
+    font-weight: bolder;
+    color: #289C90
+  }
+
+  &__amount {
+    font-size: 18px;
+    font-weight: bolder
+  }
+}
+
+.no_pizzas{
+  color: #0D655C;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  width: 100%;
+  text-align: center;
+  margin-top: 70px;
+}

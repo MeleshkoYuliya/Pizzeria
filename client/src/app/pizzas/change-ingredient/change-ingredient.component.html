@@ -1,0 +1,28 @@
+<div class="dashboard">
+  <div class="dashboard__title">Remove Ingredients</div>
+  <div class="pizza__ingredients ingredients">
+    <div class="ingredients__item item" *ngFor="let ingredient of _ingredients; let i=index">
+      {{ ingredient.ingredient }}
+      <button class="item__delete-btn" (click)="deleteIngredient(i)">
+        <img src="../assets/images/cross.svg" alt="cheese" class="item__delete-img" />
+      </button>
+    </div>
+    <div class="ingredients__item item--removed" *ngFor="let ingredient of removedIngredients; let i=index">
+      {{ ingredient.ingredient }}
+      <button class="item__refresh-btn" (click)="addBackIngredient(ingredient, i)">
+        <img src="../assets/images/refresh.svg" alt="cheese" class="item__refresh-img" />
+      </button>
+    </div>
+  </div>
+  <form [formGroup]="addIngredientForm" (ngSubmit)="addIngredient()">
+    <button class="dashboard__add-btn add" type="submit">
+      <img src="../assets/images/plus.svg" alt="cheese" class="add__img" />Add
+      ingredients
+    </button>
+    <input class="dashboard__add-inp" formControlName="ingredient" />
+  </form>
+  <div class="dashboard__buttons button">
+    <button class="button__cancel" (click)="closeModal()">Cancel</button>
+    <button class="button__add" (click)="addPizzaToOrder()" [disabled]="!orderedPizza">Add to cart</button>
+  </div>
+</div>

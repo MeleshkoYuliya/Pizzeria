@@ -1,0 +1,175 @@
+.radio {
+  position: absolute;
+  visibility: hidden;
+  display: none;
+}
+
+.label {
+  color: #666161;
+  display: inline-block;
+  position: relative;
+  z-index: 0;
+  width: 110%;
+  height: 100%;
+  font-size: 16px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  cursor: pointer;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+  padding-left: 0px;
+}
+
+input[type="radio"]:checked+label {
+  color: #0D655C;
+  font-weight: 600;
+  background-color: #79CEC5;
+  position: relative;
+  z-index: 10;
+  border: none;
+  border-radius: 25px;
+}
+
+input[type="checkbox"]:checked+label {
+  color: rgb(31, 29, 29);
+  font-weight: bold;
+  background-color: #79CEC5;
+  position: relative;
+  z-index: 10;
+  border: none;
+  border-radius: 25px;
+}
+
+.radio-group {
+  display: flex;
+  justify-content: space-evenly;
+  border: solid 2px #79CEC5;
+  border-radius: 25px;
+  overflow: hidden;
+  max-width: 220px;
+  width: 100%;
+  margin: 15px 0 5px 0;
+}
+
+.add-cheese__img {
+  width: 30px;
+  height: 30px;
+  margin: 0 8px 0 5px;
+}
+
+.cheese {
+  color: #666161;
+  display: inline-block;
+  position: relative;
+  z-index: 0;
+  width: 110%;
+  cursor: pointer;
+  text-align: center;
+}
+
+.cheese-group {
+  display: block;
+  border: solid 2px #79CEC5;
+  border-radius: 25px;
+  overflow: hidden;
+  margin: 15px 0 5px 3px;
+}
+
+.pizza-view {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 220px;
+}
+
+.price {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+  max-width: 220px;
+  position: absolute;
+  bottom: 15px;
+
+  &__btn {
+    text-transform: uppercase;
+    color: #A35115;
+    background-color: #FB9040;
+    outline: none;
+    border: none;
+    border-radius: 25px;
+    font-size: 11px;
+    font-weight: bolder;
+    padding: 9px;
+    cursor: pointer;
+    display: block;
+    margin-top: 10px;
+
+    &:disabled {
+      background-color: #FDC296;
+      color: white;
+      cursor: not-allowed
+    }
+  }
+
+  &__bill {
+    font-size: 14px;
+    font-weight: bolder;
+    color: #0D655C;
+    right: 0;
+    margin-top: 20px;
+    margin-left: 30px;
+  }
+}
+
+.price-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+  max-width: 220px;
+
+  &__btn {
+    text-transform: uppercase;
+    color: white;
+    background-color: rgb(230, 48, 48);
+    outline: none;
+    border: none;
+    border-radius: 25px;
+    font-size: 11px;
+    font-weight: bolder;
+    padding: 9px;
+    cursor: pointer;
+    display: block;
+    margin-top: 10px
+  }
+
+  &__bill {
+    font-size: 14px;
+    font-weight: bolder;
+    color: #353131;
+    right: 0;
+    margin-top: 20px;
+    margin-left: 30px;
+  }
+}
+
+.persons {
+  position: absolute;
+  top: 175px;
+  right: 15px;
+
+  &__image {
+    font-size: 16px;
+    font-weight: bolder;
+    color: grey;
+    height: 20px;
+    vertical-align: bottom;
+  }
+
+  &__img {
+    height: 18px;
+    display: inline-block;
+    margin-right: 3px;
+  }
+}

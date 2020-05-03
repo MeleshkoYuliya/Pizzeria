@@ -1,0 +1,52 @@
+.order{
+  width: 80%;
+  position: relative;
+  padding: 12px 12px 30px 12px;
+  margin: 10px auto;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 4px 3px 9px rgba(0, 0, 0, 0.07),
+    6px 9px 18px rgba(0, 0, 0, 0.06);
+  &__title{
+    font-size: 24px;
+    color: #0D655C;
+    font-weight: 800;
+    margin-bottom: 20px;
+  }
+
+  &__subtitle{
+    font-size: 18px;
+    color: #A35115;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  &__item{
+    color: rgb(59, 58, 58);
+    margin-left: 15px;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  &__cancel-btn{
+    border: none;
+    outline: none;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    color: #A35115;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    background-color: white;
+    text-transform: uppercase;
+    padding: 8px 15px;
+    border-radius: 25px;
+    &:hover{
+      background-color: #FDC296;
+    }
+  }
+}
