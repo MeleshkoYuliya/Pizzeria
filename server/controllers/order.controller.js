@@ -12,10 +12,12 @@ router.get('/orders',auth, async (req, res, next) => {
   }
 });
 
-router.get('/orders/:id',auth, async (req, res, next) => {
+router.delete('/orders/:id', async (req, res, next) => {
   try {
-    const order = await Order.findById(req.params.id);
-    res.status(200).json(order);
+    await Order.remove({_id: req.params.id})
+    res.status(200).json({
+      message: 'Order was deleted'
+    })
   } catch (e) {
     next(e);
   }

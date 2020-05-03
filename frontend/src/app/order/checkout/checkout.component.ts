@@ -5,6 +5,7 @@ import { OrderService } from '../order.service';
 import {Subscription} from 'rxjs';
 import { Store } from '@ngxs/store';
 import {MaterialService} from '../../shared/classes/material.service';
+import { ClearOrderCard } from '../../pizzas/pizzas.action';
 
 import { Pizza } from "../../pizzas/pizza.model";
 
@@ -79,7 +80,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       ],
       totalPrice: this.totalPrice,
     }
-     this.aSub = this.service.saveOrder(order).subscribe(() => this.router.navigate(['/orders']),
+     this.aSub = this.service.saveOrder(order).subscribe(() => {
+      this.clearOrder()
+       this.router.navigate(['/orders']);
+    },
      error => {
        MaterialService.toast(error.error.message)
        this.checkoutForm.enable();
@@ -121,5 +125,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     if (this.aSub) {
       this.aSub.unsubscribe()
     }
+  }
+  clearOrder () {
+    this.store.dispatch(new ClearOrderCard());
+    this.totalPrice = 0
   }
 }

@@ -42,7 +42,7 @@ export class PizzaDetailComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.service.getPizza(id).subscribe(pizza => {
       this.pizza = pizza;
-      this.pizza.info.map((item, index) => {
+      this.pizza.info.map((item) => {
         this.sizes.push(item.size);
       });
   

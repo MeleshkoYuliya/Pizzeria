@@ -1,5 +1,5 @@
 <div *ngFor="let order of orders | async" class="order">
-  <button class="order__delete-btn"><img src="../assets/images/cross.svg"
+  <button class="order__delete-btn" (click)="cancelOrder(order._id)"><img src="../assets/images/cross.svg"
     alt="cheese" class="order__delete-img" type="button"/>
   </button>
   <div class="order__title">Order Info</div>
