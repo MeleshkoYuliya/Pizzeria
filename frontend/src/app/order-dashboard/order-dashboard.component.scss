@@ -28,16 +28,25 @@
     font-weight: 400;
   }
 
-  &__delete-btn {
+  &__cancel-btn{
     border: none;
     outline: none;
     position: absolute;
     right: 10px;
     top: 10px;
     cursor: pointer;
-  }
-
-  &__delete-img {
-    width: 14px
+    color: #A35115;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    background-color: white;
+    text-transform: uppercase;
+    padding: 8px 15px;
+    border-radius: 25px;
+    &:hover{
+      background-color: #FDC296;
+    }
   }
 }

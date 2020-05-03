@@ -1,7 +1,5 @@
 <div *ngFor="let order of orders | async" class="order">
-  <button class="order__delete-btn" (click)="cancelOrder(order._id)"><img src="../assets/images/cross.svg"
-    alt="cheese" class="order__delete-img" type="button"/>
-  </button>
+  <button class="order__cancel-btn" (click)="cancelOrder(order._id)">Cancel</button>
   <div class="order__title">Order Info</div>
   <div class="order__subtitle">Order Date: <span>{{order.date|date}}</span></div>
   <ul>
