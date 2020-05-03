@@ -22,7 +22,7 @@ router.get('/orders/:id',auth, async (req, res, next) => {
 });
 
 
-router.post('/order',auth, async (req, res, next) => {  
+router.post('/order',auth, async (req, res, next) => {
   const order = new Order({
     date: new Date(),
     name: req.body.name,
@@ -33,10 +33,11 @@ router.post('/order',auth, async (req, res, next) => {
     floor: req.body.floor,
     payments: req.body.payments,
     pizzas: req.body.pizzas,
+    sendEmail: req.body.sendEmail,
+    sendSms: req.body.sendSms,
     totalPrice: req.body.totalPrice,
     user: req.user._id,
   })
-  console.log(order);
   try {
     await order.save()
     res.status(201).json(order)

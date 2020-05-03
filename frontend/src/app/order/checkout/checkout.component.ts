@@ -53,53 +53,29 @@ export class CheckoutComponent implements OnInit {
     const receiveEmail = this.checkoutForm.value['send-email'] ? 'yes' : 'no'
     const receiveSms = this.checkoutForm.value['send-sms'] ? 'yes' : 'no'
     const pizza = this.orderedPizzas.map(item => {
-      const excludedIngredient = item.removedIngredients ? item.removedIngredients.map(ingredient => ingredient) : ''
-      const addedIngredients = item.addedIngredients ? item.addedIngredients.map(ingredient => ingredient) : ''
-
       return {
         name: item.name,
         quantity: item.amount,
         cost: item.price,
       }
-      // Pizza name: ${item.name},
-      // dough: ${item.qualities.selectedDough},
-      // size: ${item.qualities.selectedSize},
-      // amount: ${item.amount},
-      // excluded ingredients: ${excludedIngredient || 'none'},
-      // added ingredients: ${addedIngredients || 'none'}
       
     });
     const order = {
       name: this.checkoutForm.value['name'],
-phone: this.checkoutForm.value['phone'],
-email: this.checkoutForm.value['email'],
-address: this.checkoutForm.value['address'],
-flat: this.checkoutForm.value['flat'],
-floor: this.checkoutForm.value['floor'],
-payment: this.checkoutForm.value['payment'],
-pizzas: [
-  pizza
-],
-totalPrice: this.totalPrice,
+      phone: this.checkoutForm.value['phone'],
+      email: this.checkoutForm.value['email'],
+      address: this.checkoutForm.value['address'],
+      flat: this.checkoutForm.value['flat'],
+      floor: this.checkoutForm.value['floor'],
+      payment: this.checkoutForm.value['payment'],
+      sendEmail: receiveEmail,
+      sendSms: receiveSms,
+      pizzas: [
+        ...pizza
+      ],
+      totalPrice: this.totalPrice,
     }
-    this.service.saveOrder(order);
-    console.log(`Checkout: 
-    Contact information:
-      Name: ${this.checkoutForm.value['name']},
-      E-mail: ${this.checkoutForm.value['email']},
-      Phone Number: ${this.checkoutForm.value['phone']}
-    Delivery:
-      Address: ${this.checkoutForm.value['address']},
-      Floor: ${this.checkoutForm.value['floor']},
-      Flat/office: ${this.checkoutForm.value['flat']}
-    Payment: ${this.checkoutForm.value['payment']},
-    Comments: ${this.checkoutForm.value['comments']},
-    Agree to receive:
-      Emails: ${receiveEmail},
-      SMS: ${receiveSms},
-  Cart: ${pizza},
-    Total price: ${this.totalPrice}
-    `);
+    this.service.saveOrder(order).subscribe(()=> console.log('sfjisjdfij'));
   }
 
   validatorPhoneNumber (control: FormControl): { [s: string]: boolean } {

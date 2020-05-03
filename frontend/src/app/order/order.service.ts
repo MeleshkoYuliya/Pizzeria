@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import {HttpClient} from '@angular/common/http';
 import { Observable } from "rxjs";
 import { Store } from '@ngxs/store';
+import {Order} from './interfaces';
 
 import { ChangeOrderedPizzaAmount, DeletePizzaFromOrder } from '../pizzas/pizzas.action'
 
@@ -31,7 +32,7 @@ export class OrderService {
     this.store.dispatch(new DeletePizzaFromOrder(pizza));
   }
 
-  saveOrder(order: Object): Observable<any>{   
-    return this.http.post<any>('/order', order);
+  saveOrder(order: Order): Observable<Order>{   
+    return this.http.post<Order>('/api/order', order);
   }
 }

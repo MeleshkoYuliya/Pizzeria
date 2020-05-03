@@ -46,6 +46,14 @@ const orderSchema = new Schema({
       }
     }
   ],
+  sendEmail:{
+    type: String,
+    default: ''
+  },
+  sendSms:{
+    type: String,
+    default: ''
+  },
   totalPrice:{
     type: Number,
     required:true,
