@@ -1,0 +1,53 @@
+.pizza-view {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.pizza-detail {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: white;
+  margin: 60px 0 0 0;
+  width: 70%;
+  padding: 20px 0 30px 0;
+  position: relative;
+  border-radius: 5px;
+  box-shadow: 4px 3px 9px rgba(0, 0, 0, 0.07),
+    6px 9px 18px rgba(0, 0, 0, 0.06);
+  position: relative;
+
+  &__img {
+    width: 300px;
+    height: 300px
+  }
+
+  &__title {
+    margin: 0 0 15px 0
+  }
+
+  &__ingredients {
+    max-width: 350px;
+    line-height: 1.5;
+    font-size: 18px
+  }
+}
+
+.nutrition {
+  margin-bottom: 20px;
+
+  &__person {
+    display: inline-block
+  }
+
+  &__num {
+    display: inline-block;
+  }
+
+  &__title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 10px 0 10px 0
+  }
+}

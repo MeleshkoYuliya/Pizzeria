@@ -1,0 +1,16 @@
+node v12.12.0
+npm v6.11.3
+@angular/cli v~9.1.4
+
+install angular cli global
+npm i @angular/cli -g
+
+start frontend
+cd client
+npm install
+npm run start
+
+start backend
+cd server
+npm install
+npm start
