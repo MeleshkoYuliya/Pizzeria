@@ -108,7 +108,7 @@
 }
 
 .payment:checked+.lb:after {
-  background: #25d025;
+  background: #0D655C;
   background: radial-gradient(#3abd3a, #0f880f);
   box-shadow:
     inset 0 3px 5px 1px rgba(0, 0, 0, .1),
@@ -310,11 +310,21 @@ input.ng-invalid.ng-touched {
     background-color: rgb(154, 219, 159);
     font-size: 18px;
     font-weight: bolder;
-    color: rgb(21, 90, 36)
+    color: #289C90
   }
 
   &__amount {
     font-size: 18px;
     font-weight: bolder
   }
+}
+
+.no-pizzas{
+  color: #A35115;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  width: 100%;
+  text-align: center;
+  margin: 30px 0px;
 }

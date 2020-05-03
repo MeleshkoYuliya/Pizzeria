@@ -1,5 +1,6 @@
 <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
-  <div class="checkout-card">
+  <div class="no-pizzas" *ngIf="orderedPizzas.length === 0">You have not selected your pizza yet! You can not place an order!</div>
+  <div class="checkout-card" *ngIf="orderedPizzas.length >0">
     <div class="checkout-card__title">Cart</div>
     <div *ngFor="let pizza of orderedPizzas" class="pizzas">
       <img [src]="pizza.imagePath" class="pizzas__image" />
@@ -116,6 +117,6 @@
         <label for="check1">Emails</label>
       </div>
     </div>
-    <button class="order__btn" type="submit" [disabled]="!checkoutForm.valid">Order</button>
+    <button class="order__btn" type="submit" [disabled]="!checkoutForm.valid || orderedPizzas.length===0">Order</button>
   </div>
 </form>

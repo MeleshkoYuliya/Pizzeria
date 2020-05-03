@@ -28,5 +28,6 @@
     </div>
   </div>
   <div class="action__cart">Total: {{totalPrice}}</div>
-  <a routerLink="/checkout"><button class="order__btn">Order now</button></a>
+  <a routerLink="/checkout"><button class="order__btn" [disabled]="orderedPizzas.length===0">Order now</button></a>
 </div>
+<div *ngIf="orderedPizzas.length===0" class='no_pizzas'>You have not selected your pizza yet!</div>
