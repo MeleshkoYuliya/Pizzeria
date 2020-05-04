@@ -16,10 +16,7 @@ const orderController = require('./controllers/order.controller');
 const app = express();
 const server = require('http').createServer(app);
 const isProd = process.env.NODE_ENV === 'production';
-console.log('NODE ENV',isProd);
-console.log('STATIC',  path.resolve(__dirname, 'client', 'dist', 'client','index.html'));
-console.log('USE STATIC', express.static('client/dist/client'));
-
+const staticPath = path.join(__dirname, 'client', 'dist', 'client');
 
 app.use(cors());
 app.use(morgan('tiny'));
@@ -32,13 +29,9 @@ app.use('/api', pizzaController);
 app.use('/api', orderController);
 
 // Frontend static 
-if (isProd){
-  app.use(express.static('./client/dist/client'));
-  app.get('/api/*', (res, req)=>{
-    res.sendFile(
-      path.resolve(__dirname, 'client', 'dist', 'client','index.html')
-    )
-  });
+if (isProd) {
+  app.use(express.static(staticPath));
+  app.get('/*', (req, res) => res.sendFile(path.join(staticPath, 'index.html')));
 }
 
 app.use((req, res, next) => {
