@@ -1,6 +1,6 @@
 {
   "/api/*": {
-    "target": "https://hit-pizza.herokuapp.com",
+    "target": "http://localhost:4000",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true

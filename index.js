@@ -21,6 +21,17 @@ app.use(morgan('tiny'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+if (process.env.NODE_ENV === 'production'){
+  app.use(express.static('client/dist/client'));
+  app.get('*', (res, req)=>{
+    res.sendFile(
+      path.resolve(
+        __dirname, 'client', 'dist', 'client', 'index.html'
+      )
+    )
+  });
+}
+
 // Routes
 app.use('/api', userController);
 app.use('/api', pizzaController);
@@ -39,18 +50,6 @@ app.use((err, req, res, next) => {
 
   res.status(status).json({ status, message, details });
 });
-
-
-if (process.env.NODE_ENV === 'production'){
-  app.use(express.static('client/dist/client'));
-  app.get('*', (res, req)=>{
-    res.sendFile(
-      path.resolve(
-        __dirname, 'client', 'dist', 'client', 'index.html'
-      )
-    )
-  });
-}
 
 mongoose
   .then(() =>
