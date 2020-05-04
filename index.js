@@ -15,6 +15,7 @@ const orderController = require('./controllers/order.controller');
 
 const app = express();
 const server = require('http').createServer(app);
+const isProd = process.env.NODE_ENV === 'production';
 
 app.use(cors());
 app.use(morgan('tiny'));
@@ -22,10 +23,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 if (process.env.NODE_ENV === 'production'){
-  app.use(express.static('client/dist/client'));
-  app.get('/', (res, req)=>{
+  app.use(express.static('./client/dist/client'));
+  app.get('/*', (res, req)=>{
     res.sendFile(
-      path.resolve(
+      path.join(
         __dirname, 'client', 'dist', 'client', 'index.html'
       )
     )
