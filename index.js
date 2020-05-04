@@ -33,8 +33,8 @@ app.use('/api', orderController);
 
 // Frontend static 
 if (isProd){
-  app.use(express.static('./client/dist/client', 'index.html'));
-  app.get('*', (res, req)=>{
+  app.use(express.static('./client/dist/client'));
+  app.get('/*', (res, req)=>{
     res.sendFile(
       path.resolve(__dirname, 'client', 'dist', 'client','index.html')
     )
