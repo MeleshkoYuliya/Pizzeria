@@ -8,7 +8,6 @@ const { NotFoundError } = require('./utils/errors');
 const mongoose = require('./utils/mongoose');
 const logger = require('./utils/logger');
 const config = require('./config');
-const {dirPath} = require('../dir');
 
 const userController = require('./controllers/user.controller');
 const pizzaController = require('./controllers/pizza.controller');
@@ -47,7 +46,7 @@ if (process.env.NODE_ENV === 'production'){
   app.get('*', (res, req)=>{
     res.sendFile(
       path.resolve(
-        dirPath, 'client', 'dist', 'client', 'index.html'
+        __dirname, 'client', 'dist', 'client', 'index.html'
       )
     )
   });
