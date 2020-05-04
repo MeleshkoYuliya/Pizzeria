@@ -16,6 +16,7 @@ const orderController = require('./controllers/order.controller');
 const app = express();
 const server = require('http').createServer(app);
 const isProd = process.env.NODE_ENV === 'production';
+console.log('NODE ENV',isProd);
 
 app.use(cors());
 app.use(morgan('tiny'));
