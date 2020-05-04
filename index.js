@@ -22,21 +22,22 @@ app.use(morgan('tiny'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-if (process.env.NODE_ENV === 'production'){
-  app.use(express.static('./client/dist/client'));
-  app.get('/*', (res, req)=>{
-    res.sendFile(
-      path.join(
-        __dirname, 'client', 'dist', 'client', 'index.html'
-      )
-    )
-  });
-}
-
 // Routes
 app.use('/api', userController);
 app.use('/api', pizzaController);
 app.use('/api', orderController);
+
+// Frontend static 
+if (isProd){
+  app.use(express.static('./client/dist/client'));
+  app.get('/*', (res, req)=>{
+    res.sendFile(
+      path.join(
+        __dirname, './client/dist/client', 'index.html'
+      )
+    )
+  });
+}
 
 app.use((req, res, next) => {
   next(new NotFoundError());
