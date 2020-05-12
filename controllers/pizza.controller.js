@@ -22,7 +22,7 @@ router.get('/pizzas/:id',auth, async (req, res, next) => {
   }
 });
 
-
+// it's better to reuse /api/pizzas endpoint, instead of making separate one
 router.post('/pizza', async (req, res, next) => { 
   const pizza = new Pizza({
     name: req.body.name,

@@ -23,8 +23,9 @@ router.delete('/orders/:id', async (req, res, next) => {
   }
 });
 
-
+// it's better to reuse /api/orders endpoint, instead of making separate one
 router.post('/order',auth, async (req, res, next) => {
+  // sanitize the input, you need to check that everything is valid
   const order = new Order({
     date: new Date(),
     name: req.body.name,

@@ -10,6 +10,7 @@ module.exports = (req, res, next) => {
 
     User
       .findById(data.id)
+      // use async/await
       .then(user => {
         if (!user) next(new UnauthorizedError('Invalid token'));
 

@@ -9,12 +9,14 @@ const User = require('../models/user.model');
 const router = express.Router();
 
 router.post('/signup', (req, res, next) => {
+  // sanitize the input
   const { email, password } = req.body;
 
   const newUser = new User({ email, password });
 
   newUser
     .save()
+    // use async/await, it's easier to read/follow
     .then(user => {
       const token = signJWT(user._id);
       res.json({ user, token });
@@ -24,10 +26,12 @@ router.post('/signup', (req, res, next) => {
 });
 
 router.post('/login', (req, res, next) => {
+  // sanitize the input
   const { email, password } = req.body;
 
   User
     .findOne({ email })
+    // use async/await, it's easier to read/follow
     .then(user => {
       if (!user) return Promise.reject(new UnauthorizedError('Wrong email or password!'));
 

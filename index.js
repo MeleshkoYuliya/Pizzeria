@@ -24,9 +24,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Routes
+
+// user routes should be like /api/users
 app.use('/api', userController);
+
+// it's better to declare root endpoint here:
+// app.use('/api/pizzas', pizzaController);
+// app.use('/api/orders', orderController);
 app.use('/api', pizzaController);
 app.use('/api', orderController);
+
+// but you can do even better by adding API versioning for the start:
+// app.use('/api/v1', controllerV1);
 
 // Frontend static 
 if (isProd) {
@@ -53,3 +62,6 @@ mongoose
     server.listen(config.port, () => logger.info(`API server listening ${config.port} port.`))
   )
   .catch(err => logger.error(err));
+
+// uncaughtException and unhandledRejection should be also handled in case of unexpected exception/rejection
+// process.on('uncaughtException', () => { ... });
