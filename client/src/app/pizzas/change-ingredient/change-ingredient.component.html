@@ -1,16 +1,16 @@
 <div class="dashboard">
   <div class="dashboard__title">Remove Ingredients</div>
   <div class="pizza__ingredients ingredients">
-    <div class="ingredients__item item" *ngFor="let ingredient of _ingredients; let i=index">
-      {{ ingredient.ingredient }}
-      <button class="item__delete-btn" (click)="deleteIngredient(i)">
-        <img src="../assets/images/cross.svg" alt="cheese" class="item__delete-img" />
+    <div class="ingredients__item ingredient" *ngFor="let ingredient of _ingredients; let i=index">
+      {{ ingredient }}
+      <button class="ingredient__delete-btn" (click)="deleteIngredient(i)">
+        <img src="../assets/images/cross.svg" alt="cheese" class="ingredient__delete-img" />
       </button>
     </div>
-    <div class="ingredients__item item--removed" *ngFor="let ingredient of removedIngredients; let i=index">
-      {{ ingredient.ingredient }}
-      <button class="item__refresh-btn" (click)="addBackIngredient(ingredient, i)">
-        <img src="../assets/images/refresh.svg" alt="cheese" class="item__refresh-img" />
+    <div class="ingredients__item ingredient--removed" *ngFor="let ingredient of removedIngredients; let i=index">
+      {{ ingredient }}
+      <button class="ingredient__refresh-btn" (click)="addBackIngredient(ingredient, i)">
+        <img src="../assets/images/refresh.svg" alt="cheese" class="ingredient__refresh-img" />
       </button>
     </div>
   </div>
