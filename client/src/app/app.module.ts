@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NgxsModule } from '@ngxs/store';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { BrowserModule } from '@angular/platform-browser';
@@ -37,6 +38,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     FormsModule,
     PizzasModule,
     ReactiveFormsModule,
