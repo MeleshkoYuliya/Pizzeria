@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy  } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { Observable } from "rxjs";
 import {Router} from '@angular/router';
 import { AuthService } from '../shared/services/auth.service';
 import { Store } from '@ngxs/store';
@@ -9,11 +10,12 @@ import { Store } from '@ngxs/store';
   styleUrls: ["../app.component.scss"]
 })
 export class HeaderComponent implements OnInit{
-  pizzasAmount: number = 0;
+  pizzasAmount$: Observable<number>| number = 0;
+
 constructor(private auth: AuthService,  private router: Router, private store: Store){}
 
 ngOnInit() {
-  this.store.select(state => state.pizzas.orderedPizzas).subscribe(pizzas => {this.pizzasAmount = pizzas.length })
+  this.pizzasAmount$ = this.store.select(state => state.pizzas.orderedPizzas.length);
 }
     
 checkAuth (){

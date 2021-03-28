@@ -1,7 +1,7 @@
 <nav class="header">
   <a routerLink="/pizzas" *ngIf=checkAuth() class="logo_link"><img src="../assets/images/pizza.svg" class="logo_link__img" />Pizza-Hit</a>
   <div *ngIf=checkAuth() routerLinkActive="active" class="imgLink_container">
-    <div class="cart-badge-comp"><span>{{pizzasAmount}}</span></div>
+    <div class="cart-badge-comp" ><span>{{pizzasAmount$ | async}}</span></div>
     <a routerLink="/store" class="img_link">
       <img src="../assets/images/store.svg" class="store_link" />
     </a>
