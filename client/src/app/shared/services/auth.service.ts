@@ -53,5 +53,6 @@ export class AuthService {
   logout() {
     this.setToken(null);
     localStorage.removeItem('auth-token');
+    localStorage.removeItem('isAdmin');
   }
 }
