@@ -34,12 +34,28 @@
 }
 
 .imgLink_container{
+  position: relative;
+  justify-content: center;
+  align-items: center;
   display: flex;
   cursor: pointer;
   padding: 0px 20px;
   height: 100%;
   &:hover{
     background-color: rgba(0,0,0,0.1);
+  }
+  .cart-badge-comp {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    background-color: rgb(235, 97, 97);
+    color: white;
+    position: absolute;
+    top: 4px;
+    left: 40px;
   }
 }
 .logo_link{
