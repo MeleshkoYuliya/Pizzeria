@@ -4,6 +4,9 @@
   <div *ngIf=checkAuth() routerLinkActive="active" class="header-link button-link">
     <a routerLink="/orders" class="header-link">Orders</a>
   </div> 
+  <div *ngIf=checkIsAdmin() routerLinkActive="active" class="header-link button-link">
+    <a routerLink="/add-pizza" class="header-link">Add Pizza</a>
+  </div> 
   <div class="header-link button-link" *ngIf=checkAuth() (click)="logout()">Log out</div>
   <ul id="nav-mobile" class="right hide-on-med-and-down" *ngIf=!checkAuth()>
     <li routerLinkActive="active">

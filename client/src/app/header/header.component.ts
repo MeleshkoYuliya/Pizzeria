@@ -13,6 +13,10 @@ constructor(private auth: AuthService,  private router: Router){}
 checkAuth (){
   return this.auth.isAuthenticated();
 }
+  
+checkIsAdmin() {
+  return this.auth.isAurheticatedAdmin();
+}
 
  logout(){
    this.auth.logout();
