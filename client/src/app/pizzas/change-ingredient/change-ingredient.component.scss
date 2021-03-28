@@ -77,7 +77,8 @@
     margin-left: 50px;
 
     &:disabled {
-      background-color: rgb(167, 117, 117);
+      background-color: #FDC296;
+      color: white;
       cursor: not-allowed
     }
   }
