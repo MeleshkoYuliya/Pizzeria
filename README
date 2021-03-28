@@ -17,3 +17,12 @@ start backend
 from root
 npm install
 npm start
+
+
+??
+
+/// to connect db
+ENV='dev'
+PORT=4000
+MONGODB_URI='mongodb+srv://Yuliya:Yulik1989!@cluster0.syx6y.mongodb.net/Pizzas?retryWrites=true&w=majority'
+TOKEN_SALT='abc123'
