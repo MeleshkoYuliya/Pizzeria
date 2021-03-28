@@ -20,7 +20,6 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { TokenInterceptor } from './shared/classes/token.interceptor';
 import { OrderDashboardComponent } from './order-dashboard/order-dashboard.component';
-import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +30,6 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     LoginPageComponent,
     RegisterPageComponent,
     OrderDashboardComponent,
-    AdminDashboardComponent,
   ],
   imports: [
     BrowserModule,
