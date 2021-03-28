@@ -22,6 +22,10 @@ const UserSchema = new Schema({
 		required: [true, 'Password - обязательное поле'],
 		minlength: [6, 'Пароль должен быть больше 6 символов']
 	},
+	isAdmin: {
+		type: Boolean,
+		required: false,
+	}
 });
 
 UserSchema.pre('save', function (next) {

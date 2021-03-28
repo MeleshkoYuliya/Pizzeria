@@ -9,16 +9,14 @@ const User = require('../models/user.model');
 const router = express.Router();
 
 router.post('/signup', (req, res, next) => {
-  const { email, password } = req.body;
-
-  const newUser = new User({ email, password });
+  const { email, password, isAdmin } = req.body;
+  const newUser = new User({ email, password, isAdmin });
 
   newUser
     .save()
     .then(user => {
       const token = signJWT(user._id);
       res.json({ user, token });
-      sendWelcomeEmail(user.email);
     })
     .catch(err => next(err));
 });
