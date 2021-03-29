@@ -1,0 +1,34 @@
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+    <div class="no-pizzas">Add new pizza in our menu!</div>
+    <div class="checkout-card">
+      <div class="checkout-card__title">Pizza information</div>
+      <div class="contacts">
+        <div><label for="name" class="input-label">Name</label>
+          <input type="text" id="name" class="input-contact" autocomplete="off" name="name" formControlName="name">
+        </div>
+        <div><label for="imagePath" class="input-label">Image</label>
+          <input type="text" id="imagePath" class="input-contact" autocomplete="off" name="imagePath" formControlName="imagePath">
+        </div>
+        <div><label for="ingredients" class="input-label">Ingredients</label>
+          <input type="text" id="ingredients" class="input-contact" autocomplete="off" name="ingredients" formControlName="ingredients">
+        </div>
+        <div><label for="sizes" class="input-label">Available size - price</label>
+          <input type="text" id="sizes" class="input-contact" autocomplete="off" name="sizes" formControlName="sizes">
+        </div>
+        <div><label for="protein" class="input-label">protein</label>
+          <input type="number" id="protein" class="input-contact" autocomplete="off" name="protein" formControlName="protein">
+        </div>
+        <div><label for="fats" class="input-label">fats</label>
+          <input type="number" id="fats" class="input-contact" autocomplete="off" name="fats" formControlName="fats">
+        </div>
+        <div><label for="carbohydrates" class="input-label">carbohydrates</label>
+          <input type="number" id="carbohydrates" class="input-contact" autocomplete="off" name="carbohydrates" formControlName="carbohydrates">
+        </div>
+        <div><label for="energy" class="input-label">energy</label>
+          <input type="number" id="energy" class="input-contact" autocomplete="off" name="energy" formControlName="energy">
+        </div>
+      </div>
+      <button class="order__btn" type="submit">Create</button>
+    </div>
+  </form>
+  

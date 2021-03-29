@@ -1,7 +1,7 @@
 .dashboard {
   background-color: white;
-  width: 85%;
-  height: 80%;
+  width: 95%;
+  height: 95%;
   margin: 15px auto;
   border-radius: 5px;
   position: relative;
@@ -77,13 +77,16 @@
     margin-left: 50px;
 
     &:disabled {
-      background-color: rgb(167, 117, 117);
+      background-color: #FDC296;
+      color: white;
       cursor: not-allowed
     }
   }
 }
 
 .ingredients {
+  height: 60%;
+  overflow: auto;
   &__item {
     margin: 5px 0;
     cursor: pointer;
@@ -97,7 +100,7 @@
 }
 
 .ingredients__item,
-.item {
+.ingredient {
   &__delete-btn {
     outline: none;
     border: none;

@@ -4,3 +4,23 @@
   font-weight: 600;
   text-transform: uppercase;
 }
+
+.checkbox{
+  opacity: 1;
+}
+
+.card-content{
+  height: 300px;
+}
+
+.admin-input{
+  display: flex;
+  width: 200px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 50px;
+  &>label {
+    padding-left: 30px;
+    font-size: 16px;
+  }
+}
